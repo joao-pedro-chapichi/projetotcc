@@ -16,9 +16,9 @@ namespace projetotcc.Utils
         public void confirmacaoFechar(Form formAtual)
         {
             form = formAtual;
-            DialogResult res = MessageBox.Show("Tem certeza que deseja encerrar o sistema?", "Alerta!", MessageBoxButtons.OKCancel);
-            if (res == DialogResult.OK) 
-            { 
+            DialogResult res = MessageBox.Show("Tem certeza que deseja encerrar o sistema?", "Aviso!", MessageBoxButtons.OKCancel);
+            if (res == DialogResult.OK)
+            {
                 form.Close();
             }
         }
