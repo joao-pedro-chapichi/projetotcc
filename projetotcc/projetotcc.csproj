@@ -214,6 +214,9 @@
     <Content Include="Resources\voltar_imagem.png" />
     <Content Include="Resources\x_imagem.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controller\" />
+    <Folder Include="Model\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

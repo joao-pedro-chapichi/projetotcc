@@ -1,1 +1,19 @@
-﻿
+﻿create table funcionario(
+	id_funcionario int not null,
+	nome varchar(255),
+	constraint pk_func primary key(id_funcionario)
+);
+create table operacao(
+	acao varchar(7) not null,
+	constraint pk_acao primary key(acao)
+);
+create table registro(
+	id_registro int not null,
+	hora time,
+	data date,
+	id_funcionario int,
+	acao varchar(7),
+	constraint pk_registro primary key(id_registro),
+	constraint fk_registro_func foreign key(id_funcionario) references funcionario,
+	constraint fk_registro_acao foreign key(acao) references operacao
+);
