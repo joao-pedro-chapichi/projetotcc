@@ -46,6 +46,7 @@ namespace projetotcc
         // Carregar formulário com o foco na textbox
         private void carregarForm_form(object sender, EventArgs e)
         {
+            //o maior fodase possivel
             txbcodigo_inicial.Focus();
         }
         #endregion
