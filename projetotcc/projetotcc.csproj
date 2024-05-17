@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45E17411-D464-4586-8F08-C97231E9C369}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>projetotcc</RootNamespace>
+    <AssemblyName>projetotcc</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\logotcc.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="UtilsFolder\Utils.cs" />
+    <Compile Include="View\AlterarColaborador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AlterarColaborador.Designer.cs">
+      <DependentUpon>AlterarColaborador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CadastrarColaborador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CadastrarColaborador.Designer.cs">
+      <DependentUpon>CadastrarColaborador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CodigoBarras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CodigoBarras.Designer.cs">
+      <DependentUpon>CodigoBarras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gerenciamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Gerenciamento.Designer.cs">
+      <DependentUpon>Gerenciamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GerenciarColaboradores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\GerenciarColaboradores.Designer.cs">
+      <DependentUpon>GerenciarColaboradores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Inicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Inicial.Designer.cs">
+      <DependentUpon>Inicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Registros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Registros.Designer.cs">
+      <DependentUpon>Registros.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\AlterarColaborador.resx">
+      <DependentUpon>AlterarColaborador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CadastrarColaborador.resx">
+      <DependentUpon>CadastrarColaborador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CodigoBarras.resx">
+      <DependentUpon>CodigoBarras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Gerenciamento.resx">
+      <DependentUpon>Gerenciamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GerenciarColaboradores.resx">
+      <DependentUpon>GerenciarColaboradores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Inicial.resx">
+      <DependentUpon>Inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="View\Registros.resx">
+      <DependentUpon>Registros.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logotcc.ico" />
+    <Content Include="Resources\alterar_imagem.png" />
+    <Content Include="Resources\cadastrarCol_imagem.png" />
+    <Content Include="Resources\cadastrar_imagem.png" />
+    <Content Include="Resources\circulo_amarelo.png" />
+    <Content Include="Resources\circulo_verde.png" />
+    <Content Include="Resources\circulo_vermelho.png" />
+    <Content Include="Resources\codbarras_imagem.png" />
+    <Content Include="Resources\codigobarras_imagem.png" />
+    <Content Include="Resources\confirmarcod_imagem.png" />
+    <Content Include="Resources\finalizar_imagem.png" />
+    <Content Include="Resources\gerenciamento_imagem.png" />
+    <Content Include="Resources\gerencolaborador_imagem.png" />
+    <Content Include="Resources\imprimir_imagem.png" />
+    <Content Include="Resources\logotcc.ico" />
+    <Content Include="Resources\registros_imagem.png" />
+    <Content Include="Resources\registro_imagem.png" />
+    <Content Include="Resources\salvarcod_imagem.png" />
+    <Content Include="Resources\sisponto_imagem.png" />
+    <Content Include="Resources\voltargerenciamento_imagem.png" />
+    <Content Include="Resources\voltar_imagem.png" />
+    <Content Include="Resources\x_imagem.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
