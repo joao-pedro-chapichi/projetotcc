@@ -12,6 +12,7 @@ namespace projetotcc.Utils
     {
         Form form;
 
+        #region UTILIDADES
         // Fechar os formulários com confirmação
         public void confirmacaoFechar(Form formAtual)
         {
@@ -22,5 +23,6 @@ namespace projetotcc.Utils
                 form.Close();
             }
         }
+        #endregion
     }
 }
