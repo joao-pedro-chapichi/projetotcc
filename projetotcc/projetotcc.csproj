@@ -98,7 +98,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\connectionDatabase.cs" />
+    <Compile Include="Controller\ControllerAll.cs" />
+    <Compile Include="Database\ConnectionDatabase.cs" />
     <Compile Include="UtilsFolder\Utils.cs" />
     <Compile Include="View\AlterarColaborador.cs">
       <SubType>Form</SubType>

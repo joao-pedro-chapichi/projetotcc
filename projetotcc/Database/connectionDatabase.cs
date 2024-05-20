@@ -7,7 +7,7 @@ using Npgsql;
 
 namespace projetotcc.Database
 {
-    internal class connectionDatabase
+    internal class ConnectionDatabase
     {
         // Conexão com o banco de dados
         // Declaração dos parametros para conexao
