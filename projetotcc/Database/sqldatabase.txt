@@ -16,4 +16,4 @@ create table registro(
 	constraint pk_registro primary key(id_registro),
 	constraint fk_registro_func foreign key(id_funcionario) references funcionario,
 	constraint fk_registro_acao foreign key(acao) references operacao
-);
+); 
