@@ -15,6 +15,7 @@ namespace projetotcc.Database
         NpgsqlConnection connection = null;
 
         // Metodo de conexao
+        //Conexão bem feita
         public NpgsqlConnection connectionDB()
         {
             try
