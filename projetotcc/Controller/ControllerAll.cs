@@ -10,8 +10,9 @@ using Npgsql;
 
 namespace projetotcc.Controller
 {
-    public class ControllerAll
+    static public class ControllerAll
     {
+        
         public static bool VerificarExistencia(string tabela, string campo, string dado)
         {
             string sqlCheckNome = $"SELECT COUNT(*) FROM {tabela} WHERE {campo} = @{campo}";

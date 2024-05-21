@@ -7,11 +7,11 @@ using Npgsql;
 
 namespace projetotcc.Database
 {
-    internal class ConnectionDatabase
+    class ConnectionDatabase
     {
         // Conexão com o banco de dados
         // Declaração dos parametros para conexao
-        string connectionString = "Host=postgres;Port=5432;Username=postgres;Password=123456;Database=pontofacil_db";
+        string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=123456;Database=pontofacil_db";
         NpgsqlConnection connection = null;
 
         // Metodo de conexao
@@ -27,8 +27,10 @@ namespace projetotcc.Database
             catch (Exception ex) 
             {
                 Console.WriteLine(ex.Message);
-                throw;
+                return null;
             }
         }
+
+
     }
 }

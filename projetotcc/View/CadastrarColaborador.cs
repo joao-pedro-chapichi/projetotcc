@@ -1,4 +1,6 @@
-﻿using projetotcc.Utils;
+﻿using projetotcc.Controller;
+using projetotcc.Model;
+using projetotcc.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,7 +51,18 @@ namespace projetotcc.View
         // Finalizar cadastro de colaborador
         private void finalizarCad_form(object sender, EventArgs e)
         {
-            // Ainda sem ação
+            string[] campos = new string[] { "id_funcionario", "nome"};
+
+            ModelFuncionario modelFuncionario = new ModelFuncionario();
+
+            
+            modelFuncionario.Id = int.Parse(textCodigo.Text);
+            modelFuncionario.Nome = textNome.Text;
+
+            object[] array = ControllerAll.CriarArray(modelFuncionario);
+
+            string res = ControllerAll.Cadastrar("funcionario", campos, array);
+            MessageBox.Show(res);
         }
         #endregion
     }
