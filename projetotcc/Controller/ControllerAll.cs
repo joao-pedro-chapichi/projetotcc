@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Npgsql;
 
 namespace projetotcc.Controller
@@ -75,7 +76,7 @@ namespace projetotcc.Controller
 
                         commInsert.ExecuteNonQuery();
 
-                        return "Cadastrado com sucesso!";
+                        return "Cadastrado com Sucesso!";
                     }
                     catch (Exception ex)
                     {
@@ -194,7 +195,7 @@ namespace projetotcc.Controller
 
                         commInsert.ExecuteNonQuery();
 
-                        return "Cadastrado com sucesso!";
+                        return "Alterado com sucesso!";
                     }
                     catch (Exception ex)
                     {

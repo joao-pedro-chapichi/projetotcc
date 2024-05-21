@@ -204,6 +204,7 @@
             // 
             // pictureBox7
             // 
+            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox7.Image = global::projetotcc.Properties.Resources.voltar_imagem;
             this.pictureBox7.Location = new System.Drawing.Point(12, 602);
             this.pictureBox7.Name = "pictureBox7";

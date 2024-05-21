@@ -53,6 +53,7 @@
             // 
             // pictureBox5
             // 
+            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox5.Image = global::projetotcc.Properties.Resources.voltar_imagem;
             this.pictureBox5.Location = new System.Drawing.Point(43, 605);
             this.pictureBox5.Name = "pictureBox5";
@@ -142,6 +143,7 @@
             // 
             // pictureBox7
             // 
+            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox7.Image = global::projetotcc.Properties.Resources.confirmarcod_imagem;
             this.pictureBox7.Location = new System.Drawing.Point(520, 214);
             this.pictureBox7.Name = "pictureBox7";
@@ -162,6 +164,7 @@
             // 
             // pictureBox8
             // 
+            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox8.Image = global::projetotcc.Properties.Resources.salvarcod_imagem;
             this.pictureBox8.Location = new System.Drawing.Point(350, 599);
             this.pictureBox8.Name = "pictureBox8";

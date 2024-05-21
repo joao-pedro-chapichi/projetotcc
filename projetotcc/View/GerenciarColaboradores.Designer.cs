@@ -101,6 +101,7 @@
             // 
             // pictureBox6
             // 
+            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox6.Image = global::projetotcc.Properties.Resources.cadastrar_imagem;
             this.pictureBox6.Location = new System.Drawing.Point(796, 571);
             this.pictureBox6.Name = "pictureBox6";
@@ -112,6 +113,7 @@
             // 
             // pictureBox5
             // 
+            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox5.Image = global::projetotcc.Properties.Resources.voltar_imagem;
             this.pictureBox5.Location = new System.Drawing.Point(12, 599);
             this.pictureBox5.Name = "pictureBox5";
