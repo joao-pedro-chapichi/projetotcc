@@ -63,6 +63,9 @@ namespace projetotcc.View
 
             string res = ControllerAll.Cadastrar("funcionario", campos, array);
             MessageBox.Show(res);
+
+            textNome.Text = "";
+            textCodigo.Text = "";
         }
         #endregion
     }
