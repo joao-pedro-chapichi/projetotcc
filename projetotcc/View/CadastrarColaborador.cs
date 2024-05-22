@@ -46,15 +46,25 @@ namespace projetotcc.View
         {
             //fazendo verificação de erros
             ModelFuncionario modelFuncionario = new ModelFuncionario();
-
-            
-            modelFuncionario.Id = int.Parse(textCodigo.Text);
-            modelFuncionario.Nome = textNome.Text;
-
-            object[] array = ControllerAll.CriarArray(modelFuncionario);
-
-            string res = ControllerAll.Cadastrar("funcionario", campos, array);
-            MessageBox.Show(res);
+            try
+            {
+                //adicionando os valores na classe do Funcionario
+                modelFuncionario.Id_funcionario = int.Parse(textCodigo.Text);
+                modelFuncionario.Nome = textNome.Text;
+                //criando a resposta ao mesmo tempo que usa o metodo cadastrar
+                //esse "funcionario" é a tabela que voce vai cadastrar, ao lado é a model 
+                string res = ControllerAll.Cadastrar("funcionario", modelFuncionario);
+                //Mostrando a resposta caso der certo
+                MessageBox.Show(res);
+            }
+            catch (Exception ex)
+            {
+                //se der errado mostra o pq
+                MessageBox.Show(ex.Message);
+            }
+            //apaga os valores das textbox
+            textNome.Text = "";
+            textCodigo.Text = "";
         }
         #endregion
     }
