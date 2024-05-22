@@ -8,20 +8,27 @@ using projetotcc.View;
 
 namespace projetotcc.Utils
 {
-    public class UtilsClasse
+    public static class UtilsClasse
     {
-        Form form;
+        
 
         #region UTILIDADES
         // Fechar os formulários com confirmação
-        public void confirmacaoFechar(Form formAtual)
+        public static void ConfirmacaoFechar(Form formAtual)
         {
-            form = formAtual;
             DialogResult res = MessageBox.Show("Tem certeza que deseja encerrar o sistema?", "Aviso!", MessageBoxButtons.OKCancel);
             if (res == DialogResult.OK)
             {
-                form.Close();
+                formAtual.Close();
             }
+        }
+
+        //metodo que fecha o form atual e abre o proximo
+        public static void FecharEAbrirProximoForm(Form formAtual, Form proximoForm)
+        {
+            formAtual.Hide();
+            proximoForm.Show();
+            proximoForm.FormClosed += (s, args) => formAtual.Close();
         }
         #endregion
     }

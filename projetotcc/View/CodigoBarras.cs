@@ -13,13 +13,8 @@ namespace projetotcc.View
 {
     public partial class CodigoBarras : Form
     {
-        private Form forms;
-        private Form formAnterior;
-
-        public CodigoBarras(Form forms, Form formAnterior)
+        public CodigoBarras()
         {
-            this.forms = forms;
-            this.formAnterior = formAnterior;
             InitializeComponent();
         }
 
@@ -27,8 +22,7 @@ namespace projetotcc.View
         // Fechar formulário
         private void pbFechar_form(object sender, EventArgs e)
         {
-            UtilsClasse utils = new UtilsClasse();
-            utils.confirmacaoFechar(this);
+            UtilsClasse.ConfirmacaoFechar(this);
         }
 
         // Minimizar formulário
@@ -40,10 +34,9 @@ namespace projetotcc.View
         // Voltar para gerenciamento
         private void pbVoltarGen_form(object sender, EventArgs e)
         {
-            this.Hide();
-            var Gerenciamento = new Gerenciamento(this, null);
-            Gerenciamento.Closed += (s, args) => this.Close();
-            Gerenciamento.Show();
+            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            Gerenciamento gerenciamento = new Gerenciamento();
+            UtilsClasse.FecharEAbrirProximoForm(this, gerenciamento);
         }
 
         // Salvar código de barras

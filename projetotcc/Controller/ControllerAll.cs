@@ -8,14 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace projetotcc.Controller
 {
+    // Classe controladora que agrupa métodos para operações CRUD no banco de dados
     static public class ControllerAll
     {
-        
+        // Método para verificar a existência de um registro em uma tabela com base em um campo e valor fornecidos
         public static bool VerificarExistencia(string tabela, string campo, string dado)
         {
+            // Query SQL para contar registros que correspondem ao valor fornecido
             string sqlCheckNome = $"SELECT COUNT(*) FROM {tabela} WHERE {campo} = @{campo}";
 
             ConnectionDatabase con = new ConnectionDatabase();
@@ -26,15 +29,17 @@ namespace projetotcc.Controller
                 {
                     using (NpgsqlCommand commCheckNome = new NpgsqlCommand(sqlCheckNome, conn))
                     {
+                        // Adiciona o parâmetro à query
                         commCheckNome.Parameters.AddWithValue($"@{campo}", dado);
+                        // Executa a query e converte o resultado para inteiro
                         int countNome = Convert.ToInt32(commCheckNome.ExecuteScalar());
                         if (countNome > 0)
                         {
-                            return true; // Nome já existe
+                            return true; // Registro encontrado
                         }
                     }
 
-                    return false; // Nenhum registro encontrado com o nome ou código fornecidos
+                    return false; // Nenhum registro encontrado
                 }
                 catch (Exception ex)
                 {
@@ -44,22 +49,25 @@ namespace projetotcc.Controller
             }
         }
 
-        public static string Cadastrar(string tabela, object[] campos, object[] dados)
+        // Método para inserir um novo registro na tabela especificada
+        public static string Cadastrar(string tabela, object classe)
         {
-            string sqlInsert = "INSERT INTO " + tabela + " (";
+            // Obtém as propriedades do objeto fornecido
+            PropertyInfo[] propriedades = classe.GetType().GetProperties();
+
+            // Arrays para armazenar os valores e nomes dos campos
+            object[] valores = new object[propriedades.Length];
+            string[] campos = propriedades.Select(p => p.Name).ToArray();
+
+            // Preenche os arrays com os valores das propriedades
+            for (int i = 0; i < propriedades.Length; i++)
+            {
+                valores[i] = propriedades[i].GetValue(classe);
+            }
 
             int numElementos = campos.Length;
-            for (int i = 0; i < numElementos; i++)
-            {
-                sqlInsert += " " + campos[i] + ",";
-            }
-            sqlInsert = sqlInsert.TrimEnd(',') + ") VALUES (";
-
-            for (int i = 0; i < numElementos; i++)
-            {
-                sqlInsert += " @" + campos[i] + ",";
-            }
-            sqlInsert = sqlInsert.TrimEnd(',') + ")";
+            // Monta a query SQL para inserção
+            string sqlInsert = $"INSERT INTO {tabela} ({string.Join(", ", campos)}) VALUES ({string.Join(", ", campos.Select(c => "@" + c))})";
 
             ConnectionDatabase con = new ConnectionDatabase();
 
@@ -69,11 +77,13 @@ namespace projetotcc.Controller
                 {
                     try
                     {
+                        // Adiciona os parâmetros à query
                         for (int i = 0; i < numElementos; i++)
                         {
-                            commInsert.Parameters.AddWithValue("@" + campos[i], dados[i]);
+                            commInsert.Parameters.AddWithValue("@" + campos[i], valores[i]);
                         }
 
+                        // Executa a query
                         commInsert.ExecuteNonQuery();
 
                         return "Cadastrado com Sucesso!";
@@ -86,10 +96,10 @@ namespace projetotcc.Controller
             }
         }
 
+        // Método para excluir um registro de uma tabela com base em um campo e valor fornecidos
         public static string Excluir(string tabela, string campo, string dado)
         {
-            // Verificar se já existe alguém cadastrado com o mesmo nome ou código
-
+            // Query SQL para deletar o registro correspondente
             string sqlDelete = $"DELETE FROM {tabela} WHERE {campo} = @{campo}";
 
             ConnectionDatabase con = new ConnectionDatabase();
@@ -97,7 +107,7 @@ namespace projetotcc.Controller
 
             try
             {
-                // Exclua o funcionário da tabela 'funcionario'
+                // Criação do comando SQL para exclusão
                 NpgsqlCommand commDelete = new NpgsqlCommand(sqlDelete, conn);
                 commDelete.Parameters.AddWithValue($"@{campo}", dado);
                 int rowsAffectedDelete = commDelete.ExecuteNonQuery();
@@ -113,7 +123,7 @@ namespace projetotcc.Controller
             }
             catch (Exception ex)
             {
-                return "Erro ao excluir" + ex.Message;
+                return "Erro ao excluir: " + ex.Message;
             }
             finally
             {
@@ -121,6 +131,7 @@ namespace projetotcc.Controller
             }
         }
 
+        // Método para listar registros de uma tabela com base em um campo e valor fornecidos
         public static DataTable Listar(string tabela, object campos, string campo, object valor)
         {
             DataTable dataTable = new DataTable();
@@ -140,7 +151,7 @@ namespace projetotcc.Controller
                 Console.WriteLine("O parâmetro 'campos' deve ser uma string ou um array de strings.");
             }
 
-            // Query SQL para buscar funcionários cujo nome seja semelhante ao fornecido
+            // Query SQL para buscar registros com base no valor fornecido
             string sqlSearch = $"SELECT {camposString} FROM {tabela} WHERE {campo} ILIKE @{campo}";
 
             // Criação da conexão com o banco de dados
@@ -153,12 +164,13 @@ namespace projetotcc.Controller
 
             try
             {
+                // Preenche o DataTable com os dados retornados pela query
                 NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(comm);
                 adapter.Fill(dataTable);
             }
             catch (NpgsqlException ex)
             {
-                Console.WriteLine("Erro ao pesquisar funcionários: " + ex.Message);
+                Console.WriteLine("Erro ao listar registros: " + ex.Message);
             }
             finally
             {
@@ -168,9 +180,23 @@ namespace projetotcc.Controller
             return dataTable;
         }
 
-        public static string Alterar(string tabela, object[] campos, object[] dados, string campo, object valor)
+        // Método para atualizar um registro de uma tabela com base em um campo e valor fornecidos
+        public static string Alterar(string tabela, object classe, string campo, object valor)
         {
+            // Obtém as propriedades do objeto fornecido
+            PropertyInfo[] propriedades = classe.GetType().GetProperties();
 
+            // Arrays para armazenar os valores e nomes dos campos
+            object[] valores = new object[propriedades.Length];
+            string[] campos = propriedades.Select(p => p.Name).ToArray();
+
+            // Preenche os arrays com os valores das propriedades
+            for (int i = 0; i < propriedades.Length; i++)
+            {
+                valores[i] = propriedades[i].GetValue(classe);
+            }
+
+            // Monta a query SQL para atualização
             string sqlInsert = $"UPDATE {tabela} SET ";
 
             int numElementos = campos.Length;
@@ -188,34 +214,23 @@ namespace projetotcc.Controller
                 {
                     try
                     {
+                        // Adiciona os parâmetros à query
                         for (int i = 0; i < numElementos; i++)
                         {
-                            commInsert.Parameters.AddWithValue($"@{campos[i]}", dados[i]);
+                            commInsert.Parameters.AddWithValue($"@{campos[i]}", valores[i]);
                         }
 
+                        // Executa a query
                         commInsert.ExecuteNonQuery();
 
                         return "Alterado com sucesso!";
                     }
                     catch (Exception ex)
                     {
-                        return "Erro ao cadastrar: " + ex.Message;
+                        return "Erro ao alterar: " + ex.Message;
                     }
                 }
             }
-        }
-
-        public static object[] CriarArray(object objc)
-        {
-            PropertyInfo[] propriedades = objc.GetType().GetProperties();
-            object[] valores = new object[propriedades.Length];
-
-            for (int i = 0; i < propriedades.Length; i++)
-            {
-                valores[i] = propriedades[i].GetValue(objc);
-            }
-
-            return valores;
         }
     }
 }

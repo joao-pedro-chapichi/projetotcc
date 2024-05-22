@@ -14,13 +14,8 @@ namespace projetotcc.View
 {
     public partial class GerenciarColaboradores : Form
     {
-        private Form forms;
-        private Form formAnterior;
-
-        public GerenciarColaboradores(Form forms, Form formAnterior)
+        public GerenciarColaboradores()
         {
-            this.formAnterior = formAnterior;
-            this.forms = forms;
             InitializeComponent();
         }
 
@@ -28,8 +23,7 @@ namespace projetotcc.View
         // Fechar formulário
         private void pbFechar_form(object sender, EventArgs e)
         {
-            UtilsClasse utils = new UtilsClasse();
-            utils.confirmacaoFechar(this);
+           UtilsClasse.ConfirmacaoFechar(this);
         }
 
         // Minimizar formulário
@@ -41,19 +35,18 @@ namespace projetotcc.View
         // Voltar ao formulário gerenciamento
         private void pbVoltarGen_form(object sender, EventArgs e)
         {
-            this.Hide();
-            var Gerenciamento = new Gerenciamento(this, null);
-            Gerenciamento.Closed += (s, args) => this.Close();
-            Gerenciamento.Show();
+            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            Gerenciamento gerenciamento = new Gerenciamento();
+            UtilsClasse.FecharEAbrirProximoForm(this, gerenciamento);
+
         }
 
         // Cadastrar novo colaborador
         private void cadastrarCol_form(object sender, EventArgs e)
         {
-            this.Hide();
-            var CadastrarColaborador = new CadastrarColaborador(this, null);
-            CadastrarColaborador.Closed += (s, args) => this.Close();
-            CadastrarColaborador.Show();
+            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            CadastrarColaborador cadastrarColaborador = new CadastrarColaborador();
+            UtilsClasse.FecharEAbrirProximoForm(this, cadastrarColaborador);
         }
         #endregion  
     }

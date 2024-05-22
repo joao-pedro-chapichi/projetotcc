@@ -15,13 +15,8 @@ namespace projetotcc
 {
     public partial class Inicial : Form
     {
-        private Form forms;
-        private Form formAnterior;
-
-        public Inicial(Form forms, Form formAnterior)
+        public Inicial()
         {
-            this.forms = forms;
-            this.formAnterior = formAnterior;
             InitializeComponent();
         }
 
@@ -30,17 +25,15 @@ namespace projetotcc
         // Fechar Formulário - Form1
         private void pbFechar_form(object sender, EventArgs e)
         {
-            UtilsClasse utils = new UtilsClasse();
-            utils.confirmacaoFechar(this);
+            UtilsClasse.ConfirmacaoFechar(this);
         }
 
         // Abrir formulário de gerenciamento
         private void pbAbrir_gerenciamento(object sender, EventArgs e)
         {
-            this.Hide();
-            var Gerenciamento = new Gerenciamento(this, null);
-            Gerenciamento.Closed += (s, args) => this.Close();
-            Gerenciamento.Show();
+            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            Gerenciamento gerenciamento = new Gerenciamento();
+            UtilsClasse.FecharEAbrirProximoForm(this, gerenciamento);
         }
 
         // Carregar formulário com o foco na textbox
