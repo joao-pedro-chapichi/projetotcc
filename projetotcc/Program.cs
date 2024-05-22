@@ -16,7 +16,7 @@ namespace projetotcc
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Inicial(null, null));
+            Application.Run(new Inicial());
         }
     }
 }

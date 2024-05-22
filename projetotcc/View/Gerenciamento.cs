@@ -14,13 +14,8 @@ namespace projetotcc.View
 {
     public partial class Gerenciamento : Form
     {
-        private Form forms;
-        private Form formAnterior;
-
-        public Gerenciamento(Form forms, Form formAnterior)
+        public Gerenciamento()
         {
-            this.formAnterior = formAnterior;
-            this.forms = forms;
             InitializeComponent();
             Timer timer = new Timer();
             timer.Interval = 10;
@@ -38,8 +33,7 @@ namespace projetotcc.View
         // Fechar formulário
         private void pbFechar_form(object sender, EventArgs e)
         {
-            UtilsClasse utils = new UtilsClasse();
-            utils.confirmacaoFechar(this);
+            UtilsClasse.ConfirmacaoFechar(this);
         }
 
         // Minimizar formulário
@@ -51,38 +45,34 @@ namespace projetotcc.View
         // Voltar para form do ponto
         private void pbVoltarPonto_form(object sender, EventArgs e)
         {
-            this.Hide();
-            var Inicial = new Inicial(this, null);
-            Inicial.Closed += (s, args) => this.Close();
-            Inicial.Show();
+            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            Inicial inicial = new Inicial();    
+            UtilsClasse.FecharEAbrirProximoForm(this, inicial);
         }
 
 
         // Abrir formulário - Codigo de Barras
         private void pbAbrirCodBar_form(object sender, EventArgs e)
         {
-            this.Hide();
-            var CodigoBarras = new CodigoBarras(this, null);
-            CodigoBarras.Closed += (s, args) => this.Close();
-            CodigoBarras.Show();
+            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            CodigoBarras codigoBarras = new CodigoBarras();
+            UtilsClasse.FecharEAbrirProximoForm(this, codigoBarras);
         }
 
         // Abrir formulário - Registros
         private void pbAbrirRegis_form(object sender, EventArgs e)
         {
-            this.Hide();
-            var Registros = new Registros(this, null);
-            Registros.Closed += (s, args) => this.Close();
-            Registros.Show();
+            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            Registros registros = new Registros();
+            UtilsClasse.FecharEAbrirProximoForm(this, registros);
         }
 
         // Abrir formulário - Gerenciar Colaboradores
         private void pbAbrirGenCol_form(object sender, EventArgs e)
         {
-            this.Hide();
-            var GerenciarColaboradores = new GerenciarColaboradores(this, null);
-            GerenciarColaboradores.Closed += (s, args) => this.Close();
-            GerenciarColaboradores.Show();
+            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            GerenciarColaboradores gerenciarColaboradores = new GerenciarColaboradores();
+            UtilsClasse.FecharEAbrirProximoForm(this, gerenciarColaboradores);
         }
 
         private void horaData_tick(object sender, EventArgs e)

@@ -101,7 +101,7 @@
     <Compile Include="Controller\ControllerAll.cs" />
     <Compile Include="Database\ConnectionDatabase.cs" />
     <Compile Include="Model\ModelFuncionario.cs" />
-    <Compile Include="UtilsFolder\Utils.cs" />
+    <Compile Include="UtilsFolder\UtilsClasse.cs" />
     <Compile Include="View\AlterarColaborador.cs">
       <SubType>Form</SubType>
     </Compile>

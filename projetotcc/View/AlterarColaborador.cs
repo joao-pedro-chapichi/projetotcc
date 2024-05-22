@@ -13,13 +13,8 @@ namespace projetotcc.View
 {
     public partial class AlterarColaborador : Form
     {
-        private Form forms;
-        private Form formAnterior;
-
-        public AlterarColaborador(Form forms, Form formAnterior)
+        public AlterarColaborador()
         {
-            this.forms = forms;
-            this.formAnterior = formAnterior;
             InitializeComponent();
         }
 
@@ -27,8 +22,7 @@ namespace projetotcc.View
         // Fechar formulário
         private void pbFechar_form(object sender, EventArgs e)
         {
-            UtilsClasse utils = new UtilsClasse();
-            utils.confirmacaoFechar(this);
+            UtilsClasse.ConfirmacaoFechar(this);
         }
 
         // Minimizar formulário
@@ -40,10 +34,9 @@ namespace projetotcc.View
         // Voltar ao gerenciar colaboradores
         private void pbVoltarCol_form(object sender, EventArgs e)
         {
-            this.Hide();
-            var GerenciarColaboradores = new GerenciarColaboradores(this, null);
-            GerenciarColaboradores.Closed += (s, args) => this.Close();
-            GerenciarColaboradores.Show();
+            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            GerenciarColaboradores gerenciarColaboradores = new GerenciarColaboradores();
+            UtilsClasse.FecharEAbrirProximoForm(this, gerenciarColaboradores);
         }
 
         // FInalizar alteração de colaboradores

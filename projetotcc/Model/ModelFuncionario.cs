@@ -9,14 +9,14 @@ namespace projetotcc.Model
     public class ModelFuncionario
     {
         // Declarando os atributos
-        private int _id;
+        private int _id_funcionario;
         private string _nome;
 
         // Encapsulamento dos atributos
-        public int Id
+        public int Id_funcionario
         {
-            get { return _id; }
-            set { _id = value; }
+            get { return _id_funcionario; }
+            set { _id_funcionario = value; }
         }
 
         public string Nome
