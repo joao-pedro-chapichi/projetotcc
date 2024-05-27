@@ -17,3 +17,6 @@ create table registro(
 	constraint fk_registro_func foreign key(id_funcionario) references funcionario,
 	constraint fk_registro_acao foreign key(acao) references operacao
 ); 
+
+insert int operacao (acao) values ('entrada');
+insert int operacao (acao) values ('saida');
