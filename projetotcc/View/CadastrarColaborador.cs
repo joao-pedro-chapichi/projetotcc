@@ -44,27 +44,21 @@ namespace projetotcc.View
         // Finalizar cadastro de colaborador
         private void finalizarCad_form(object sender, EventArgs e)
         {
-            //fazendo verificação de erros
-            ModelFuncionario modelFuncionario = new ModelFuncionario();
-            try
-            {
-                //adicionando os valores na classe do Funcionario
-                modelFuncionario.Id_funcionario = int.Parse(textCodigo.Text);
-                modelFuncionario.Nome = textNome.Text;
-                //criando a resposta ao mesmo tempo que usa o metodo cadastrar
-                //esse "funcionario" é a tabela que voce vai cadastrar, ao lado é a model 
-                string res = ControllerAll.Cadastrar("funcionario", modelFuncionario);
-                //Mostrando a resposta caso der certo
-                MessageBox.Show(res);
-            }
-            catch (Exception ex)
-            {
-                //se der errado mostra o pq
-                MessageBox.Show(ex.Message);
-            }
-            //apaga os valores das textbox
-            textNome.Text = "";
+            // Chamando as classes ControllerColaborador e ModelFuncionario
+            ControllerColaborador controllerCol = new ControllerColaborador();
+            ModelFuncionario modelFunc = new ModelFuncionario();
+
+            // Inserindo os valores da textBox nos atributos (set nome e set id)
+            modelFunc.Nome = textNome.Text;
+            modelFunc.Id_funcionario = Convert.ToInt32(textCodigo.Text);
+
+            /* Chamando o metodo cadastrarFuncionario e passando como parametro a classe
+               ModelFuncionario (Explicado na classe ControllerColaborador) */
+            controllerCol.cadastrarFuncionario(modelFunc);
+
+            // Limpando a textBox após cadastrar o funcionário
             textCodigo.Text = "";
+            textNome.Text = "";
         }
         #endregion
     }
