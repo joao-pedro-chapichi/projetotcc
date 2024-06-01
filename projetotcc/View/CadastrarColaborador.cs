@@ -45,7 +45,6 @@ namespace projetotcc.View
         private void finalizarCad_form(object sender, EventArgs e)
         {
             // Chamando as classes ControllerColaborador e ModelFuncionario
-            ControllerColaborador controllerCol = new ControllerColaborador();
             ModelFuncionario modelFunc = new ModelFuncionario();
 
             // Inserindo os valores da textBox nos atributos (set nome e set id)
@@ -54,7 +53,7 @@ namespace projetotcc.View
 
             /* Chamando o metodo cadastrarFuncionario e passando como parametro a classe
                ModelFuncionario (Explicado na classe ControllerColaborador) */
-            controllerCol.cadastrarFuncionario(modelFunc);
+            ControllerColaborador.cadastrarFuncionario(modelFunc);
 
             // Limpando a textBox após cadastrar o funcionário
             textCodigo.Text = "";
