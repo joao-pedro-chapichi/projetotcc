@@ -17,10 +17,10 @@ namespace projetotcc.View
     {
         public GerenciarColaboradores()
         {
-            InitializeComponent();
-            AtualizarDados();
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            ModelFuncionario mFun = new ModelFuncionario();
+            InitializeComponent(); // Inicializa os componentes do formulário
+            AtualizarDados(); // Atualiza os dados do DataGridView ao inicializar o formulário
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick; // Adiciona um evento para o clique nas células do DataGridView
+            ModelFuncionario mFun = new ModelFuncionario(); // Instancia um novo objeto ModelFuncionario (não utilizado no construtor)
         }
 
         #region NAVEGAÇÃO
@@ -55,29 +55,29 @@ namespace projetotcc.View
 
         public async void AtualizarDados()
         {
-            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Clear(); // Limpa todas as colunas do DataGridView
             try
             {
-                string nome = txtNome.Text;
-                string codigo = txtCodigo.Text;
-                DataTable dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo);
-                PreencherDataGrindView(dataTable);
+                string nome = txtNome.Text; // Obtém o texto do campo txtNome
+                string codigo = txtCodigo.Text; // Obtém o texto do campo txtCodigo
+                DataTable dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo); // Busca os funcionários com base nos filtros
+                PreencherDataGrindView(dataTable); // Preenche o DataGridView com os dados retornados
             }
             catch
             {
-                return;
+                return; // Em caso de erro, apenas retorna sem fazer nada
             }
         }
 
         private void PreencherDataGrindView(DataTable dataTable)
         {
-            if (dataTable != null && dataTable.Rows.Count > 0)
+            if (dataTable != null && dataTable.Rows.Count > 0) // Verifica se o DataTable possui dados
             {
-                dataGridView1.DataSource = dataTable;
+                dataGridView1.DataSource = dataTable; // Define a fonte de dados do DataGridView
 
                 if (dataGridView1.Rows.Count > 0)
                 {
-                    dataGridView1.Rows[0].Selected = false; // Desseleciona a primeira linha
+                    dataGridView1.Rows[0].Selected = false; // Desseleciona a primeira linha, se existir
                 }
 
                 // Verifica se as colunas de botões EXCLUIR e EDITAR já existem
@@ -113,12 +113,12 @@ namespace projetotcc.View
                     editButtonColumn.Text = "EDITAR";
                     editButtonColumn.UseColumnTextForButtonValue = true;
                     dataGridView1.Columns.Add(editButtonColumn);
-
                 }
             }
         }
         #endregion
 
+        // Evento de clique no conteúdo da célula do DataGridView
         private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Verifica se o clique ocorreu em uma célula válida
@@ -127,27 +127,24 @@ namespace projetotcc.View
                 {
                     if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "EXCLUIR") // Verifica se o botão clicado é o de EXCLUIR
                     {
-                        int codigo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value.ToString());
+                        int codigo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value.ToString()); // Obtém o código do funcionário da linha clicada
 
-                        DialogResult result = MessageBox.Show("Deseja continuar?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult result = MessageBox.Show("Deseja continuar?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Exibe uma caixa de diálogo para confirmação
 
                         if (result == DialogResult.Yes)
                         {
-                            await ControllerColaborador.ExcluirFuncionario(codigo);
-                            AtualizarDados();
-
+                            await ControllerColaborador.ExcluirFuncionario(codigo); // Exclui o funcionário de forma assíncrona
+                            AtualizarDados(); // Atualiza os dados do DataGridView após a exclusão
                         }
                     }
-                    //else if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "EDITAR") // Verifica se o botão clicado é o de EDITAR
-                    //{
-                    //    string nome = dataGridView1.Rows[e.RowIndex].Cells["nome"].Value.ToString();
-                    //    string cpf = dataGridView1.Rows[e.RowIndex].Cells["cpf"].Value.ToString();
-                    //    string celular = dataGridView1.Rows[e.RowIndex].Cells["celular"].Value.ToString();
-                    //    string habilitacao = dataGridView1.Rows[e.RowIndex].Cells["habilitacao"].Value.ToString();
+                    else if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "EDITAR") // Verifica se o botão clicado é o de EDITAR
+                    {
+                        int id_fun = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value.ToString()); // Obtém o código do funcionário da linha clicada
+                        string nome_fun = dataGridView1.Rows[e.RowIndex].Cells["nome"].Value.ToString(); // Obtém o nome do funcionário da linha clicada
 
-                    //    EditarClienteForms editarCliente = new EditarClienteForms(nomeUser, nome, cpf, celular, habilitacao);
-                    //    suport.FecharEAbrirProximoForm(this, editarCliente);
-                    //}
+                        AlterarColaborador editarCliente = new AlterarColaborador(id_fun, nome_fun); // Cria uma nova instância do formulário AlterarColaborador
+                        UtilsClasse.FecharEAbrirProximoForm(this, editarCliente); // Utiliza um método utilitário para fechar o formulário atual e abrir o próximo
+                    }
                 }
             }
         }
