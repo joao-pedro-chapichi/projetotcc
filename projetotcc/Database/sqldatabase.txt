@@ -1,22 +1,25 @@
-﻿create table funcionario(
-	id_funcionario int not null,
-	nome varchar(255),
-	constraint pk_func primary key(id_funcionario)
+﻿CREATE TABLE funcionario (
+    id Serial NOT NULL,
+    id_funcionario INT NOT NULL,
+    nome VARCHAR(255),
+    CONSTRAINT pk_func PRIMARY KEY (id)
 );
-create table operacao(
-	acao varchar(7) not null,
-	constraint pk_acao primary key(acao)
-);
-create table registro(
-	id_registro int not null,
-	hora time,
-	data date,
-	id_funcionario int,
-	acao varchar(7),
-	constraint pk_registro primary key(id_registro),
-	constraint fk_registro_func foreign key(id_funcionario) references funcionario,
-	constraint fk_registro_acao foreign key(acao) references operacao
-); 
 
-insert into operacao (acao) values ('entrada');
-insert into operacao (acao) values ('saida');
+CREATE TABLE operacao (
+    acao VARCHAR(7) NOT NULL,
+    CONSTRAINT pk_acao PRIMARY KEY (acao)
+);
+
+CREATE TABLE registro (
+    id_registro Serial NOT NULL,
+    hora TIME,
+    data DATE,
+    id_funcionario BIGINT,
+    acao VARCHAR(7),
+    CONSTRAINT pk_registro PRIMARY KEY (id_registro),
+    CONSTRAINT fk_registro_func FOREIGN KEY (id_funcionario) REFERENCES funcionario(id),
+    CONSTRAINT fk_registro_acao FOREIGN KEY (acao) REFERENCES operacao(acao)
+);
+
+INSERT INTO operacao (acao) VALUES ('entrada');
+INSERT INTO operacao (acao) VALUES ('saida');

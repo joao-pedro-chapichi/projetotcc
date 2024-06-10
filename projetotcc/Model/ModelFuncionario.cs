@@ -8,12 +8,16 @@ namespace projetotcc.Model
 {
     public class ModelFuncionario
     {
-
-        private int _id_funcionario;
+        private long _id;
+        private long _id_funcionario;
         private string _nome;
 
-
-        public int Id_funcionario
+        public long ID
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+        public long Id_funcionario
         {
             get { return _id_funcionario; }
             set { _id_funcionario = value; }
