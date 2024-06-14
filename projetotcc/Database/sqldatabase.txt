@@ -1,25 +1,30 @@
-﻿CREATE TABLE funcionario (
-    id Serial NOT NULL,
-    id_funcionario INT NOT NULL,
-    nome VARCHAR(255),
-    CONSTRAINT pk_func PRIMARY KEY (id)
+﻿-- Create the funcionario table
+CREATE TABLE funcionario (
+    id Serial NOT NULL,           -- Serial primary key
+    id_funcionario BIGINT NOT NULL, -- Unique identifier for the employee
+    nome VARCHAR(255),            -- Employee name
+    CONSTRAINT pk_func PRIMARY KEY (id)  -- Primary key constraint
 );
 
+-- Create the operacao table
 CREATE TABLE operacao (
-    acao VARCHAR(7) NOT NULL,
-    CONSTRAINT pk_acao PRIMARY KEY (acao)
+    acao VARCHAR(7) NOT NULL,     -- Operation type (e.g., 'entrada', 'saida')
+    CONSTRAINT pk_acao PRIMARY KEY (acao)  -- Primary key constraint
 );
 
+-- Create the registro table
 CREATE TABLE registro (
-    id_registro Serial NOT NULL,
-    hora TIME,
-    data DATE,
-    id_funcionario BIGINT,
-    acao VARCHAR(7),
-    CONSTRAINT pk_registro PRIMARY KEY (id_registro),
-    CONSTRAINT fk_registro_func FOREIGN KEY (id_funcionario) REFERENCES funcionario(id),
-    CONSTRAINT fk_registro_acao FOREIGN KEY (acao) REFERENCES operacao(acao)
+    id_registro Serial NOT NULL,  -- Serial primary key
+    hora TIME,                    -- Time of the record
+    data DATE,                    -- Date of the record
+    id int,                    -- Foreign key to funcionario table
+    acao VARCHAR(7),              -- Foreign key to operacao table
+    CONSTRAINT pk_registro PRIMARY KEY (id_registro),  -- Primary key constraint
+    CONSTRAINT fk_registro_func FOREIGN KEY (id) REFERENCES funcionario(id),  -- Foreign key constraint to funcionario
+    CONSTRAINT fk_registro_acao FOREIGN KEY (acao) REFERENCES operacao(acao)  -- Foreign key constraint to operacao
 );
 
+-- Insert values into the operacao table
 INSERT INTO operacao (acao) VALUES ('entrada');
 INSERT INTO operacao (acao) VALUES ('saida');
+

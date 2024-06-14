@@ -102,6 +102,8 @@ namespace projetotcc
 
                     string success = await ControllerRegistro.CriarRegistro(mFunc);
 
+                    MessageBox.Show(success);
+
                     // Disable controls
                     foreach (Control control in this.Controls)
                     {
@@ -115,7 +117,9 @@ namespace projetotcc
                 {
                     MessageBox.Show("Colaborador não Encontrado!");
                     txbcodigo_inicial.Text = "";
+                    timer.Start();             
                     txbcodigo_inicial.Focus();
+                    
                 }
             }
         }

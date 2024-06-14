@@ -79,7 +79,7 @@ namespace projetotcc.Controller
 
         public static async ValueTask<bool> VerificarUltimaAcao(long id_funcionario)
         {
-            string sql = "SELECT acao FROM registro WHERE id_funcionario = @id_funcionario AND data = @data ORDER BY id_registro DESC LIMIT 1";
+            string sql = "SELECT acao FROM registro WHERE id = @id_funcionario AND data = @data ORDER BY id_registro DESC LIMIT 1";
 
             DateTime data = DateTime.Now.Date;
             ConnectionDatabase con = new ConnectionDatabase();
@@ -155,7 +155,7 @@ namespace projetotcc.Controller
 
         public static async ValueTask<string> CriarRegistro(ModelFuncionario mFunc)
         {
-            string sqlInsert = "INSERT INTO registro(hora, data, id_funcionario, acao) VALUES(@hora, @data, @id_funcionario, @acao)";
+            string sqlInsert = "INSERT INTO registro(hora, data, id, acao) VALUES(@hora, @data, @id, @acao)";
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
@@ -168,9 +168,9 @@ namespace projetotcc.Controller
                         TimeSpan horaMinutos = new TimeSpan(horaAtual.Hours, horaAtual.Minutes, 0);
                         DateTime dataAtual = DateTime.Now.Date;
 
-                        long codigo = mFunc.Id_funcionario;
+                        long codigo = mFunc.ID;
 
-                        if (string.IsNullOrEmpty(codigo.ToString()))
+                        if (codigo == 0)
                         {
                             return "Erro";
                         }
@@ -185,7 +185,7 @@ namespace projetotcc.Controller
 
                         commInsert.Parameters.AddWithValue("@hora", horaMinutos);
                         commInsert.Parameters.AddWithValue("@data", dataAtual);
-                        commInsert.Parameters.AddWithValue("@id_funcionario", mFunc.Id_funcionario);
+                        commInsert.Parameters.AddWithValue("@id", codigo);
                         commInsert.Parameters.AddWithValue("@acao", acao);
 
                         await commInsert.ExecuteNonQueryAsync();
