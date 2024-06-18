@@ -128,12 +128,24 @@ namespace projetotcc.View
                     if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "EXCLUIR") // Verifica se o botão clicado é o de EXCLUIR
                     {
                         int codigo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value.ToString()); // Obtém o código do funcionário da linha clicada
+                        string nome = dataGridView1.Rows[e.RowIndex].Cells["nome"].Value.ToString();
 
                         DialogResult result = MessageBox.Show("Deseja continuar?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Exibe uma caixa de diálogo para confirmação
 
                         if (result == DialogResult.Yes)
                         {
-                            await ControllerColaborador.ExcluirFuncionario(codigo); // Exclui o funcionário de forma assíncrona
+                            
+
+                            DialogResult resultado = MessageBox.Show("Deseja excluir os registros do funcionario?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if(resultado == DialogResult.Yes)
+                            {
+                                int cod = await ControllerColaborador.PesquisarCodigoPorNome(nome);
+                                MessageBox.Show(cod.ToString());
+                                string res =  await ControllerRegistro.ExcluirRegistros(cod);
+                                MessageBox.Show(res);
+                            }
+                            string ress = await ControllerColaborador.ExcluirFuncionario(codigo); // Exclui o funcionário de forma assíncrona
+                            MessageBox.Show(ress);
                             AtualizarDados(); // Atualiza os dados do DataGridView após a exclusão
                         }
                     }

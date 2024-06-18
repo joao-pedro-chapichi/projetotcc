@@ -2,6 +2,8 @@
 using projetotcc.Database;
 using projetotcc.Model;
 using System;
+using System.Data;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace projetotcc.Controller
@@ -44,7 +46,6 @@ namespace projetotcc.Controller
 
             return idUsuario;
         }
-
         public static async ValueTask<bool> VerificarExistencia(long codigofuncionario)
         {
             bool retorno = false;
@@ -76,7 +77,6 @@ namespace projetotcc.Controller
 
             return retorno;
         }
-
         public static async ValueTask<bool> VerificarUltimaAcao(long id_funcionario)
         {
             string sql = "SELECT acao FROM registro WHERE id = @id_funcionario AND data = @data ORDER BY id_registro DESC LIMIT 1";
@@ -115,7 +115,6 @@ namespace projetotcc.Controller
 
             return false;
         }
-
         public static async ValueTask<string> BuscarNomeFuncionario(long codigofuncionario)
         {
             string nomeFuncionario = null;
@@ -152,7 +151,6 @@ namespace projetotcc.Controller
 
             return nomeFuncionario;
         }
-
         public static async ValueTask<string> CriarRegistro(ModelFuncionario mFunc)
         {
             string sqlInsert = "INSERT INTO registro(hora, data, id, acao) VALUES(@hora, @data, @id, @acao)";
@@ -203,5 +201,86 @@ namespace projetotcc.Controller
                 }
             }
         }
+        public static async ValueTask<DataTable> PesquisaRegistro(ModelRegistro mRegistro)
+        {
+            DataTable dataTable = new DataTable();
+
+            string sql = "SELECT hora, data, id, acao FROM registro WHERE id = @id AND acao = @acao AND data >= @dataInicio AND data <= @dataFim";
+            ConnectionDatabase con = new ConnectionDatabase();
+
+            using (NpgsqlConnection conn = con.connectionDB())
+            {
+
+                using (NpgsqlCommand commSearch = new NpgsqlCommand(sql, conn))
+                {
+                    // Passar os valores das propriedades específicas do objeto mRegistro
+                    commSearch.Parameters.AddWithValue("@id", mRegistro.Id);
+                    commSearch.Parameters.AddWithValue("@acao", mRegistro.Acao);
+                    commSearch.Parameters.AddWithValue("@dataInicio", mRegistro.DataInicio);
+                    commSearch.Parameters.AddWithValue("@dataFim", mRegistro.DataFim);
+
+                    try
+                    {
+                        using (NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(commSearch))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                    catch (NpgsqlException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        // Ou faça o tratamento apropriado para a exceção
+                    }
+                    finally
+                    {
+                        await conn.CloseAsync();
+                    }
+                }
+            }
+
+            return dataTable;
+        }
+
+        public async static ValueTask<string> ExcluirRegistros(int codigo)
+        {
+            string sqlDelete = "DELETE FROM registro WHERE id = @id"; // Declara a consulta SQL de exclusão
+
+            ConnectionDatabase con = new ConnectionDatabase(); // Instancia a classe de conexão com o banco de dados
+
+            // Abre uma conexão com o banco de dados
+            using (NpgsqlConnection conn = con.connectionDB())
+            {
+                try
+                {
+                    // Cria um comando SQL para executar a exclusão
+                    using (NpgsqlCommand commDelete = new NpgsqlCommand(sqlDelete, conn))
+                    {
+                        // Adiciona o parâmetro necessário ao comando
+                        commDelete.Parameters.AddWithValue("@id", codigo);
+                        int rowsAffectedDelete = await commDelete.ExecuteNonQueryAsync(); // Executa a exclusão de forma assíncrona
+
+                        // Verifica se alguma linha foi afetada para determinar o sucesso da operação
+                        if (rowsAffectedDelete > 0)
+                        {
+                            return "Registros excluídos com sucesso!";
+                        }
+                        else
+                        {
+                            return "Registros não encontrado para exclusão.";
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return $"Erro: {ex.Message}"; // Retorna a mensagem de erro em caso de exceção
+                }
+                finally
+                {
+                    await conn.CloseAsync(); // Fecha a conexão com o banco de dados
+                }
+            }
+        }
+
+
     }
 }
