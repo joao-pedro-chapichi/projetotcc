@@ -14,45 +14,51 @@ namespace projetotcc.Controller
 {
     public static class ControllerColaborador
     {
-        public static void cadastrarFuncionario(ModelFuncionario modelFunc)
+        public static async void cadastrarFuncionario(ModelFuncionario modelFunc)
         {
+            bool test = await VerificarExistenciaId(modelFunc.Id_funcionario);
             /* Foi declarada a classe ModelFuncionario como parametro do metodo cadastrarFuncionario
                pois será necessária para passar os valores da textBox ao metodo*/
-
-
-            // Instanciando a classe 'ConnectionDatabase' e puxando o metodo de conexão
-            ConnectionDatabase con = new ConnectionDatabase();
-            NpgsqlConnection connection = con.connectionDB();
-
-            try
+            if (!test) 
             {
-                /* Declarando a string do insert e criando um novo comando o comando para 
-                   para ser executado no banco */
-                string sql = "INSERT INTO funcionario(id_funcionario, nome) values(@id_funcionario, @nome)";
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
+                // Instanciando a classe 'ConnectionDatabase' e puxando o metodo de conexão
+                ConnectionDatabase con = new ConnectionDatabase();
+                NpgsqlConnection connection = con.connectionDB();
 
-                // Passsando os parametros que deverao ser cadastrados no banco de dados
-                cmd.Parameters.AddWithValue("nome", modelFunc.Nome);
-                cmd.Parameters.AddWithValue("id_funcionario", modelFunc.Id_funcionario);
-                cmd.ExecuteNonQuery();
-
-                // Mensagem de sucesso após cadastrar o funcionário
-                MessageBox.Show("Funcionário cadastrado com sucesso!", "SUCESSO!");
-            }
-            catch (Exception ex)
-            {
-                // Retornando uma mensagem em caso de erros
-                MessageBox.Show("Erro ao cadastrar funcionário! Erro: " + ex.Message, "ERRO!");
-            }
-            finally
-            {
-                // Verificando se a conexão está aberta e encerrando
-                if (connection != null && connection.State == System.Data.ConnectionState.Open)
+                try
                 {
-                    connection.Close();
+                    /* Declarando a string do insert e criando um novo comando o comando para 
+                       para ser executado no banco */
+                    string sql = "INSERT INTO funcionario(id_funcionario, nome) values(@id_funcionario, @nome)";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
+
+                    // Passsando os parametros que deverao ser cadastrados no banco de dados
+                    cmd.Parameters.AddWithValue("nome", modelFunc.Nome);
+                    cmd.Parameters.AddWithValue("id_funcionario", modelFunc.Id_funcionario);
+                    cmd.ExecuteNonQuery();
+
+                    // Mensagem de sucesso após cadastrar o funcionário
+                    MessageBox.Show("Funcionário cadastrado com sucesso!", "SUCESSO!");
+                }
+                catch (Exception ex)
+                {
+                    // Retornando uma mensagem em caso de erros
+                    MessageBox.Show("Erro ao cadastrar funcionário! Erro: " + ex.Message, "ERRO!");
+                }
+                finally
+                {
+                    // Verificando se a conexão está aberta e encerrando
+                    if (connection != null && connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
                 }
             }
-
+            else
+            {
+                MessageBox.Show("Código já cadastrado!");
+                return;
+            }
 
         }
         // Declaração de um método assíncrono que retorna um DataTable com os funcionários filtrados pelo nome e/ou id
@@ -226,6 +232,38 @@ namespace projetotcc.Controller
                 {
                     await conn.CloseAsync(); // Fecha a conexão com o banco de dados
                 }
+        }
+
+        public static async ValueTask<bool> VerificarExistenciaId(long codigofuncionario)
+        {
+            bool retorno = false;
+
+            string sql = "SELECT COUNT(*) FROM funcionario WHERE id_funcionario = @id_funcionario";
+            ConnectionDatabase con = new ConnectionDatabase();
+
+            using (NpgsqlConnection conn = con.connectionDB())
+            {
+                using (NpgsqlCommand commCheckCodigo = new NpgsqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        commCheckCodigo.Parameters.AddWithValue("@id", codigofuncionario);
+
+                        int countCodigo = Convert.ToInt32(await commCheckCodigo.ExecuteScalarAsync());
+                        retorno = countCodigo > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Erro ao verificar existência: " + ex.Message);
+                    }
+                    finally
+                    {
+                        await conn.CloseAsync();
+                    }
+                }
+            }
+
+            return retorno;
         }
     }
 }

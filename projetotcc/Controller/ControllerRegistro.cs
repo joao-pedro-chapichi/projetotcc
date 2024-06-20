@@ -77,6 +77,37 @@ namespace projetotcc.Controller
 
             return retorno;
         }
+        public static async ValueTask<bool> VerificarExistenciaId(long codigofuncionario)
+        {
+            bool retorno = false;
+
+            string sql = "SELECT COUNT(*) FROM funcionario WHERE id = @id";
+            ConnectionDatabase con = new ConnectionDatabase();
+
+            using (NpgsqlConnection conn = con.connectionDB())
+            {
+                using (NpgsqlCommand commCheckCodigo = new NpgsqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        commCheckCodigo.Parameters.AddWithValue("@id", codigofuncionario);
+
+                        int countCodigo = Convert.ToInt32(await commCheckCodigo.ExecuteScalarAsync());
+                        retorno = countCodigo > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Erro ao verificar existência: " + ex.Message);
+                    }
+                    finally
+                    {
+                        await conn.CloseAsync();
+                    }
+                }
+            }
+
+            return retorno;
+        }
         public static async ValueTask<bool> VerificarUltimaAcao(long id_funcionario)
         {
             string sql = "SELECT acao FROM registro WHERE id = @id_funcionario AND data = @data ORDER BY id_registro DESC LIMIT 1";

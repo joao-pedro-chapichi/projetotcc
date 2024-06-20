@@ -42,7 +42,7 @@ namespace projetotcc.View
         }
 
         // Finalizar cadastro de colaborador
-        private void finalizarCad_form(object sender, EventArgs e)
+        private async void finalizarCad_form(object sender, EventArgs e)
         {
             // Chamando as classes ControllerColaborador e ModelFuncionario
             ModelFuncionario modelFunc = new ModelFuncionario();
