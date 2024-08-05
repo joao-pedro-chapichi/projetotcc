@@ -234,6 +234,39 @@ namespace projetotcc.Controller
                 }
         }
 
+        public async static ValueTask<int> PesquisarCodigoDeBarrasPorCodigo(int id)
+        {
+            string sqlSelect = "SELECT id_funcionario FROM funcionario WHERE id = @id"; // Declara a consulta SQL de seleção
+
+            ConnectionDatabase con = new ConnectionDatabase(); // Instancia a classe de conexão com o banco de dados
+
+            // Abre uma conexão com o banco de dados
+            using (NpgsqlConnection conn = con.connectionDB())
+            using (NpgsqlCommand commSelect = new NpgsqlCommand(sqlSelect, conn))
+                try
+                {
+                    commSelect.Parameters.AddWithValue("@id", id); // Adiciona o parâmetro necessário ao comando
+                    object result = await commSelect.ExecuteScalarAsync(); // Executa a consulta de forma assíncrona e obtém o resultado
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result); // Converte o resultado para int e retorna
+                    }
+                    else
+                    {
+                        return -1; // Retorna -1 se o nome não for encontrado
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro ao pesquisar código do usuário por id: " + ex.Message); // Exibe uma mensagem de erro em caso de exceção
+                    return -1; // Retorna -1 em caso de erro
+                }
+                finally
+                {
+                    await conn.CloseAsync(); // Fecha a conexão com o banco de dados
+                }
+        }
         public static async ValueTask<bool> VerificarExistenciaId(long codigofuncionario)
         {
             bool retorno = false;
@@ -265,5 +298,6 @@ namespace projetotcc.Controller
 
             return retorno;
         }
+
     }
 }

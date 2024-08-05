@@ -1,4 +1,5 @@
-﻿using projetotcc.Utils;
+﻿using GenCode128;
+using projetotcc.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,8 @@ namespace projetotcc.View
 {
     public partial class CodigoBarras : Form
     {
+        public int altura = 4;
+
         public CodigoBarras()
         {
             InitializeComponent();
@@ -39,17 +42,59 @@ namespace projetotcc.View
             UtilsClasse.FecharEAbrirProximoForm(this, gerenciamento);
         }
 
-        // Salvar código de barras
-        private void pbSalvarCod_form(object sender, EventArgs e)
+        private void btnGerar_Click(object sender, EventArgs e)
         {
-            // Ainda sem ação
+            try
+            {
+                Image codigoBarras = Code128Rendering.MakeBarcodeImage(txtCodigo.Text, altura, true);
+                picCodigoBarras.Image = codigoBarras;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, this.Text);
+            }
         }
 
-        // Confirmar código de barras da textbox
-        private void pbConfirmCod_form(object sender, EventArgs e)
+        //METODO DE COPIAR, INUTIL NO MOMENTO
+
+        //private void btnCopiar_Click(object sender, EventArgs e)
+        //{
+        //    if (picCodigoBarras.Image != null)
+        //    {
+        //        // Converte a imagem da PictureBox em um objeto Bitmap
+        //        Bitmap bmp = new Bitmap(picCodigoBarras.Image);
+
+        //        // Coloca o objeto Bitmap na área de transferência
+        //        Clipboard.SetImage(bmp);
+
+        //        MessageBox.Show("Codigo copiado para a área de transferência!");
+        //    }
+        //}
+
+        private void btnImprimir_Click(object sender, EventArgs e)
         {
-            // Ainda sem ação
+            this.printDocument1.Print();
         }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            using (var g = e.Graphics)
+            {
+                using (var fnt = new Font("Courier New", 16))
+                {
+                    g.DrawImage(this.picCodigoBarras.Image, 30, 50);
+
+                    var caption = txtCodigo.Text;
+                    g.DrawString(caption, fnt, Brushes.Black, 340, 200);
+                }
+            }
+        }
+
         #endregion
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

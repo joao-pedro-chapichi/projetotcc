@@ -271,7 +271,42 @@ namespace projetotcc.Controller
 
             return dataTable;
         }
+        public static async ValueTask<DataTable> PesquisaRegistroHoje()
+        {
+            DataTable dataTable = new DataTable();
+            DateTime hoje = DateTime.Now.Date;
+            string sql = "SELECT hora, data, id, acao FROM registro WHERE data = @dataHoje ORDER BY id_registro DESC";
+            ConnectionDatabase con = new ConnectionDatabase();
 
+            using (NpgsqlConnection conn = con.connectionDB())
+            {
+
+                using (NpgsqlCommand commSearch = new NpgsqlCommand(sql, conn))
+                {
+                    // Passar os valores das propriedades específicas do objeto mRegistro
+                    commSearch.Parameters.AddWithValue("@dataHoje", hoje);
+
+                    try
+                    {
+                        using (NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(commSearch))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                    catch (NpgsqlException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        // Ou faça o tratamento apropriado para a exceção
+                    }
+                    finally
+                    {
+                        await conn.CloseAsync();
+                    }
+                }
+            }
+
+            return dataTable;
+        }
         public async static ValueTask<string> ExcluirRegistros(int codigo)
         {
             string sqlDelete = "DELETE FROM registro WHERE id = @id"; // Declara a consulta SQL de exclusão

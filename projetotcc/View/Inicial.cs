@@ -4,6 +4,9 @@ using System;
 using System.Windows.Forms;
 using projetotcc.Controller;
 using projetotcc.Model;
+using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data;
 
 namespace projetotcc
 {
@@ -16,6 +19,8 @@ namespace projetotcc
         {
             InitializeComponent();
             InitializeTimer();
+            AtualizarRegistrosDeHoje().ConfigureAwait(false);
+            
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -42,7 +47,7 @@ namespace projetotcc
         private void InitializeTimer()
         {
             timer = new Timer();
-            timer.Interval = 3000; // Defina o intervalo em milissegundos (3 segundos neste caso)
+            timer.Interval = 1000; // Defina o intervalo em milissegundos (3 segundos neste caso)
             timer.Tick += Timer_Tick;
         }
 
@@ -101,8 +106,7 @@ namespace projetotcc
                     };
 
                     string success = await ControllerRegistro.CriarRegistro(mFunc);
-
-                    MessageBox.Show(success);
+                    await AtualizarRegistrosDeHoje();
 
                     // Disable controls
                     foreach (Control control in this.Controls)
@@ -117,10 +121,55 @@ namespace projetotcc
                 {
                     MessageBox.Show("Colaborador não Encontrado!");
                     txbcodigo_inicial.Text = "";
-                    timer.Start();             
+                    timer.Start();
                     txbcodigo_inicial.Focus();
-                    
+
                 }
+            }
+        }
+
+        private async Task AtualizarRegistrosDeHoje()
+        {
+            try
+            {
+                try
+                {
+                    // Chamar o método de pesquisa de registro no Controller
+                    DataTable dataTable = await ControllerRegistro.PesquisaRegistroHoje();
+
+                    if (dataTable.Rows.Count == 0)
+                    {
+                        // Adiciona uma linha com a mensagem "Nenhum registro referente a Hoje"
+                        dataGridView1.Columns.Add("Mensagem", "Aviso");
+                        dataGridView1.Rows.Add("Nenhum registro referente a Hoje");
+                    }
+                    else
+                    {
+                        if (dataGridView1.Columns.Count == 1)
+                        {
+                            dataGridView1.Rows.Clear();
+                            dataGridView1.Columns.Clear();
+                        }
+            
+                        dataGridView1.DataSource = dataTable;
+                        dataGridView1.Columns[0].HeaderText = "HORÁRIO";
+                        dataGridView1.Columns[1].HeaderText = "DATA";
+                        dataGridView1.Columns[2].HeaderText = "FUNCIONARIO";
+                        dataGridView1.Columns[3].HeaderText = "AÇÃO";
+
+                    }
+
+
+                    // Aqui você pode atualizar sua interface com os resultados, se necessário
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao pesquisar registros: {ex.Message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro inesperado: {ex.Message}");
             }
         }
 
