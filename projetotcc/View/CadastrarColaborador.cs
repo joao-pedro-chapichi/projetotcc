@@ -44,20 +44,36 @@ namespace projetotcc.View
         // Finalizar cadastro de colaborador
         private async void finalizarCad_form(object sender, EventArgs e)
         {
-            // Chamando as classes ControllerColaborador e ModelFuncionario
-            ModelFuncionario modelFunc = new ModelFuncionario();
+            //Verifica se os campos estao vazios ou o codigo com espaços em branco :)
+            if(!string.IsNullOrEmpty(textNome.Text) && !string.IsNullOrWhiteSpace(textCodigo.Text) || !string.IsNullOrEmpty(textCodigo.Text))
+            {
+                try
+                {
+                    // Chamando as classes ControllerColaborador e ModelFuncionario
+                    ModelFuncionario modelFunc = new ModelFuncionario();
 
-            // Inserindo os valores da textBox nos atributos (set nome e set id)
-            modelFunc.Nome = textNome.Text;
-            modelFunc.Id_funcionario = Convert.ToInt32(textCodigo.Text);
+                    // Inserindo os valores da textBox nos atributos (set nome e set id)
+                    modelFunc.Nome = textNome.Text;
+                    modelFunc.Id_funcionario = Convert.ToInt32(textCodigo.Text);
 
-            /* Chamando o metodo cadastrarFuncionario e passando como parametro a classe
-               ModelFuncionario (Explicado na classe ControllerColaborador) */
-            ControllerColaborador.cadastrarFuncionario(modelFunc);
+                    /* Chamando o metodo cadastrarFuncionario e passando como parametro a classe
+                       ModelFuncionario (Explicado na classe ControllerColaborador) */
+                    await ControllerColaborador.cadastrarFuncionario(modelFunc);
 
-            // Limpando a textBox após cadastrar o funcionário
-            textCodigo.Text = "";
-            textNome.Text = "";
+                    // Limpando a textBox após cadastrar o funcionário
+                    textCodigo.Text = "";
+                    textNome.Text = "";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Preencha todos os campos!");
+            }
+                      
         }
         #endregion
     }
