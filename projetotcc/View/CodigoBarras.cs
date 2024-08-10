@@ -44,14 +44,21 @@ namespace projetotcc.View
 
         private void btnGerar_Click(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(txtCodigo.Text) || !string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
-                Image codigoBarras = Code128Rendering.MakeBarcodeImage(txtCodigo.Text, altura, true);
-                picCodigoBarras.Image = codigoBarras;
+                try
+                {
+                    Image codigoBarras = Code128Rendering.MakeBarcodeImage(txtCodigo.Text, altura, true);
+                    picCodigoBarras.Image = codigoBarras;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(this, ex.Message, this.Text);
+                MessageBox.Show("Preencha todos os campos e tente novamente.", "AVISO!");
             }
         }
 
@@ -91,10 +98,5 @@ namespace projetotcc.View
         }
 
         #endregion
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

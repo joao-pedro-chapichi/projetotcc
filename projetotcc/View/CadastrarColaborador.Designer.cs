@@ -68,6 +68,7 @@
             this.textNome.Name = "textNome";
             this.textNome.Size = new System.Drawing.Size(1111, 41);
             this.textNome.TabIndex = 12;
+            this.textNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbNome_ValidacaoTecla);
             // 
             // label2
             // 
@@ -88,6 +89,7 @@
             this.textCodigo.Name = "textCodigo";
             this.textCodigo.Size = new System.Drawing.Size(1111, 41);
             this.textCodigo.TabIndex = 14;
+            this.textCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCodigo_ValidacaoTecla);
             // 
             // pictureBox7
             // 
