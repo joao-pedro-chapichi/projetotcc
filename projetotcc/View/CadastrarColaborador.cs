@@ -72,7 +72,7 @@ namespace projetotcc.View
         private void txbNome_ValidacaoTecla(object sender, KeyPressEventArgs e)
         {
             // Lista de caracteres acentuados permitidos
-            char[] allowedChars = { 'é', 'è', 'ê', 'ë', 'ã', 'à', 'â', 'ä', 'á', 'ò', 'ô', 'ö', 'ó', 'ù', 'û', 'ü', 'ú' };
+            char[] allowedChars = { 'é', 'è', 'ê', 'ë', 'ã', 'à', 'â', 'ä', 'á', 'ò', 'ô', 'ö', 'ó', 'ù', 'û', 'ü', 'ú', ' ' };
 
             // Verifica se a tecla pressionada é uma letra, uma letra acentuada específica ou tecla de controle
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !Array.Exists(allowedChars, c => c == e.KeyChar))

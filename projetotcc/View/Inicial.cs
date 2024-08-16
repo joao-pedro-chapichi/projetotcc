@@ -152,10 +152,10 @@ namespace projetotcc
                         }
             
                         dataGridView1.DataSource = dataTable;
-                        dataGridView1.Columns[0].HeaderText = "HORÁRIO";
-                        dataGridView1.Columns[1].HeaderText = "DATA";
-                        dataGridView1.Columns[2].HeaderText = "FUNCIONARIO";
-                        dataGridView1.Columns[3].HeaderText = "AÇÃO";
+                        dataGridView1.Columns[0].HeaderText = "Funcionário";
+                        dataGridView1.Columns[1].HeaderText = "Horário";
+                        dataGridView1.Columns[2].HeaderText = "Data";
+                        dataGridView1.Columns[3].HeaderText = "Ação";
 
                     }
 

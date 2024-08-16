@@ -184,7 +184,7 @@ namespace projetotcc.Controller
         }
         public static async ValueTask<string> CriarRegistro(ModelFuncionario mFunc)
         {
-            string sqlInsert = "INSERT INTO registro(hora, data, id, acao) VALUES(@hora, @data, @id, @acao)";
+            string sqlInsert = "INSERT INTO registro(id, hora, data, acao) VALUES(@id, @hora, @data, @acao)";
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
@@ -212,9 +212,9 @@ namespace projetotcc.Controller
                         bool ultimaAcao = await VerificarUltimaAcao(codigo);
                         string acao = ultimaAcao ? "saida" : "entrada";
 
+                        commInsert.Parameters.AddWithValue("@id", codigo);
                         commInsert.Parameters.AddWithValue("@hora", horaMinutos);
                         commInsert.Parameters.AddWithValue("@data", dataAtual);
-                        commInsert.Parameters.AddWithValue("@id", codigo);
                         commInsert.Parameters.AddWithValue("@acao", acao);
 
                         await commInsert.ExecuteNonQueryAsync();
@@ -236,7 +236,7 @@ namespace projetotcc.Controller
         {
             DataTable dataTable = new DataTable();
 
-            string sql = "SELECT hora, data, id, acao FROM registro WHERE id = @id AND acao = @acao AND data >= @dataInicio AND data <= @dataFim";
+            string sql = "SELECT id, hora, data, acao FROM registro WHERE id = @id AND acao = @acao AND data >= @dataInicio AND data <= @dataFim";
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
@@ -275,7 +275,7 @@ namespace projetotcc.Controller
         {
             DataTable dataTable = new DataTable();
             DateTime hoje = DateTime.Now.Date;
-            string sql = "SELECT hora, data, id, acao FROM registro WHERE data = @dataHoje ORDER BY id_registro DESC";
+            string sql = "SELECT id, hora, data, acao FROM registro WHERE data = @dataHoje ORDER BY id_registro DESC";
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
