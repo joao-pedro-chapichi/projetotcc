@@ -3,7 +3,6 @@ using projetotcc.Database;
 using projetotcc.Model;
 using System;
 using System.Data;
-using System.Drawing;
 using System.Threading.Tasks;
 
 namespace projetotcc.Controller
@@ -13,7 +12,6 @@ namespace projetotcc.Controller
         public static async ValueTask<long> BuscarCodigoPorCodigoDeBarras(long codigoDeBarras)
         {
             long idUsuario = 0;
-
             string sql = "SELECT id FROM funcionario WHERE id_funcionario = @id_funcionario";
             ConnectionDatabase con = new ConnectionDatabase();
 
@@ -24,7 +22,6 @@ namespace projetotcc.Controller
                     try
                     {
                         cmd.Parameters.AddWithValue("@id_funcionario", codigoDeBarras);
-
                         using (NpgsqlDataReader reader = await cmd.ExecuteReaderAsync())
                         {
                             if (reader.Read())
@@ -46,10 +43,10 @@ namespace projetotcc.Controller
 
             return idUsuario;
         }
+
         public static async ValueTask<bool> VerificarExistencia(long codigofuncionario)
         {
             bool retorno = false;
-
             string sql = "SELECT COUNT(*) FROM funcionario WHERE id = @id";
             ConnectionDatabase con = new ConnectionDatabase();
 
@@ -60,7 +57,6 @@ namespace projetotcc.Controller
                     try
                     {
                         commCheckCodigo.Parameters.AddWithValue("@id", codigofuncionario);
-
                         int countCodigo = Convert.ToInt32(await commCheckCodigo.ExecuteScalarAsync());
                         retorno = countCodigo > 0;
                     }
@@ -77,10 +73,10 @@ namespace projetotcc.Controller
 
             return retorno;
         }
+
         public static async ValueTask<bool> VerificarExistenciaId(long codigofuncionario)
         {
             bool retorno = false;
-
             string sql = "SELECT COUNT(*) FROM funcionario WHERE id = @id";
             ConnectionDatabase con = new ConnectionDatabase();
 
@@ -91,7 +87,6 @@ namespace projetotcc.Controller
                     try
                     {
                         commCheckCodigo.Parameters.AddWithValue("@id", codigofuncionario);
-
                         int countCodigo = Convert.ToInt32(await commCheckCodigo.ExecuteScalarAsync());
                         retorno = countCodigo > 0;
                     }
@@ -108,10 +103,10 @@ namespace projetotcc.Controller
 
             return retorno;
         }
+
         public static async ValueTask<bool> VerificarUltimaAcao(long id_funcionario)
         {
             string sql = "SELECT acao FROM registro WHERE id = @id_funcionario AND data = @data ORDER BY id_registro DESC LIMIT 1";
-
             DateTime data = DateTime.Now.Date;
             ConnectionDatabase con = new ConnectionDatabase();
 
@@ -146,10 +141,10 @@ namespace projetotcc.Controller
 
             return false;
         }
+
         public static async ValueTask<string> BuscarNomeFuncionario(long codigofuncionario)
         {
             string nomeFuncionario = null;
-
             string sql = "SELECT nome FROM funcionario WHERE id = @id";
             ConnectionDatabase con = new ConnectionDatabase();
 
@@ -182,9 +177,10 @@ namespace projetotcc.Controller
 
             return nomeFuncionario;
         }
+
         public static async ValueTask<string> CriarRegistro(ModelFuncionario mFunc)
         {
-            string sqlInsert = "INSERT INTO registro(id, hora, data, acao) VALUES(@id, @hora, @data, @acao)";
+            string sqlInsert = "INSERT INTO registro(hora, data, id, acao) VALUES(@hora, @data, @id, @acao)";
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
@@ -196,7 +192,6 @@ namespace projetotcc.Controller
                         TimeSpan horaAtual = DateTime.Now.TimeOfDay;
                         TimeSpan horaMinutos = new TimeSpan(horaAtual.Hours, horaAtual.Minutes, 0);
                         DateTime dataAtual = DateTime.Now.Date;
-
                         long codigo = mFunc.ID;
 
                         if (codigo == 0)
@@ -212,9 +207,9 @@ namespace projetotcc.Controller
                         bool ultimaAcao = await VerificarUltimaAcao(codigo);
                         string acao = ultimaAcao ? "saida" : "entrada";
 
-                        commInsert.Parameters.AddWithValue("@id", codigo);
                         commInsert.Parameters.AddWithValue("@hora", horaMinutos);
                         commInsert.Parameters.AddWithValue("@data", dataAtual);
+                        commInsert.Parameters.AddWithValue("@id", codigo);
                         commInsert.Parameters.AddWithValue("@acao", acao);
 
                         await commInsert.ExecuteNonQueryAsync();
@@ -232,23 +227,39 @@ namespace projetotcc.Controller
                 }
             }
         }
+
         public static async ValueTask<DataTable> PesquisaRegistro(ModelRegistro mRegistro)
         {
             DataTable dataTable = new DataTable();
+            string sql = "SELECT hora, data, id, acao FROM registro WHERE data >= @dataInicio AND data <= @dataFim"; // Query base
 
-            string sql = "SELECT id, hora, data, acao FROM registro WHERE id = @id AND acao = @acao AND data >= @dataInicio AND data <= @dataFim";
+            if (mRegistro.Id != 0)
+            {
+                sql += " AND id = @id";
+            }
+            if (!string.IsNullOrEmpty(mRegistro.Acao))
+            {
+                sql += " AND acao = @acao";
+            }
+
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
             {
-
                 using (NpgsqlCommand commSearch = new NpgsqlCommand(sql, conn))
                 {
-                    // Passar os valores das propriedades específicas do objeto mRegistro
-                    commSearch.Parameters.AddWithValue("@id", mRegistro.Id);
-                    commSearch.Parameters.AddWithValue("@acao", mRegistro.Acao);
+                    
                     commSearch.Parameters.AddWithValue("@dataInicio", mRegistro.DataInicio);
                     commSearch.Parameters.AddWithValue("@dataFim", mRegistro.DataFim);
+
+                    if (mRegistro.Id != 0)
+                    {
+                        commSearch.Parameters.AddWithValue("@id", mRegistro.Id);
+                    }
+                    if (!string.IsNullOrEmpty(mRegistro.Acao))
+                    {
+                        commSearch.Parameters.AddWithValue("@acao", mRegistro.Acao);
+                    }
 
                     try
                     {
@@ -260,7 +271,6 @@ namespace projetotcc.Controller
                     catch (NpgsqlException ex)
                     {
                         Console.WriteLine(ex.Message);
-                        // Ou faça o tratamento apropriado para a exceção
                     }
                     finally
                     {
@@ -271,19 +281,24 @@ namespace projetotcc.Controller
 
             return dataTable;
         }
+
         public static async ValueTask<DataTable> PesquisaRegistroHoje()
         {
             DataTable dataTable = new DataTable();
             DateTime hoje = DateTime.Now.Date;
-            string sql = "SELECT id, hora, data, acao FROM registro WHERE data = @dataHoje ORDER BY id_registro DESC";
+            string sql = @"
+            SELECT r.hora, r.data, f.nome, r.acao 
+            FROM registro r
+            JOIN funcionario f ON r.id = f.id
+            WHERE r.data = @dataHoje
+            ORDER BY r.id_registro DESC";
+
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
             {
-
                 using (NpgsqlCommand commSearch = new NpgsqlCommand(sql, conn))
                 {
-                    // Passar os valores das propriedades específicas do objeto mRegistro
                     commSearch.Parameters.AddWithValue("@dataHoje", hoje);
 
                     try
@@ -296,7 +311,6 @@ namespace projetotcc.Controller
                     catch (NpgsqlException ex)
                     {
                         Console.WriteLine(ex.Message);
-                        // Ou faça o tratamento apropriado para a exceção
                     }
                     finally
                     {
@@ -307,25 +321,21 @@ namespace projetotcc.Controller
 
             return dataTable;
         }
+
         public async static ValueTask<string> ExcluirRegistros(int codigo)
         {
-            string sqlDelete = "DELETE FROM registro WHERE id = @id"; // Declara a consulta SQL de exclusão
+            string sqlDelete = "DELETE FROM registro WHERE id = @id";
+            ConnectionDatabase con = new ConnectionDatabase();
 
-            ConnectionDatabase con = new ConnectionDatabase(); // Instancia a classe de conexão com o banco de dados
-
-            // Abre uma conexão com o banco de dados
             using (NpgsqlConnection conn = con.connectionDB())
             {
                 try
                 {
-                    // Cria um comando SQL para executar a exclusão
                     using (NpgsqlCommand commDelete = new NpgsqlCommand(sqlDelete, conn))
                     {
-                        // Adiciona o parâmetro necessário ao comando
                         commDelete.Parameters.AddWithValue("@id", codigo);
-                        int rowsAffectedDelete = await commDelete.ExecuteNonQueryAsync(); // Executa a exclusão de forma assíncrona
+                        int rowsAffectedDelete = await commDelete.ExecuteNonQueryAsync();
 
-                        // Verifica se alguma linha foi afetada para determinar o sucesso da operação
                         if (rowsAffectedDelete > 0)
                         {
                             return "Registros excluídos com sucesso!";
@@ -338,15 +348,13 @@ namespace projetotcc.Controller
                 }
                 catch (Exception ex)
                 {
-                    return $"Erro: {ex.Message}"; // Retorna a mensagem de erro em caso de exceção
+                    return $"Erro: {ex.Message}";
                 }
                 finally
                 {
-                    await conn.CloseAsync(); // Fecha a conexão com o banco de dados
+                    await conn.CloseAsync();
                 }
             }
         }
-
-
     }
 }
