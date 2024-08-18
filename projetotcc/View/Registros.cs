@@ -56,7 +56,6 @@ namespace projetotcc.View
         }
         #endregion
 
-
         private async void btnPesquisar_Click(object sender, EventArgs e)
         {
             await AtualizarRegistros();
@@ -67,35 +66,36 @@ namespace projetotcc.View
             try
             {
                 ModelRegistro modelRegistro = new ModelRegistro();
-                modelRegistro.Id = await ControllerColaborador.PesquisarCodigoPorNome(textBox1.Text);
 
+                modelRegistro.DataInicio = dateTimePicker1.Value.Date;
+                modelRegistro.DataFim = dateTimePicker2.Value.Date;
 
-                modelRegistro.DataInicio = dateTimePicker1.Value;
-                modelRegistro.DataFim = dateTimePicker2.Value;
+                // Verifica se o textBox1 não está vazio antes de buscar o ID
+                if (!string.IsNullOrEmpty(textBox1.Text))
+                {
+                    modelRegistro.Id = await ControllerColaborador.PesquisarCodigoPorNome(textBox1.Text);
+                }
 
-
-
-
-                modelRegistro.Acao = comboBox1.SelectedItem?.ToString().ToLower();
+                // Verifica se a combobox não está vazia ou nula
+                if (!string.IsNullOrEmpty(comboBox1.SelectedItem?.ToString()))
+                {
+                    modelRegistro.Acao = comboBox1.SelectedItem?.ToString().ToLower();
+                }
 
                 try
                 {
                     // Chamar o método de pesquisa de registro no Controller
                     DataTable dataTable = await ControllerRegistro.PesquisaRegistro(modelRegistro);
 
-
                     if (dataTable != null && dataTable.Rows.Count > 0)
                     {
                         // Adiciona a fonte de dados à DataGridView
                         dataGridView1.DataSource = dataTable;
-                        // Deseleciona a primeira linha
                     }
                     else
                     {
                         MessageBox.Show("Não foram encontrados registros.");
                     }
-
-                    // Aqui você pode atualizar sua interface com os resultados, se necessário
                 }
                 catch (Exception ex)
                 {
@@ -106,8 +106,13 @@ namespace projetotcc.View
             {
                 MessageBox.Show($"Erro inesperado: {ex.Message}");
             }
+        }
 
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CriarRelatorio criarRelatorio = new CriarRelatorio();
+            UtilsClasse.FecharEAbrirProximoForm(this, criarRelatorio);
         }
 
         // Outros eventos como CarregarForm_form, pbFechar_form, pbMinimizar_form, etc., podem continuar conforme você já os implementou

@@ -137,6 +137,7 @@ namespace projetotcc
                     // Chamar o método de pesquisa de registro no Controller
                     DataTable dataTable = await ControllerRegistro.PesquisaRegistroHoje();
 
+
                     if (dataTable.Rows.Count == 0)
                     {
                         // Adiciona uma linha com a mensagem "Nenhum registro referente a Hoje"
@@ -157,6 +158,10 @@ namespace projetotcc
                         dataGridView1.Columns[2].HeaderText = "FUNCIONARIO";
                         dataGridView1.Columns[3].HeaderText = "AÇÃO";
 
+                        foreach(var item in dataTable.Rows)
+                        {
+                            
+                        }
                     }
 
 

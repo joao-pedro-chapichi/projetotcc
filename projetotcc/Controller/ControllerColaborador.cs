@@ -184,6 +184,36 @@ namespace projetotcc.Controller
             }
         }
 
+        public static async ValueTask<string> PesquisarNomePorCodigo(int id)
+        {
+            // SQL para selecionar o código do funcionário pelo nome.
+            string sqlSelect = "SELECT nome FROM funcionario WHERE id = @id";
+
+            try
+            {
+                // Cria uma conexão com o banco de dados.
+                using (var connection = new ConnectionDatabase().connectionDB())
+                // Cria o comando SQL para ser executado.
+                using (var commSelect = new NpgsqlCommand(sqlSelect, connection))
+                {
+                    // Adiciona o parâmetro ao comando.
+                    commSelect.Parameters.AddWithValue("@id", id);
+
+                    // Executa o comando de forma assíncrona e obtém o resultado.
+                    object result = await commSelect.ExecuteScalarAsync();
+
+
+                    return result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Exibe mensagem de erro em caso de exceção e retorna -1.
+                Console.WriteLine("Erro ao pesquisar código do usuário por nome: " + ex.Message);
+                return null;
+            }
+        }
+
         // Método assíncrono para pesquisar o código de barras de um funcionário pelo ID.
         public static async ValueTask<int> PesquisarCodigoDeBarrasPorCodigo(int id)
         {
