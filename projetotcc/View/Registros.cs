@@ -17,6 +17,7 @@ namespace projetotcc.View
 {
     public partial class Registros : Form
     {
+        //registros
         public Registros()
         {
             InitializeComponent();
