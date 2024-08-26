@@ -64,6 +64,7 @@ namespace projetotcc.View
 
         private async Task AtualizarRegistros()
         {
+            dataGridView1.DataSource = null;
             try
             {
                 ModelRegistro modelRegistro = new ModelRegistro();
@@ -85,17 +86,22 @@ namespace projetotcc.View
 
                 try
                 {
-                    // Chamar o método de pesquisa de registro no Controller
-                    DataTable dataTable = await ControllerRegistro.PesquisaRegistro(modelRegistro);
+
+                    DataTable dataTable = new DataTable();
+
+                    if (checkUsuariosInativos.Checked)
+                    {
+                       dataTable  = await ControllerRegistro.PesquisaRegistro(modelRegistro);
+                    }
+                    else
+                    {
+                       dataTable = await ControllerRegistro.PesquisaRegistro(modelRegistro, "ativo");
+                    }
 
                     if (dataTable != null && dataTable.Rows.Count > 0)
                     {
                         // Adiciona a fonte de dados à DataGridView
                         dataGridView1.DataSource = dataTable;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Não foram encontrados registros.");
                     }
                 }
                 catch (Exception ex)
@@ -114,6 +120,11 @@ namespace projetotcc.View
         {
             CriarRelatorio criarRelatorio = new CriarRelatorio();
             UtilsClasse.FecharEAbrirProximoForm(this, criarRelatorio);
+        }
+
+        private async void checkUsuariosInativos_CheckedChanged(object sender, EventArgs e)
+        {
+            await AtualizarRegistros();
         }
 
         // Outros eventos como CarregarForm_form, pbFechar_form, pbMinimizar_form, etc., podem continuar conforme você já os implementou

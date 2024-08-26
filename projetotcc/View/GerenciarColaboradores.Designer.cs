@@ -43,6 +43,8 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.checkPesquisaTotal = new System.Windows.Forms.CheckBox();
+            this.Pesquisa = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCadastrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -50,6 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.Pesquisa.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -57,21 +60,21 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(7, 139);
+            this.label1.Location = new System.Drawing.Point(4, 41);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(154, 50);
+            this.label1.Size = new System.Drawing.Size(208, 63);
             this.label1.TabIndex = 11;
-            this.label1.Text = "NOME";
+            this.label1.Text = "NOME:";
             // 
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(16, 192);
+            this.txtNome.Location = new System.Drawing.Point(166, 46);
             this.txtNome.Margin = new System.Windows.Forms.Padding(4);
             this.txtNome.Multiline = true;
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(849, 46);
+            this.txtNome.Size = new System.Drawing.Size(536, 46);
             this.txtNome.TabIndex = 12;
             this.txtNome.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -80,21 +83,21 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(865, 139);
+            this.label2.Location = new System.Drawing.Point(710, 42);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(200, 50);
+            this.label2.Size = new System.Drawing.Size(265, 63);
             this.label2.TabIndex = 13;
-            this.label2.Text = "CÓDIGO";
+            this.label2.Text = "CÓDIGO:";
             // 
             // txtCodigo
             // 
             this.txtCodigo.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(875, 192);
+            this.txtCodigo.Location = new System.Drawing.Point(919, 42);
             this.txtCodigo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodigo.Multiline = true;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(628, 46);
+            this.txtCodigo.Size = new System.Drawing.Size(539, 46);
             this.txtCodigo.TabIndex = 14;
             this.txtCodigo.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -211,18 +214,44 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
+            // checkPesquisaTotal
+            // 
+            this.checkPesquisaTotal.AutoSize = true;
+            this.checkPesquisaTotal.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkPesquisaTotal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.checkPesquisaTotal.Location = new System.Drawing.Point(13, 99);
+            this.checkPesquisaTotal.Name = "checkPesquisaTotal";
+            this.checkPesquisaTotal.Size = new System.Drawing.Size(451, 44);
+            this.checkPesquisaTotal.TabIndex = 17;
+            this.checkPesquisaTotal.Text = "Pesquisar todos os Funciónarios";
+            this.checkPesquisaTotal.UseVisualStyleBackColor = true;
+            this.checkPesquisaTotal.CheckedChanged += new System.EventHandler(this.checkPesquisaTotal_CheckedChanged);
+            // 
+            // Pesquisa
+            // 
+            this.Pesquisa.Controls.Add(this.txtCodigo);
+            this.Pesquisa.Controls.Add(this.checkPesquisaTotal);
+            this.Pesquisa.Controls.Add(this.label2);
+            this.Pesquisa.Controls.Add(this.txtNome);
+            this.Pesquisa.Controls.Add(this.label1);
+            this.Pesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pesquisa.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Pesquisa.Location = new System.Drawing.Point(16, 102);
+            this.Pesquisa.Name = "Pesquisa";
+            this.Pesquisa.Size = new System.Drawing.Size(1475, 152);
+            this.Pesquisa.TabIndex = 18;
+            this.Pesquisa.TabStop = false;
+            this.Pesquisa.Text = "Pesquisa";
+            // 
             // GerenciarColaboradores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
             this.ClientSize = new System.Drawing.Size(1520, 825);
+            this.Controls.Add(this.Pesquisa);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.txtCodigo);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtNome);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
@@ -241,8 +270,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Pesquisa.ResumeLayout(false);
+            this.Pesquisa.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -259,5 +289,7 @@
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.PictureBox btnCadastrar;
+        private System.Windows.Forms.CheckBox checkPesquisaTotal;
+        private System.Windows.Forms.GroupBox Pesquisa;
     }
 }

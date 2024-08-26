@@ -50,18 +50,20 @@ namespace projetotcc.Controller
         }
 
         // Método assíncrono para buscar funcionários por nome e/ou ID.
-        public static async ValueTask<DataTable> buscasFuncionarios(string nome, string idFuncionario)
+        public static async ValueTask<DataTable> buscasFuncionarios(string nome, string idFuncionario, string estado = null)
         {
             var dataTable = new DataTable(); // Cria um DataTable para armazenar os resultados da consulta.
 
             // SQL básico para selecionar os funcionários.
-            string sqlDeBuscar = "SELECT id_funcionario, nome FROM funcionario WHERE 1=1";
+            string sqlDeBuscar = "SELECT id_funcionario, nome, status FROM funcionario WHERE 1=1";
 
             // Adiciona filtros à consulta com base nos parâmetros fornecidos.
             if (!string.IsNullOrEmpty(nome))
                 sqlDeBuscar += " AND nome LIKE @nome";
             if (!string.IsNullOrEmpty(idFuncionario))
                 sqlDeBuscar += " AND CAST(id_funcionario AS TEXT) LIKE @id_funcionario";
+            if (!string.IsNullOrEmpty(estado))
+                sqlDeBuscar += " AND status = @status";
 
             try
             {
@@ -77,6 +79,8 @@ namespace projetotcc.Controller
                         comm.Parameters.AddWithValue("@nome", "%" + nome + "%");
                     if (!string.IsNullOrEmpty(idFuncionario))
                         comm.Parameters.AddWithValue("@id_funcionario", "%" + idFuncionario + "%");
+                    if (!string.IsNullOrEmpty(estado))
+                        comm.Parameters.AddWithValue("@status", estado);
 
                     // Preenche o DataTable com os resultados da consulta de forma assíncrona.
                     await Task.Run(() => adapter.Fill(dataTable));
@@ -92,26 +96,59 @@ namespace projetotcc.Controller
         }
 
         // Método assíncrono para excluir um funcionário pelo ID.
-        public static async ValueTask<string> ExcluirFuncionario(int codigo)
+        public static async ValueTask<string> InativarFuncionario(int codigo)
         {
-            // SQL para excluir o funcionário.
-            string sqlDelete = "DELETE FROM funcionario WHERE id_funcionario = @id_funcionario";
+            object status;
+            string novoStatus = "";
+            string sqlSearch = "SELECT status FROM funcionario WHERE id_funcionario = @id_funcionario";
+            string sqlUpdate = "UPDATE funcionario SET status = @novoStatus WHERE id_funcionario = @id_funcionario";
 
             try
             {
                 // Cria uma conexão com o banco de dados.
                 using (var connection = new ConnectionDatabase().connectionDB())
-                // Cria o comando SQL para ser executado.
-                using (var commDelete = new NpgsqlCommand(sqlDelete, connection))
                 {
-                    // Adiciona o parâmetro ao comando.
-                    commDelete.Parameters.AddWithValue("@id_funcionario", codigo);
 
-                    // Executa o comando de forma assíncrona e obtém o número de linhas afetadas.
-                    int rowsAffectedDelete = await commDelete.ExecuteNonQueryAsync();
+                    // Busca o status do funcionário
+                    using (var commSearch = new NpgsqlCommand(sqlSearch, connection))
+                    {
+                        // Adiciona o parâmetro ao comando.
+                        commSearch.Parameters.AddWithValue("@id_funcionario", codigo);
 
-                    // Retorna mensagem de sucesso ou erro com base no resultado.
-                    return rowsAffectedDelete > 0 ? "Colaborador excluído com sucesso!" : "Colaborador não encontrado para exclusão.";
+                        // Executa o comando de forma assíncrona e obtém o status.
+                        status = await commSearch.ExecuteScalarAsync();
+                    }
+
+                    if (status != null)
+                    {
+                        // Define o novo status com base no valor atual.
+                        if (status.ToString().ToLower() == "ativo")
+                        {
+                            novoStatus = "inativo";
+                        }
+                        else
+                        {
+                            novoStatus = "ativo";
+                        }
+
+                        // Atualiza o status do funcionário
+                        using (var commUpdate = new NpgsqlCommand(sqlUpdate, connection))
+                        {
+                            // Adiciona os parâmetros ao comando.
+                            commUpdate.Parameters.AddWithValue("@id_funcionario", codigo);
+                            commUpdate.Parameters.AddWithValue("@novoStatus", novoStatus);
+
+                            // Executa o comando de forma assíncrona e obtém o número de linhas afetadas.
+                            int rowsAffectedUpdate = await commUpdate.ExecuteNonQueryAsync();
+
+                            // Retorna mensagem de sucesso ou erro com base no resultado.
+                            return rowsAffectedUpdate > 0 ? "Status do colaborador alterado com sucesso!" : "Erro ao atualizar o status do colaborador.";
+                        }
+                    }
+                    else
+                    {
+                        return "Colaborador não encontrado.";
+                    }
                 }
             }
             catch (Exception ex)

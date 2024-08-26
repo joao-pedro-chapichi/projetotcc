@@ -9,9 +9,7 @@ using projetotcc.View;
 namespace projetotcc.Utils
 {
     public static class UtilsClasse
-    {
-        
-
+    {   
         #region UTILIDADES
         // Fechar os formulários com confirmação
         public static void ConfirmacaoFechar(Form formAtual)

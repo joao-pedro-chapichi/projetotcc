@@ -53,21 +53,9 @@ namespace projetotcc.View
             UtilsClasse.FecharEAbrirProximoForm(this, cadastrarColaborador);
         }
 
-        public async void AtualizarDados()
-        {
-            dataGridView1.Columns.Clear(); // Limpa todas as colunas do DataGridView
-            try
-            {
-                string nome = txtNome.Text; // Obtém o texto do campo txtNome
-                string codigo = txtCodigo.Text; // Obtém o texto do campo txtCodigo
-                DataTable dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo); // Busca os funcionários com base nos filtros
-                PreencherDataGrindView(dataTable); // Preenche o DataGridView com os dados retornados
-            }
-            catch
-            {
-                return; // Em caso de erro, apenas retorna sem fazer nada
-            }
-        }
+        #endregion
+
+        #region CODIGOS
 
         private void PreencherDataGrindView(DataTable dataTable)
         {
@@ -86,7 +74,7 @@ namespace projetotcc.View
 
                 foreach (DataGridViewColumn column in dataGridView1.Columns)
                 {
-                    if (column.HeaderText == "EXCLUIR")
+                    if (column.HeaderText == "ALTERAR ESTADO")
                     {
                         deleteButtonExists = true;
                     }
@@ -100,8 +88,8 @@ namespace projetotcc.View
                 if (!deleteButtonExists)
                 {
                     DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
-                    deleteButtonColumn.HeaderText = "EXCLUIR";
-                    deleteButtonColumn.Text = "EXCLUIR";
+                    deleteButtonColumn.HeaderText = "ALTERAR ESTADO";
+                    deleteButtonColumn.Text = "ALTERAR ESTADO";
                     deleteButtonColumn.UseColumnTextForButtonValue = true;
                     dataGridView1.Columns.Add(deleteButtonColumn);
                 }
@@ -116,7 +104,30 @@ namespace projetotcc.View
                 }
             }
         }
-        #endregion
+
+        public async void AtualizarDados()
+        {
+            dataGridView1.Columns.Clear(); // Limpa todas as colunas do DataGridView
+            try
+            {
+                string nome = txtNome.Text; // Obtém o texto do campo txtNome
+                string codigo = txtCodigo.Text; // Obtém o texto do campo txtCodigo
+                DataTable dataTable = new DataTable();
+                if (checkPesquisaTotal.Checked)
+                {
+                   dataTable  = await ControllerColaborador.buscasFuncionarios(nome, codigo); // Busca os funcionários com base nos filtros
+                }
+                else
+                {
+                    dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo, "ativo");
+                }
+                PreencherDataGrindView(dataTable); // Preenche o DataGridView com os dados retornados
+            }
+            catch
+            {
+                return; // Em caso de erro, apenas retorna sem fazer nada
+            }
+        }
 
         // Evento de clique no conteúdo da célula do DataGridView
         private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -125,7 +136,7 @@ namespace projetotcc.View
             {
                 if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewButtonColumn) // Verifica se o clique ocorreu em uma coluna de botão
                 {
-                    if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "EXCLUIR") // Verifica se o botão clicado é o de EXCLUIR
+                    if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "ALTERAR ESTADO") // Verifica se o botão clicado é o de EXCLUIR
                     {
                         int codigo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value.ToString()); // Obtém o código do funcionário da linha clicada
                         string nome = dataGridView1.Rows[e.RowIndex].Cells["nome"].Value.ToString();
@@ -134,17 +145,7 @@ namespace projetotcc.View
 
                         if (result == DialogResult.Yes)
                         {
-                            
-
-                            DialogResult resultado = MessageBox.Show("Deseja excluir os registros do funcionario?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if(resultado == DialogResult.Yes)
-                            {
-                                int cod = await ControllerColaborador.PesquisarCodigoPorNome(nome);
-                                MessageBox.Show(cod.ToString());
-                                string res =  await ControllerRegistro.ExcluirRegistros(cod);
-                                MessageBox.Show(res);
-                            }
-                            string ress = await ControllerColaborador.ExcluirFuncionario(codigo); // Exclui o funcionário de forma assíncrona
+                            string ress = await ControllerColaborador.InativarFuncionario(codigo); // Exclui o funcionário de forma assíncrona
                             MessageBox.Show(ress);
                             AtualizarDados(); // Atualiza os dados do DataGridView após a exclusão
                         }
@@ -167,6 +168,13 @@ namespace projetotcc.View
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            AtualizarDados();
+        }
+
+        #endregion
+
+        private void checkPesquisaTotal_CheckedChanged(object sender, EventArgs e)
         {
             AtualizarDados();
         }

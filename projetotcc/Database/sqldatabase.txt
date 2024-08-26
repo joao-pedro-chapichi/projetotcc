@@ -2,7 +2,8 @@
 CREATE TABLE funcionario (
     id Serial NOT NULL,        
     id_funcionario BIGINT NOT NULL,
-    nome VARCHAR(255),           
+    nome VARCHAR(255),      
+    status VARCHAR(30),
     CONSTRAINT pk_func PRIMARY KEY (id) 
 );
 
@@ -17,7 +18,8 @@ CREATE TABLE registro (
     hora TIME,                
     data DATE,               
     id int,                   
-    acao VARCHAR(7),             
+    acao VARCHAR(7),     
+    sum_horas TIME,
     CONSTRAINT pk_registro PRIMARY KEY (id_registro),  
     CONSTRAINT fk_registro_acao FOREIGN KEY (acao) REFERENCES operacao(acao) 
 );

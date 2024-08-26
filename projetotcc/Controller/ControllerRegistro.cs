@@ -4,6 +4,7 @@ using projetotcc.Model;
 using System;
 using System.Data;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace projetotcc.Controller
 {
@@ -43,7 +44,6 @@ namespace projetotcc.Controller
 
             return idUsuario;
         }
-
         public static async ValueTask<bool> VerificarExistencia(long codigofuncionario)
         {
             bool retorno = false;
@@ -73,40 +73,13 @@ namespace projetotcc.Controller
 
             return retorno;
         }
-
-        public static async ValueTask<bool> VerificarExistenciaId(long codigofuncionario)
+        public static async ValueTask<(bool, TimeSpan?)> VerificarUltimaAcao(long id_funcionario)
         {
-            bool retorno = false;
-            string sql = "SELECT COUNT(*) FROM funcionario WHERE id = @id";
-            ConnectionDatabase con = new ConnectionDatabase();
+            string sql = @"SELECT acao, hora 
+                   FROM registro 
+                   WHERE id = @id_funcionario AND data = @data 
+                   ORDER BY id_registro DESC LIMIT 1";
 
-            using (NpgsqlConnection conn = con.connectionDB())
-            {
-                using (NpgsqlCommand commCheckCodigo = new NpgsqlCommand(sql, conn))
-                {
-                    try
-                    {
-                        commCheckCodigo.Parameters.AddWithValue("@id", codigofuncionario);
-                        int countCodigo = Convert.ToInt32(await commCheckCodigo.ExecuteScalarAsync());
-                        retorno = countCodigo > 0;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Erro ao verificar existência: " + ex.Message);
-                    }
-                    finally
-                    {
-                        await conn.CloseAsync();
-                    }
-                }
-            }
-
-            return retorno;
-        }
-
-        public static async ValueTask<bool> VerificarUltimaAcao(long id_funcionario)
-        {
-            string sql = "SELECT acao FROM registro WHERE id = @id_funcionario AND data = @data ORDER BY id_registro DESC LIMIT 1";
             DateTime data = DateTime.Now.Date;
             ConnectionDatabase con = new ConnectionDatabase();
 
@@ -124,7 +97,9 @@ namespace projetotcc.Controller
                             if (reader.Read())
                             {
                                 string ultimaAcao = reader.GetString(0);
-                                return ultimaAcao == "entrada";
+                                TimeSpan hora = reader.GetTimeSpan(1);
+
+                                return (ultimaAcao == "entrada", hora);
                             }
                         }
                     }
@@ -139,7 +114,7 @@ namespace projetotcc.Controller
                 }
             }
 
-            return false;
+            return (false, null);
         }
 
         public static async ValueTask<string> BuscarNomeFuncionario(long codigofuncionario)
@@ -177,7 +152,6 @@ namespace projetotcc.Controller
 
             return nomeFuncionario;
         }
-
         public static async ValueTask<string> CriarRegistro(ModelFuncionario mFunc)
         {
             string sqlInsert = "INSERT INTO registro(hora, data, id, acao) VALUES(@hora, @data, @id, @acao)";
@@ -196,7 +170,7 @@ namespace projetotcc.Controller
 
                         if (codigo == 0)
                         {
-                            return "Erro";
+                            return "Erro: Código do funcionário inválido.";
                         }
 
                         if (!await VerificarExistencia(codigo))
@@ -204,8 +178,9 @@ namespace projetotcc.Controller
                             return "Usuário não existe!";
                         }
 
-                        bool ultimaAcao = await VerificarUltimaAcao(codigo);
-                        string acao = ultimaAcao ? "saida" : "entrada";
+                        // Obtém a última ação e a hora correspondente
+                        var (ultimaAcaoFoiEntrada, horaUltimaAcao) = await VerificarUltimaAcao(codigo);
+                        string acao = ultimaAcaoFoiEntrada ? "saida" : "entrada";
 
                         commInsert.Parameters.AddWithValue("@hora", horaMinutos);
                         commInsert.Parameters.AddWithValue("@data", dataAtual);
@@ -214,11 +189,11 @@ namespace projetotcc.Controller
 
                         await commInsert.ExecuteNonQueryAsync();
 
-                        return "Finalizado";
+                        return "Registro criado com sucesso.";
                     }
                     catch (Exception ex)
                     {
-                        return $"Erro: {ex.Message}";
+                        return $"Erro ao criar registro: {ex.Message}";
                     }
                     finally
                     {
@@ -228,66 +203,77 @@ namespace projetotcc.Controller
             }
         }
 
-        public static async ValueTask<DataTable> PesquisaRegistro(ModelRegistro mRegistro)
+        public static async ValueTask<DataTable> PesquisaRegistro(ModelRegistro mRegistro, string estado = null)
         {
             DataTable dataTable = new DataTable();
-            string sql = "SELECT hora, data, id, acao FROM registro WHERE data >= @dataInicio AND data <= @dataFim"; // Query base
+            string sql = @"SELECT r.hora, r.data, f.id_funcionario, r.acao
+                            FROM registro r
+                            LEFT JOIN funcionario f ON r.id = f.id
+                            WHERE r.data >= @dataInicio AND r.data <= @dataFim
+                            "; 
 
+            // Adicionando condições opcionais
             if (mRegistro.Id != 0)
             {
-                sql += " AND id = @id";
+                sql += " AND r.id = @id";
             }
             if (!string.IsNullOrEmpty(mRegistro.Acao))
             {
-                sql += " AND acao = @acao";
+                sql += " AND r.acao = @acao";
+            }
+            if (!string.IsNullOrEmpty(estado))
+            {
+                sql += " AND f.status = @estado";
             }
 
             ConnectionDatabase con = new ConnectionDatabase();
 
-            using (NpgsqlConnection conn = con.connectionDB())
+            try
             {
-                using (NpgsqlCommand commSearch = new NpgsqlCommand(sql, conn))
+                using (NpgsqlConnection conn = con.connectionDB())
                 {
-                    
-                    commSearch.Parameters.AddWithValue("@dataInicio", mRegistro.DataInicio);
-                    commSearch.Parameters.AddWithValue("@dataFim", mRegistro.DataFim);
 
-                    if (mRegistro.Id != 0)
+                    using (NpgsqlCommand commSearch = new NpgsqlCommand(sql, conn))
                     {
-                        commSearch.Parameters.AddWithValue("@id", mRegistro.Id);
-                    }
-                    if (!string.IsNullOrEmpty(mRegistro.Acao))
-                    {
-                        commSearch.Parameters.AddWithValue("@acao", mRegistro.Acao);
-                    }
+                        // Adicionando parâmetros obrigatórios
+                        commSearch.Parameters.AddWithValue("@dataInicio", mRegistro.DataInicio);
+                        commSearch.Parameters.AddWithValue("@dataFim", mRegistro.DataFim);
 
-                    try
-                    {
+                        // Adicionando parâmetros opcionais
+                        if (mRegistro.Id != 0)
+                        {
+                            commSearch.Parameters.AddWithValue("@id", mRegistro.Id);
+                        }
+                        if (!string.IsNullOrEmpty(mRegistro.Acao))
+                        {
+                            commSearch.Parameters.AddWithValue("@acao", mRegistro.Acao);
+                        }
+                        if (!string.IsNullOrEmpty(estado))
+                        {
+                            commSearch.Parameters.AddWithValue("@estado", estado);
+                        }
+
+                        // Preenchendo o DataTable com os dados retornados pela consulta
                         using (NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(commSearch))
                         {
                             adapter.Fill(dataTable);
                         }
                     }
-                    catch (NpgsqlException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                    finally
-                    {
-                        await conn.CloseAsync();
-                    }
                 }
+            }
+            catch (NpgsqlException ex)
+            {
+                MessageBox.Show($"Erro na consulta ao banco de dados: {ex.Message}");
             }
 
             return dataTable;
         }
-
         public static async ValueTask<DataTable> PesquisaRegistroHoje()
         {
             DataTable dataTable = new DataTable();
             DateTime hoje = DateTime.Now.Date;
             string sql = @"
-            SELECT r.hora, r.data, f.nome, r.acao 
+            SELECT r.hora, r.data, f.nome, f.id_funcionario, r.acao 
             FROM registro r
             JOIN funcionario f ON r.id = f.id
             WHERE r.data = @dataHoje
@@ -321,7 +307,6 @@ namespace projetotcc.Controller
 
             return dataTable;
         }
-
         public async static ValueTask<string> ExcluirRegistros(int codigo)
         {
             string sqlDelete = "DELETE FROM registro WHERE id = @id";
