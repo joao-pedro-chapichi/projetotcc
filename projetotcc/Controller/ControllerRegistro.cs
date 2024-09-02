@@ -116,7 +116,6 @@ namespace projetotcc.Controller
 
             return (false, null);
         }
-
         public static async ValueTask<string> BuscarNomeFuncionario(long codigofuncionario)
         {
             string nomeFuncionario = null;
@@ -154,7 +153,8 @@ namespace projetotcc.Controller
         }
         public static async ValueTask<string> CriarRegistro(ModelFuncionario mFunc)
         {
-            string sqlInsert = "INSERT INTO registro(hora, data, id, acao) VALUES(@hora, @data, @id, @acao)";
+            // Atualize a instrução SQL para incluir sum_horas, se necessário
+            string sqlInsert = "INSERT INTO registro(hora, data, id, acao, sum_horas) VALUES(@hora, @data, @id, @acao, @sum_horas)";
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
@@ -163,8 +163,10 @@ namespace projetotcc.Controller
                 {
                     try
                     {
+                        // Criando um TimeSpan com horas e minutos apenas
                         TimeSpan horaAtual = DateTime.Now.TimeOfDay;
-                        TimeSpan horaMinutos = new TimeSpan(horaAtual.Hours, horaAtual.Minutes, 0);
+                        TimeSpan horaMinutos = new TimeSpan(horaAtual.Hours, horaAtual.Minutes, 0); // Zera os segundos
+                        TimeSpan? tempoTrabalhado = null; // Definido como null por padrão
                         DateTime dataAtual = DateTime.Now.Date;
                         long codigo = mFunc.ID;
 
@@ -182,10 +184,20 @@ namespace projetotcc.Controller
                         var (ultimaAcaoFoiEntrada, horaUltimaAcao) = await VerificarUltimaAcao(codigo);
                         string acao = ultimaAcaoFoiEntrada ? "saida" : "entrada";
 
+                        // Se a última ação foi "entrada" e estamos registrando "saída", calcula o tempo trabalhado
+                        if (acao == "saida" && horaUltimaAcao.HasValue)
+                        {
+                            tempoTrabalhado = horaMinutos - horaUltimaAcao.Value; // Subtrai considerando só horas e minutos
+                            MessageBox.Show($"Tempo Trabalhado: {tempoTrabalhado.Value.ToString(@"hh\:mm")}");
+                        }
+
                         commInsert.Parameters.AddWithValue("@hora", horaMinutos);
                         commInsert.Parameters.AddWithValue("@data", dataAtual);
                         commInsert.Parameters.AddWithValue("@id", codigo);
                         commInsert.Parameters.AddWithValue("@acao", acao);
+
+                        // Se o tempoTrabalhado foi calculado, adiciona ao comando; caso contrário, insere DBNull
+                        commInsert.Parameters.AddWithValue("@sum_horas", tempoTrabalhado.HasValue ? (object)tempoTrabalhado.Value : DBNull.Value);
 
                         await commInsert.ExecuteNonQueryAsync();
 
@@ -202,6 +214,8 @@ namespace projetotcc.Controller
                 }
             }
         }
+
+
 
         public static async ValueTask<DataTable> PesquisaRegistro(ModelRegistro mRegistro, string estado = null)
         {

@@ -113,6 +113,7 @@
     <Compile Include="Controller\ControllerColaborador.cs" />
     <Compile Include="Controller\ControllerPDF.cs" />
     <Compile Include="Controller\ControllerRegistro.cs" />
+    <Compile Include="Controller\ControllerRelatorio.cs" />
     <Compile Include="Database\ConnectionDatabase.cs" />
     <Compile Include="Model\ModelFuncionario.cs" />
     <Compile Include="Model\ModelRegistro.cs" />

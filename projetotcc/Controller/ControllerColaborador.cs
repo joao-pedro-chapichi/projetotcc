@@ -22,7 +22,7 @@ namespace projetotcc.Controller
             }
 
             // SQL para inserir um novo funcionário.
-            string sql = "INSERT INTO funcionario(id_funcionario, nome) VALUES(@id_funcionario, @nome)";
+            string sql = "INSERT INTO funcionario(id_funcionario, nome, status) VALUES(@id_funcionario, @nome, @status)";
 
             try
             {
@@ -34,6 +34,7 @@ namespace projetotcc.Controller
                     // Adiciona os parâmetros ao comando.
                     cmd.Parameters.AddWithValue("nome", modelFunc.Nome);
                     cmd.Parameters.AddWithValue("id_funcionario", modelFunc.Id_funcionario);
+                    cmd.Parameters.AddWithValue("status", "ativo");
 
                     // Executa o comando de forma assíncrona.
                     await cmd.ExecuteNonQueryAsync();
