@@ -17,8 +17,8 @@ namespace projetotcc.Controller
 {
     public class ControllerPDF
     {
-        
-        public void GerarPdf(DataGridView dataGridView, string nome, string id)
+        #region Relatório Detalhado
+        public void GerarRelatorioDetalhado(DataGridView dataGridView, string nome, string id)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
@@ -116,7 +116,99 @@ namespace projetotcc.Controller
             
             }
         }
+        #endregion
+        public void GerarRelatorioSimples(DataGridView dataGridView, string dataInicial, string dataFinal)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
+            saveFileDialog.Title = "Salvar PDF";
+            saveFileDialog.FileName = "Relatório-Geral.pdf";
 
-        
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string caminhoArquivo = saveFileDialog.FileName;
+
+                Document doc = new Document(PageSize.A4, 20, 20, 30, 30); 
+                PdfWriter.GetInstance(doc, new FileStream(caminhoArquivo, FileMode.Create));
+
+                doc.Open();
+
+                
+                Font titleFont = FontFactory.GetFont("Arial", 14, Font.BOLD, BaseColor.BLACK);
+                Font headerFont = FontFactory.GetFont("Arial", 10, Font.BOLD, BaseColor.BLACK);
+                Font bodyFont = FontFactory.GetFont("Arial", 9, Font.NORMAL, BaseColor.BLACK);
+
+                
+                Paragraph title = new Paragraph($"Relatório Geral - {dataInicial} à {dataFinal}", titleFont)
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                    SpacingAfter = 20f
+                };
+                doc.Add(title);
+
+                
+                PdfPTable tabela = new PdfPTable(4)
+                {
+                    WidthPercentage = 100 
+                };
+
+                
+                tabela.SetWidths(new float[] { 1, 1, 1.5f, 1 });
+
+                
+                string[] cabecalhos = { "NOME", "DIAS PRESENTES", "HORAS TRABALHADAS", "ASSINATURA" };
+                foreach (string cabecalho in cabecalhos)
+                {
+                    PdfPCell celula = new PdfPCell(new Phrase(cabecalho, headerFont))
+                    {
+                        BackgroundColor = BaseColor.LIGHT_GRAY,
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        Padding = 5
+                    };
+                    tabela.AddCell(celula);
+                }
+
+                
+                foreach (DataGridViewRow linha in dataGridView.Rows)
+                {
+                    if (!linha.IsNewRow)
+                    {
+
+                        tabela.AddCell(new PdfPCell(new Phrase(linha.Cells["nome"].Value?.ToString(), bodyFont))
+                        {
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        });
+                        tabela.AddCell(new PdfPCell(new Phrase(linha.Cells["dias_presentes"].Value?.ToString(), bodyFont))
+                        {
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        });
+                        tabela.AddCell(new PdfPCell(new Phrase(linha.Cells["horas_trabalhadas"].Value?.ToString(), bodyFont))
+                        {
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        });
+
+
+                        PdfPCell celulaAssinatura = new PdfPCell(new Phrase(" ", bodyFont))
+                        {
+                            FixedHeight = 20f, 
+                            BorderWidth = 1,
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        };
+                        tabela.AddCell(celulaAssinatura);
+                    }
+                }
+
+                
+                doc.Add(tabela);
+
+                
+                doc.Close();
+
+                MessageBox.Show("Relatório gerado com sucesso em: " + caminhoArquivo);
+            }
+        }
+
+
     }
 }
+    

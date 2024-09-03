@@ -33,10 +33,11 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dateInicio = new System.Windows.Forms.DateTimePicker();
             this.dateFim = new System.Windows.Forms.DateTimePicker();
+            this.dateInicio = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnGerar_PDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -102,6 +103,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.dateFim);
+            this.panel1.Controls.Add(this.btnGerar_PDF);
             this.panel1.Controls.Add(this.dateInicio);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -109,6 +111,33 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(459, 418);
             this.panel1.TabIndex = 11;
+            // 
+            // dateFim
+            // 
+            this.dateFim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateFim.Location = new System.Drawing.Point(110, 184);
+            this.dateFim.Name = "dateFim";
+            this.dateFim.Size = new System.Drawing.Size(200, 20);
+            this.dateFim.TabIndex = 12;
+            // 
+            // dateInicio
+            // 
+            this.dateInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateInicio.Location = new System.Drawing.Point(110, 147);
+            this.dateInicio.Name = "dateInicio";
+            this.dateInicio.Size = new System.Drawing.Size(200, 20);
+            this.dateInicio.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(103, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(274, 42);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Escolha o Mês:";
             // 
             // tableLayoutPanel2
             // 
@@ -127,32 +156,18 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(459, 100);
             this.tableLayoutPanel2.TabIndex = 12;
             // 
-            // label1
+            // btnGerar_PDF
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(103, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(274, 42);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Escolha o Mês:";
-            // 
-            // dateInicio
-            // 
-            this.dateInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateInicio.Location = new System.Drawing.Point(110, 147);
-            this.dateInicio.Name = "dateInicio";
-            this.dateInicio.Size = new System.Drawing.Size(200, 20);
-            this.dateInicio.TabIndex = 11;
-            // 
-            // dateFim
-            // 
-            this.dateFim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateFim.Location = new System.Drawing.Point(110, 184);
-            this.dateFim.Name = "dateFim";
-            this.dateFim.Size = new System.Drawing.Size(200, 20);
-            this.dateFim.TabIndex = 12;
+            this.btnGerar_PDF.BackColor = System.Drawing.Color.Silver;
+            this.btnGerar_PDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGerar_PDF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnGerar_PDF.Location = new System.Drawing.Point(264, 351);
+            this.btnGerar_PDF.Name = "btnGerar_PDF";
+            this.btnGerar_PDF.Size = new System.Drawing.Size(195, 64);
+            this.btnGerar_PDF.TabIndex = 9;
+            this.btnGerar_PDF.Text = "Gerar PDF";
+            this.btnGerar_PDF.UseVisualStyleBackColor = false;
+            this.btnGerar_PDF.Click += new System.EventHandler(this.gerarPDF_click);
             // 
             // CriarRelatorio
             // 
@@ -185,5 +200,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateFim;
         private System.Windows.Forms.DateTimePicker dateInicio;
+        private System.Windows.Forms.Button btnGerar_PDF;
     }
 }

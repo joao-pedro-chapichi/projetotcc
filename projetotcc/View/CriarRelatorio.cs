@@ -40,5 +40,25 @@ namespace projetotcc.View
             }
         }
 
+        private void gerarPDF_click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                DataGridViewRow linhaSelecionada = dataGridView1.CurrentRow;
+
+                // Captura os valores das células
+               
+                string dataInicial = dateInicio.Value.ToString("dd/MM/yyyy");
+                string dataFinal = dateFim.Value.ToString("dd/MM/yyyy");
+
+                // Chama o método para gerar o relatório com os valores capturados
+                ControllerPDF controllerPDF = new ControllerPDF();
+                controllerPDF.GerarRelatorioSimples(dataGridView1, dataInicial, dataFinal);
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma célula antes de gerar o relatório.");
+            }
+        }
     }
 }

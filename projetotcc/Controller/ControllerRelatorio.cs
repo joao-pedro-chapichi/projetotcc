@@ -18,9 +18,9 @@ namespace projetotcc.Controller
             // SQL para somar os valores das horas em um determinado período
             string sql = @"
                 SELECT
-                    f.id_funcionario,
-                    COUNT(DISTINCT r.data) AS numero_dias_vindos,
-                    ROUND(SUM(EXTRACT(EPOCH FROM r.sum_horas)) / 3600, 2) AS total_horas_trabalhadas
+                    f.nome,
+                    COUNT(DISTINCT r.data) AS dias_presentes,
+                    ROUND(SUM(EXTRACT(EPOCH FROM r.sum_horas)) / 3600, 2) AS horas_trabalhadas
                 FROM
                     registro r
                 JOIN
@@ -29,7 +29,7 @@ namespace projetotcc.Controller
                     r.data >= @datainicial 
                     AND r.data <= @datafinal
                 GROUP BY
-                    f.id_funcionario
+                    f.nome
                 HAVING
                     SUM(EXTRACT(EPOCH FROM r.sum_horas)) > 0";
 
