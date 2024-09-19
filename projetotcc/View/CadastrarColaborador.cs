@@ -18,6 +18,7 @@ namespace projetotcc.View
         public CadastrarColaborador()
         {
             InitializeComponent();
+            Redimensionar();
         }
 
         #region NAVEGAÇÃO
@@ -90,5 +91,18 @@ namespace projetotcc.View
             }
         }
         #endregion
+
+        private void CadastrarColaborador_SizeChanged(object sender, EventArgs e)
+        {
+            Redimensionar();
+        }
+
+        private void Redimensionar()
+        {
+            UtilsClasse.RedimensionarLabel(this, labelCadastrar, 0.04f);
+            UtilsClasse.RedimensionarLabel(this, labelNome, 0.02f);
+            UtilsClasse.RedimensionarLabel(this, labelCodigo, 0.02f);
+            UtilsClasse.RedimensionarLabel(this, labelCfp, 0.02f);
+        }
     }
 }

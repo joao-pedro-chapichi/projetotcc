@@ -1,4 +1,5 @@
-﻿using projetotcc.Controller;
+﻿using projetotcc.Controles_De_Usuario;
+using projetotcc.Controller;
 using projetotcc.Model;
 using projetotcc.Utils;
 using System;
@@ -18,16 +19,22 @@ namespace projetotcc.View
     public partial class Registros : Form
     {
         //registros
+        public MenuLateral menuLateral;
+
         public Registros()
         {
             InitializeComponent();
+            menuLateral = new MenuLateral(this);
+            this.Controls.Add(menuLateral);
+            menuLateral.Dock = DockStyle.Left;
+            Redimensionar();
         }
 
         #region NAVEGAÇÃO
         // Carregar formulário
         private void CarregarForm_form(object sender, EventArgs e)
         {
-            textBox1.Focus();
+            labelNome.Focus();
         }
 
         // Fechar formulário
@@ -62,6 +69,15 @@ namespace projetotcc.View
             await AtualizarRegistros();
         }
 
+        private void Redimensionar()
+        {
+            UtilsClasse.RedimensionarLabel(this, labelTopo, 0.04f);
+
+            float newSize = this.Width * 0.01f; // Ajusta o tamanho da fonte com base na largura do formulário
+            dataGridView1.DefaultCellStyle.Font = new Font("Arial", newSize);
+            UtilsClasse.AjustarFonteDataGridView(dataGridView1, 0.015f);
+        }
+
         private async Task AtualizarRegistros()
         {
             dataGridView1.DataSource = null;
@@ -73,9 +89,9 @@ namespace projetotcc.View
                 modelRegistro.DataFim = dateTimePicker2.Value.Date;
 
                 // Verifica se o textBox1 não está vazio antes de buscar o ID
-                if (!string.IsNullOrEmpty(textBox1.Text))
+                if (!string.IsNullOrEmpty(labelNome.Text))
                 {
-                    modelRegistro.Id = await ControllerColaborador.PesquisarCodigoPorNome(textBox1.Text);
+                    modelRegistro.Id = await ControllerColaborador.PesquisarCodigoPorNome(labelNome.Text);
                 }
 
                 // Verifica se a combobox não está vazia ou nula
@@ -115,16 +131,15 @@ namespace projetotcc.View
             }
         }
 
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            CriarRelatorio criarRelatorio = new CriarRelatorio();
-            UtilsClasse.FecharEAbrirProximoForm(this, criarRelatorio);
-        }
-
         private async void checkUsuariosInativos_CheckedChanged(object sender, EventArgs e)
         {
             await AtualizarRegistros();
+        }
+
+        private void btnCriarRelatorio_Click(object sender, EventArgs e)
+        {
+            CriarRelatorio criarRelatorio = new CriarRelatorio();
+            UtilsClasse.FecharEAbrirProximoForm(this, criarRelatorio);
         }
 
         // Outros eventos como CarregarForm_form, pbFechar_form, pbMinimizar_form, etc., podem continuar conforme você já os implementou

@@ -29,10 +29,10 @@ namespace projetotcc.View
             this.nome = nome;
 
             // Define o texto do campo txtNome com o nome do funcionário
-            txtNome.Text = nome;
+            textNome.Text = nome;
 
             // Define o texto do campo txtCodigo com o ID do funcionário, convertendo-o para string
-            txtCodigo.Text = id_funcionario.ToString();
+            textCodigo.Text = id_funcionario.ToString();
         }
 
         // Método que será chamado quando o formulário for carregado de forma assíncrona
@@ -68,12 +68,12 @@ namespace projetotcc.View
         private async void finalizarAlt_formAsync(object sender, EventArgs e)
         {
            //Verifica se o campo não está vazio
-            if (string.IsNullOrEmpty(txtNome.Text) || string.IsNullOrWhiteSpace(txtNome.Text))
+            if (string.IsNullOrEmpty(textNome.Text) || string.IsNullOrWhiteSpace(textNome.Text))
             {
                 MessageBox.Show("Preencha todos os campos antes de continuar.", "AVISO!");
                 return;
             }//Verifica se o campo não está vazio
-            if (string.IsNullOrEmpty(txtCodigo.Text) || string.IsNullOrWhiteSpace(txtCodigo.Text))
+            if (string.IsNullOrEmpty(textCodigo.Text) || string.IsNullOrWhiteSpace(textCodigo.Text))
             {
                 MessageBox.Show("Preencha todos os campos antes de continuar.", "AVISO!");
                 return;
@@ -82,8 +82,8 @@ namespace projetotcc.View
             {   //Instancia a Classe
                 ModelFuncionario mFun = new ModelFuncionario();
                 //Atribui os valores da classe
-                mFun.Nome = txtNome.Text;
-                mFun.Id_funcionario = Convert.ToInt32(txtCodigo.Text);
+                mFun.Nome = textNome.Text;
+                mFun.Id_funcionario = Convert.ToInt32(textCodigo.Text);
                 //Chama o metodo static assincrono de alterar os dados, usando a classe e o id do funcionario
                 string res = await ControllerColaborador.AlterarDados(mFun, id);
 
