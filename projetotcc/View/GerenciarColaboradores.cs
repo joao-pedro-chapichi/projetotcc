@@ -1,4 +1,5 @@
-﻿using projetotcc.Controller;
+﻿using projetotcc.Controles_De_Usuario;
+using projetotcc.Controller;
 using projetotcc.Model;
 using projetotcc.Utils;
 using System;
@@ -15,12 +16,29 @@ namespace projetotcc.View
 {
     public partial class GerenciarColaboradores : Form
     {
+        public MenuLateral menuLateral;
+
         public GerenciarColaboradores()
         {
             InitializeComponent(); // Inicializa os componentes do formulário
+            menuLateral = new MenuLateral(this);
+            this.Controls.Add(menuLateral);
+            menuLateral.Dock = DockStyle.Left;
+            Redimensionar();
             AtualizarDados(); // Atualiza os dados do DataGridView ao inicializar o formulário
             dataGridView1.CellContentClick += dataGridView1_CellContentClick; // Adiciona um evento para o clique nas células do DataGridView
             ModelFuncionario mFun = new ModelFuncionario(); // Instancia um novo objeto ModelFuncionario (não utilizado no construtor)
+
+        }
+
+        private void Redimensionar()
+        {
+            UtilsClasse.RedimensionarLabel(this, labelTopo, 0.04f);
+            UtilsClasse.RedimensionarLabel(this, labelNome, 0.015f);
+            UtilsClasse.RedimensionarLabel(this, labelCodigo, 0.015f);
+            float newSize = this.Width * 0.01f; // Ajusta o tamanho da fonte com base na largura do formulário
+            dataGridView1.DefaultCellStyle.Font = new Font("Arial", newSize);
+            UtilsClasse.AjustarFonteDataGridView(dataGridView1, 0.015f);
         }
 
         #region NAVEGAÇÃO
@@ -50,7 +68,7 @@ namespace projetotcc.View
         {
             //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
             CadastrarColaborador cadastrarColaborador = new CadastrarColaborador();
-            UtilsClasse.FecharEAbrirProximoForm(this, cadastrarColaborador);
+            cadastrarColaborador.Show();
         }
 
         #endregion
@@ -62,52 +80,11 @@ namespace projetotcc.View
             if (dataTable != null && dataTable.Rows.Count > 0) // Verifica se o DataTable possui dados
             {
                 dataGridView1.DataSource = dataTable; // Define a fonte de dados do DataGridView
-
-                if (dataGridView1.Rows.Count > 0)
-                {
-                    dataGridView1.Rows[0].Selected = false; // Desseleciona a primeira linha, se existir
-                }
-
-                // Verifica se as colunas de botões EXCLUIR e EDITAR já existem
-                bool deleteButtonExists = false;
-                bool editButtonExists = false;
-
-                foreach (DataGridViewColumn column in dataGridView1.Columns)
-                {
-                    if (column.HeaderText == "ALTERAR ESTADO")
-                    {
-                        deleteButtonExists = true;
-                    }
-                    else if (column.HeaderText == "EDITAR")
-                    {
-                        editButtonExists = true;
-                    }
-                }
-
-                // Se as colunas de botões não existirem, adiciona-as
-                if (!deleteButtonExists)
-                {
-                    DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
-                    deleteButtonColumn.HeaderText = "ALTERAR ESTADO";
-                    deleteButtonColumn.Text = "ALTERAR ESTADO";
-                    deleteButtonColumn.UseColumnTextForButtonValue = true;
-                    dataGridView1.Columns.Add(deleteButtonColumn);
-                }
-
-                if (!editButtonExists)
-                {
-                    DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
-                    editButtonColumn.HeaderText = "EDITAR";
-                    editButtonColumn.Text = "EDITAR";
-                    editButtonColumn.UseColumnTextForButtonValue = true;
-                    dataGridView1.Columns.Add(editButtonColumn);
-                }
             }
         }
 
         public async void AtualizarDados()
         {
-            dataGridView1.Columns.Clear(); // Limpa todas as colunas do DataGridView
             try
             {
                 string nome = txtNome.Text; // Obtém o texto do campo txtNome
@@ -132,35 +109,48 @@ namespace projetotcc.View
         // Evento de clique no conteúdo da célula do DataGridView
         private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Verifica se o clique ocorreu em uma célula válida
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return; // Se o clique não foi em uma célula válida, retorna
+
+            var clickedColumn = dataGridView1.Columns[e.ColumnIndex]; // Obtém a coluna clicada
+
+            if (clickedColumn is DataGridViewButtonColumn) // Verifica se é uma coluna de botão
             {
-                if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewButtonColumn) // Verifica se o clique ocorreu em uma coluna de botão
+                string headerText = clickedColumn.HeaderText;
+
+                int idFuncionario = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value);
+                string nomeFuncionario = dataGridView1.Rows[e.RowIndex].Cells["nome"].Value.ToString();
+
+                if (headerText == "ALTERAR ESTADO")
                 {
-                    if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "ALTERAR ESTADO") // Verifica se o botão clicado é o de EXCLUIR
-                    {
-                        int codigo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value.ToString()); // Obtém o código do funcionário da linha clicada
-                        string nome = dataGridView1.Rows[e.RowIndex].Cells["nome"].Value.ToString();
-
-                        DialogResult result = MessageBox.Show("Deseja continuar?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Exibe uma caixa de diálogo para confirmação
-
-                        if (result == DialogResult.Yes)
-                        {
-                            string ress = await ControllerColaborador.InativarFuncionario(codigo); // Exclui o funcionário de forma assíncrona
-                            MessageBox.Show(ress);
-                            AtualizarDados(); // Atualiza os dados do DataGridView após a exclusão
-                        }
-                    }
-                    else if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "EDITAR") // Verifica se o botão clicado é o de EDITAR
-                    {
-                        int id_fun = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value.ToString()); // Obtém o código do funcionário da linha clicada
-                        string nome_fun = dataGridView1.Rows[e.RowIndex].Cells["nome"].Value.ToString(); // Obtém o nome do funcionário da linha clicada
-
-                        AlterarColaborador editarCliente = new AlterarColaborador(id_fun, nome_fun); // Cria uma nova instância do formulário AlterarColaborador
-                        UtilsClasse.FecharEAbrirProximoForm(this, editarCliente); // Utiliza um método utilitário para fechar o formulário atual e abrir o próximo
-                    }
+                    await AlterarEstadoFuncionario(idFuncionario); // Chama método assíncrono para alterar o estado
+                }
+                else if (headerText == "EDITAR")
+                {
+                    EditarFuncionario(idFuncionario, nomeFuncionario); // Chama método para editar funcionário
                 }
             }
         }
+
+        // Método para alterar o estado do funcionário
+        private async Task AlterarEstadoFuncionario(int idFuncionario)
+        {
+            DialogResult result = MessageBox.Show("Deseja continuar?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                string resposta = await ControllerColaborador.InativarFuncionario(idFuncionario); // Chama a função assíncrona
+                MessageBox.Show(resposta);
+                AtualizarDados(); // Atualiza os dados no DataGridView
+            }
+        }
+
+        // Método para abrir o formulário de edição do funcionário
+        private void EditarFuncionario(int idFuncionario, string nomeFuncionario)
+        {
+            AlterarColaborador formEditar = new AlterarColaborador(idFuncionario, nomeFuncionario); // Cria o form de edição
+            formEditar.Show(); // Abre o novo form
+        }
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -177,6 +167,11 @@ namespace projetotcc.View
         private void checkPesquisaTotal_CheckedChanged(object sender, EventArgs e)
         {
             AtualizarDados();
+        }
+
+        private void GerenciarColaboradores_SizeChanged(object sender, EventArgs e)
+        {
+            Redimensionar();
         }
     }
 }

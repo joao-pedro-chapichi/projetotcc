@@ -110,6 +110,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controles_De_Usuario\MenuLateral.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles_De_Usuario\MenuLateral.Designer.cs">
+      <DependentUpon>MenuLateral.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controller\ControllerColaborador.cs" />
     <Compile Include="Controller\ControllerPDF.cs" />
     <Compile Include="Controller\ControllerRegistro.cs" />
@@ -168,6 +174,9 @@
     <Compile Include="View\Registros.Designer.cs">
       <DependentUpon>Registros.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controles_De_Usuario\MenuLateral.resx">
+      <DependentUpon>MenuLateral.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AlterarColaborador.resx">
       <DependentUpon>AlterarColaborador.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,6 +229,9 @@
     <Content Include="Database\sqldatabase.txt" />
     <Content Include="logotcc.ico" />
     <Content Include="Resources\alterar_imagem.png" />
+    <Content Include="Resources\buttonsRegistros\buttonCriarRelatorio.png" />
+    <Content Include="Resources\buttonsRegistros\buttonImprimir.png" />
+    <Content Include="Resources\buttonsRegistros\buttonPesquisar.png" />
     <Content Include="Resources\cadastrarCol_imagem.png" />
     <Content Include="Resources\cadastrar_imagem.png" />
     <Content Include="Resources\circulo_amarelo.png" />
@@ -231,8 +243,16 @@
     <Content Include="Resources\finalizar_imagem.png" />
     <Content Include="Resources\gerenciamento_imagem.png" />
     <Content Include="Resources\gerencolaborador_imagem.png" />
+    <Content Include="Resources\iconePontoFacil.jpeg" />
+    <Content Include="Resources\iconePontoFacilBranco.jpeg" />
+    <Content Include="Resources\Icones\iconeAjuda.png" />
+    <Content Include="Resources\Icones\iconeHome.png" />
     <Content Include="Resources\imprimir_imagem.png" />
     <Content Include="Resources\logotcc.ico" />
+    <Content Include="Resources\MenuLateral\CodigosButton.png" />
+    <Content Include="Resources\MenuLateral\funcionariosButton.png" />
+    <Content Include="Resources\MenuLateral\registrosButton.png" />
+    <Content Include="Resources\MenuLateral\voltarButton.png" />
     <Content Include="Resources\registros_imagem.png" />
     <Content Include="Resources\registro_imagem.png" />
     <Content Include="Resources\salvarcod_imagem.png" />

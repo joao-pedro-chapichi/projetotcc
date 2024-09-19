@@ -29,77 +29,73 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GerenciarColaboradores));
-            this.label1 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnCadastrar = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.checkPesquisaTotal = new System.Windows.Forms.CheckBox();
-            this.Pesquisa = new System.Windows.Forms.GroupBox();
+            this.labelNome = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.EDITAR = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.AlterarEstado = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCadastrar = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.labelTopo = new System.Windows.Forms.Label();
+            this.labelCodigo = new System.Windows.Forms.Label();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCadastrar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.Pesquisa.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(4, 41);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(208, 63);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "NOME:";
             // 
             // txtNome
             // 
+            this.txtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNome.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(166, 46);
-            this.txtNome.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNome.Location = new System.Drawing.Point(3, 116);
             this.txtNome.Multiline = true;
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(536, 46);
+            this.txtNome.Size = new System.Drawing.Size(630, 32);
             this.txtNome.TabIndex = 12;
             this.txtNome.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // label2
+            // checkPesquisaTotal
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(710, 42);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(265, 63);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "CÓDIGO:";
+            this.checkPesquisaTotal.AutoSize = true;
+            this.checkPesquisaTotal.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkPesquisaTotal.ForeColor = System.Drawing.Color.Black;
+            this.checkPesquisaTotal.Location = new System.Drawing.Point(2, 231);
+            this.checkPesquisaTotal.Margin = new System.Windows.Forms.Padding(2);
+            this.checkPesquisaTotal.Name = "checkPesquisaTotal";
+            this.checkPesquisaTotal.Size = new System.Drawing.Size(349, 35);
+            this.checkPesquisaTotal.TabIndex = 17;
+            this.checkPesquisaTotal.Text = "Pesquisar todos os Funciónarios";
+            this.checkPesquisaTotal.UseVisualStyleBackColor = true;
+            this.checkPesquisaTotal.CheckedChanged += new System.EventHandler(this.checkPesquisaTotal_CheckedChanged);
             // 
-            // txtCodigo
+            // labelNome
             // 
-            this.txtCodigo.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(919, 42);
-            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCodigo.Multiline = true;
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(539, 46);
-            this.txtCodigo.TabIndex = 14;
-            this.txtCodigo.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.labelNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNome.AutoSize = true;
+            this.labelNome.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNome.ForeColor = System.Drawing.Color.Black;
+            this.labelNome.Location = new System.Drawing.Point(0, 73);
+            this.labelNome.Margin = new System.Windows.Forms.Padding(0);
+            this.labelNome.Name = "labelNome";
+            this.labelNome.Size = new System.Drawing.Size(636, 40);
+            this.labelNome.TabIndex = 11;
+            this.labelNome.Text = "NOME:";
+            this.labelNome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dataGridView1
             // 
@@ -108,7 +104,8 @@
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -118,178 +115,197 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.EDITAR,
+            this.AlterarEstado});
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 261);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(15, 268);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Size = new System.Drawing.Size(1488, 434);
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView1.Size = new System.Drawing.Size(1169, 493);
             this.dataGridView1.TabIndex = 15;
+            // 
+            // EDITAR
+            // 
+            this.EDITAR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gold;
+            this.EDITAR.DefaultCellStyle = dataGridViewCellStyle2;
+            this.EDITAR.FillWeight = 5.076141F;
+            this.EDITAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EDITAR.HeaderText = "EDITAR";
+            this.EDITAR.MinimumWidth = 200;
+            this.EDITAR.Name = "EDITAR";
+            this.EDITAR.ReadOnly = true;
+            this.EDITAR.Text = "EDITAR";
+            this.EDITAR.UseColumnTextForButtonValue = true;
+            // 
+            // AlterarEstado
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.AlterarEstado.DefaultCellStyle = dataGridViewCellStyle3;
+            this.AlterarEstado.FillWeight = 194.9239F;
+            this.AlterarEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AlterarEstado.HeaderText = "ALTERAR ESTADO";
+            this.AlterarEstado.MinimumWidth = 200;
+            this.AlterarEstado.Name = "AlterarEstado";
+            this.AlterarEstado.ReadOnly = true;
+            this.AlterarEstado.Text = "ALTERAR";
+            this.AlterarEstado.ToolTipText = "ALTERAR";
+            this.AlterarEstado.UseColumnTextForButtonValue = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1184, 761);
+            this.panel1.TabIndex = 22;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnCadastrar);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(15, 667);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1169, 94);
+            this.panel2.TabIndex = 24;
             // 
             // btnCadastrar
             // 
             this.btnCadastrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCadastrar.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnCadastrar.Image = global::projetotcc.Properties.Resources.cadastrar_imagem;
-            this.btnCadastrar.Location = new System.Drawing.Point(1060, 703);
-            this.btnCadastrar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCadastrar.Location = new System.Drawing.Point(907, 0);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(443, 107);
+            this.btnCadastrar.Size = new System.Drawing.Size(262, 94);
             this.btnCadastrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnCadastrar.TabIndex = 16;
             this.btnCadastrar.TabStop = false;
             this.btnCadastrar.Click += new System.EventHandler(this.cadastrarCol_form);
             // 
-            // pictureBox5
+            // flowLayoutPanel1
             // 
-            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox5.Image = global::projetotcc.Properties.Resources.voltar_imagem;
-            this.pictureBox5.Location = new System.Drawing.Point(16, 737);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(193, 58);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 10;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pbVoltarGen_form);
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.Controls.Add(this.labelTopo);
+            this.flowLayoutPanel1.Controls.Add(this.labelNome);
+            this.flowLayoutPanel1.Controls.Add(this.txtNome);
+            this.flowLayoutPanel1.Controls.Add(this.labelCodigo);
+            this.flowLayoutPanel1.Controls.Add(this.txtCodigo);
+            this.flowLayoutPanel1.Controls.Add(this.checkPesquisaTotal);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1169, 268);
+            this.flowLayoutPanel1.TabIndex = 23;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
-            // pictureBox4
+            // labelTopo
             // 
-            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox4.Image = global::projetotcc.Properties.Resources.circulo_verde;
-            this.pictureBox4.Location = new System.Drawing.Point(1383, 4);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(37, 33);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 9;
-            this.pictureBox4.TabStop = false;
+            this.labelTopo.AutoSize = true;
+            this.labelTopo.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTopo.ForeColor = System.Drawing.Color.Black;
+            this.labelTopo.Location = new System.Drawing.Point(3, 0);
+            this.labelTopo.Name = "labelTopo";
+            this.labelTopo.Size = new System.Drawing.Size(630, 73);
+            this.labelTopo.TabIndex = 21;
+            this.labelTopo.Text = "COLABORADORES";
             // 
-            // pictureBox3
+            // labelCodigo
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Image = global::projetotcc.Properties.Resources.circulo_amarelo;
-            this.pictureBox3.Location = new System.Drawing.Point(1428, 4);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(37, 33);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 8;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pbMinimizar_form);
+            this.labelCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCodigo.AutoSize = true;
+            this.labelCodigo.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCodigo.ForeColor = System.Drawing.Color.Black;
+            this.labelCodigo.Location = new System.Drawing.Point(0, 151);
+            this.labelCodigo.Margin = new System.Windows.Forms.Padding(0);
+            this.labelCodigo.Name = "labelCodigo";
+            this.labelCodigo.Size = new System.Drawing.Size(636, 40);
+            this.labelCodigo.TabIndex = 13;
+            this.labelCodigo.Text = "CÓDIGO:";
+            this.labelCodigo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pictureBox2
+            // txtCodigo
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Image = global::projetotcc.Properties.Resources.circulo_vermelho;
-            this.pictureBox2.Location = new System.Drawing.Point(1473, 4);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(37, 33);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pbFechar_form);
+            this.txtCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCodigo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCodigo.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigo.Location = new System.Drawing.Point(3, 194);
+            this.txtCodigo.Multiline = true;
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(630, 32);
+            this.txtCodigo.TabIndex = 14;
+            this.txtCodigo.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // pictureBox1
+            // panel3
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.pictureBox1.Location = new System.Drawing.Point(0, -1);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1520, 43);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // checkPesquisaTotal
-            // 
-            this.checkPesquisaTotal.AutoSize = true;
-            this.checkPesquisaTotal.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkPesquisaTotal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.checkPesquisaTotal.Location = new System.Drawing.Point(13, 99);
-            this.checkPesquisaTotal.Name = "checkPesquisaTotal";
-            this.checkPesquisaTotal.Size = new System.Drawing.Size(451, 44);
-            this.checkPesquisaTotal.TabIndex = 17;
-            this.checkPesquisaTotal.Text = "Pesquisar todos os Funciónarios";
-            this.checkPesquisaTotal.UseVisualStyleBackColor = true;
-            this.checkPesquisaTotal.CheckedChanged += new System.EventHandler(this.checkPesquisaTotal_CheckedChanged);
-            // 
-            // Pesquisa
-            // 
-            this.Pesquisa.Controls.Add(this.txtCodigo);
-            this.Pesquisa.Controls.Add(this.checkPesquisaTotal);
-            this.Pesquisa.Controls.Add(this.label2);
-            this.Pesquisa.Controls.Add(this.txtNome);
-            this.Pesquisa.Controls.Add(this.label1);
-            this.Pesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pesquisa.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Pesquisa.Location = new System.Drawing.Point(16, 102);
-            this.Pesquisa.Name = "Pesquisa";
-            this.Pesquisa.Size = new System.Drawing.Size(1475, 152);
-            this.Pesquisa.TabIndex = 18;
-            this.Pesquisa.TabStop = false;
-            this.Pesquisa.Text = "Pesquisa";
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(15, 761);
+            this.panel3.TabIndex = 25;
             // 
             // GerenciarColaboradores
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
-            this.ClientSize = new System.Drawing.Size(1520, 825);
-            this.Controls.Add(this.Pesquisa);
-            this.Controls.Add(this.btnCadastrar);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1184, 761);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(1200, 800);
             this.Name = "GerenciarColaboradores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GerenciarColaboradores";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.SizeChanged += new System.EventHandler(this.GerenciarColaboradores_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnCadastrar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.Pesquisa.ResumeLayout(false);
-            this.Pesquisa.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelNome;
         private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.PictureBox btnCadastrar;
         private System.Windows.Forms.CheckBox checkPesquisaTotal;
-        private System.Windows.Forms.GroupBox Pesquisa;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label labelCodigo;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.PictureBox btnCadastrar;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label labelTopo;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridViewButtonColumn EDITAR;
+        private System.Windows.Forms.DataGridViewButtonColumn AlterarEstado;
     }
 }
