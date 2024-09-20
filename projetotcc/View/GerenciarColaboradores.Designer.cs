@@ -47,8 +47,6 @@
             this.labelTopo = new System.Windows.Forms.Label();
             this.labelCodigo = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtCpf = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -63,11 +61,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNome.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(4, 145);
-            this.txtNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNome.Location = new System.Drawing.Point(3, 116);
             this.txtNome.Multiline = true;
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(779, 39);
+            this.txtNome.Size = new System.Drawing.Size(630, 32);
             this.txtNome.TabIndex = 12;
             this.txtNome.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -76,10 +73,10 @@
             this.checkPesquisaTotal.AutoSize = true;
             this.checkPesquisaTotal.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkPesquisaTotal.ForeColor = System.Drawing.Color.Black;
-            this.checkPesquisaTotal.Location = new System.Drawing.Point(3, 384);
-            this.checkPesquisaTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkPesquisaTotal.Location = new System.Drawing.Point(2, 231);
+            this.checkPesquisaTotal.Margin = new System.Windows.Forms.Padding(2);
             this.checkPesquisaTotal.Name = "checkPesquisaTotal";
-            this.checkPesquisaTotal.Size = new System.Drawing.Size(436, 44);
+            this.checkPesquisaTotal.Size = new System.Drawing.Size(349, 35);
             this.checkPesquisaTotal.TabIndex = 17;
             this.checkPesquisaTotal.Text = "Pesquisar todos os Funciónarios";
             this.checkPesquisaTotal.UseVisualStyleBackColor = true;
@@ -92,10 +89,10 @@
             this.labelNome.AutoSize = true;
             this.labelNome.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNome.ForeColor = System.Drawing.Color.Black;
-            this.labelNome.Location = new System.Drawing.Point(0, 91);
+            this.labelNome.Location = new System.Drawing.Point(0, 73);
             this.labelNome.Margin = new System.Windows.Forms.Padding(0);
             this.labelNome.Name = "labelNome";
-            this.labelNome.Size = new System.Drawing.Size(787, 50);
+            this.labelNome.Size = new System.Drawing.Size(636, 40);
             this.labelNome.TabIndex = 11;
             this.labelNome.Text = "NOME:";
             this.labelNome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,8 +120,8 @@
             this.AlterarEstado});
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(20, 430);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(15, 268);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -138,7 +135,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView1.Size = new System.Drawing.Size(1559, 507);
+            this.dataGridView1.Size = new System.Drawing.Size(1169, 493);
             this.dataGridView1.TabIndex = 15;
             // 
             // EDITAR
@@ -179,19 +176,17 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1579, 937);
+            this.panel1.Size = new System.Drawing.Size(1184, 761);
             this.panel1.TabIndex = 22;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnCadastrar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(20, 821);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Location = new System.Drawing.Point(15, 667);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1559, 116);
+            this.panel2.Size = new System.Drawing.Size(1169, 94);
             this.panel2.TabIndex = 24;
             // 
             // btnCadastrar
@@ -199,10 +194,9 @@
             this.btnCadastrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrar.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnCadastrar.Image = global::projetotcc.Properties.Resources.cadastrar_imagem;
-            this.btnCadastrar.Location = new System.Drawing.Point(1210, 0);
-            this.btnCadastrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCadastrar.Location = new System.Drawing.Point(907, 0);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(349, 116);
+            this.btnCadastrar.Size = new System.Drawing.Size(262, 94);
             this.btnCadastrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnCadastrar.TabIndex = 16;
             this.btnCadastrar.TabStop = false;
@@ -216,15 +210,13 @@
             this.flowLayoutPanel1.Controls.Add(this.txtNome);
             this.flowLayoutPanel1.Controls.Add(this.labelCodigo);
             this.flowLayoutPanel1.Controls.Add(this.txtCodigo);
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.txtCpf);
             this.flowLayoutPanel1.Controls.Add(this.checkPesquisaTotal);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(20, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1559, 430);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1169, 268);
             this.flowLayoutPanel1.TabIndex = 23;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -233,10 +225,9 @@
             this.labelTopo.AutoSize = true;
             this.labelTopo.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTopo.ForeColor = System.Drawing.Color.Black;
-            this.labelTopo.Location = new System.Drawing.Point(4, 0);
-            this.labelTopo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTopo.Location = new System.Drawing.Point(3, 0);
             this.labelTopo.Name = "labelTopo";
-            this.labelTopo.Size = new System.Drawing.Size(779, 91);
+            this.labelTopo.Size = new System.Drawing.Size(630, 73);
             this.labelTopo.TabIndex = 21;
             this.labelTopo.Text = "COLABORADORES";
             // 
@@ -247,10 +238,10 @@
             this.labelCodigo.AutoSize = true;
             this.labelCodigo.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCodigo.ForeColor = System.Drawing.Color.Black;
-            this.labelCodigo.Location = new System.Drawing.Point(0, 188);
+            this.labelCodigo.Location = new System.Drawing.Point(0, 151);
             this.labelCodigo.Margin = new System.Windows.Forms.Padding(0);
             this.labelCodigo.Name = "labelCodigo";
-            this.labelCodigo.Size = new System.Drawing.Size(787, 50);
+            this.labelCodigo.Size = new System.Drawing.Size(636, 40);
             this.labelCodigo.TabIndex = 13;
             this.labelCodigo.Text = "CÓDIGO:";
             this.labelCodigo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -261,62 +252,30 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCodigo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCodigo.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(4, 242);
-            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCodigo.Location = new System.Drawing.Point(3, 194);
             this.txtCodigo.Multiline = true;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(779, 39);
+            this.txtCodigo.Size = new System.Drawing.Size(630, 32);
             this.txtCodigo.TabIndex = 14;
             this.txtCodigo.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(0, 285);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(787, 50);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "CPF:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtCpf
-            // 
-            this.txtCpf.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCpf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCpf.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCpf.Location = new System.Drawing.Point(4, 339);
-            this.txtCpf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtCpf.Multiline = true;
-            this.txtCpf.Name = "txtCpf";
-            this.txtCpf.Size = new System.Drawing.Size(779, 39);
-            this.txtCpf.TabIndex = 22;
-            this.txtCpf.TextChanged += new System.EventHandler(this.txtCpf_TextChanged);
             // 
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(20, 937);
+            this.panel3.Size = new System.Drawing.Size(15, 761);
             this.panel3.TabIndex = 25;
             // 
             // GerenciarColaboradores
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1579, 937);
+            this.ClientSize = new System.Drawing.Size(1184, 761);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MinimumSize = new System.Drawing.Size(1594, 974);
+            this.MinimumSize = new System.Drawing.Size(1200, 800);
             this.Name = "GerenciarColaboradores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GerenciarColaboradores";
@@ -348,7 +307,5 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridViewButtonColumn EDITAR;
         private System.Windows.Forms.DataGridViewButtonColumn AlterarEstado;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtCpf;
     }
 }

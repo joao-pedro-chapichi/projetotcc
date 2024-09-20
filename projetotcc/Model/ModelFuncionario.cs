@@ -6,7 +6,6 @@ namespace projetotcc.Model
         private long _id;
         private long _id_funcionario;
         private string _nome;
-        private string _cpf;
 
         public long ID
         {
@@ -24,10 +23,7 @@ namespace projetotcc.Model
             get { return _nome; }
             set { _nome = value; }
         }
-        public string Cpf
-        {
-            get { return _cpf; }
-            set { _cpf = value; }
-        }
+
+
     }
 }

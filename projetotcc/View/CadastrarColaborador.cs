@@ -54,7 +54,6 @@ namespace projetotcc.View
             else
             {
                 modelFunc.Nome = textNome.Text;
-                modelFunc.Cpf = textCPF.Text;
                 if (string.IsNullOrEmpty(textNome.Text) || string.IsNullOrWhiteSpace(textNome.Text))
                 {
                     MessageBox.Show("Preencha todos os campos antes de continuar.", "AVISO!");
@@ -65,7 +64,6 @@ namespace projetotcc.View
                     await ControllerColaborador.cadastrarFuncionario(modelFunc);
                     textCodigo.Text = "";
                     textNome.Text = "";
-                    textCPF.Text = "";
                 }
             }
         }
