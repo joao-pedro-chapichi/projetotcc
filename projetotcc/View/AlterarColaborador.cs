@@ -67,33 +67,60 @@ namespace projetotcc.View
         // FInalizar alteração de colaboradores
         private async void finalizarAlt_formAsync(object sender, EventArgs e)
         {
-           //Verifica se o campo não está vazio
+            // Verifica se o campo 'Nome' não está vazio
             if (string.IsNullOrEmpty(textNome.Text) || string.IsNullOrWhiteSpace(textNome.Text))
             {
-                MessageBox.Show("Preencha todos os campos antes de continuar.", "AVISO!");
+                MessageBox.Show("Preencha o campo Nome antes de continuar.", "AVISO!");
                 return;
-            }//Verifica se o campo não está vazio
+            }
+
+            // Verifica se o campo 'Código' não está vazio
             if (string.IsNullOrEmpty(textCodigo.Text) || string.IsNullOrWhiteSpace(textCodigo.Text))
             {
-                MessageBox.Show("Preencha todos os campos antes de continuar.", "AVISO!");
+                MessageBox.Show("Preencha o campo Código antes de continuar.", "AVISO!");
                 return;
-            }//Tenta iniciar a alteração
+            }
+
+            // Validação do CPF
+            if (string.IsNullOrWhiteSpace(textCPF.Text))
+            {
+                MessageBox.Show("O CPF não pode ser vazio!", "ERRO!");
+                return;
+            }
+
+            // Verifica se o CPF contém apenas números e tem 11 dígitos
+            if (!textCPF.Text.All(char.IsDigit) || textCPF.Text.Length != 11)
+            {
+                MessageBox.Show("O CPF deve conter exatamente 11 números!", "ERRO!");
+                return;
+            }
+
+            // Verifica se o CPF é válido
+            if (!UtilsClasse.ValidarCpf(textCPF.Text))
+            {
+                MessageBox.Show("O CPF informado é inválido!", "ERRO!");
+                return;
+            }
+
             try
-            {   //Instancia a Classe
+            {
+                // Instancia a Classe
                 ModelFuncionario mFun = new ModelFuncionario();
-                //Atribui os valores da classe
+                // Atribui os valores da classe
                 mFun.Nome = textNome.Text;
                 mFun.Id_funcionario = Convert.ToInt32(textCodigo.Text);
                 mFun.Cpf = textCPF.Text;
-                //Chama o metodo static assincrono de alterar os dados, usando a classe e o id do funcionario
+
+                // Chama o método estático assíncrono para alterar os dados
                 string res = await ControllerColaborador.AlterarDados(mFun, id);
 
                 MessageBox.Show(res);
-            }catch (Exception ex)
-            {//Mostra o Erro caso a alteração não de certo
+            }
+            catch (Exception ex)
+            {
+                // Mostra o Erro caso a alteração não dê certo
                 MessageBox.Show(ex.Message);
             }
-            
         }
 
         #endregion

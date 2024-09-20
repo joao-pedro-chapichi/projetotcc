@@ -3,8 +3,10 @@ using projetotcc.Database; // Importa a camada de acesso ao banco de dados do pr
 using projetotcc.Model; // Importa a camada de modelos do projeto.
 using System; // Importa classes base do .NET Framework.
 using System.Data; // Importa classes para manipulação de dados.
+using System.Linq;
 using System.Threading.Tasks; // Importa classes para programação assíncrona.
 using System.Windows.Forms; // Importa classes para a criação de interfaces de usuário no Windows Forms.
+using projetotcc.Utils;
 
 namespace projetotcc.Controller
 {
@@ -17,39 +19,59 @@ namespace projetotcc.Controller
             // Verifica se já existe um funcionário com o mesmo ID.
             if (await VerificarExistenciaId(modelFunc.Id_funcionario))
             {
-                MessageBox.Show("Código já cadastrado!"); // Exibe mensagem de erro se o ID já estiver cadastrado.
-                return; // Encerra a execução do método.
+                MessageBox.Show("Código já cadastrado!");
+                return;
             }
+
+            // Validação do CPF
+            if (string.IsNullOrWhiteSpace(modelFunc.Cpf))
+            {
+                MessageBox.Show("O CPF não pode ser vazio!", "ERRO!");
+                return;
+            }
+
+            // Verifica se o CPF contém apenas números e tem 11 dígitos
+            if (!modelFunc.Cpf.All(char.IsDigit) || modelFunc.Cpf.Length != 11)
+            {
+                MessageBox.Show("O CPF deve conter exatamente 11 números!", "ERRO!");
+                return;
+            }
+
+            // Verifica se o CPF é válido
+            if (!UtilsClasse.ValidarCpf (modelFunc.Cpf))
+            {
+                MessageBox.Show("O CPF informado é inválido!", "ERRO!");
+                return;
+            }
+
 
             // SQL para inserir um novo funcionário.
             string sql = "INSERT INTO funcionario(id_funcionario, nome, status, cpf) VALUES(@id_funcionario, @nome, @status, @cpf)";
 
             try
             {
-                // Cria uma conexão com o banco de dados.
                 using (var connection = new ConnectionDatabase().connectionDB())
-                // Cria o comando SQL para ser executado.
                 using (var cmd = new NpgsqlCommand(sql, connection))
                 {
-                    // Adiciona os parâmetros ao comando.
                     cmd.Parameters.AddWithValue("nome", modelFunc.Nome);
                     cmd.Parameters.AddWithValue("id_funcionario", modelFunc.Id_funcionario);
                     cmd.Parameters.AddWithValue("status", "ativo");
                     cmd.Parameters.AddWithValue("cpf", modelFunc.Cpf);
 
-                    // Executa o comando de forma assíncrona.
                     await cmd.ExecuteNonQueryAsync();
 
-                    // Exibe mensagem de sucesso.
                     MessageBox.Show("Funcionário cadastrado com sucesso!", "SUCESSO!");
                 }
             }
             catch (Exception ex)
             {
-                // Exibe mensagem de erro em caso de exceção.
                 MessageBox.Show("Erro ao cadastrar funcionário! Erro: " + ex.Message, "ERRO!");
             }
         }
+
+        // Método para validar o CPF
+        
+
 
         // Método assíncrono para buscar funcionários por nome e/ou ID.
         public static async ValueTask<DataTable> buscasFuncionarios(string nome, string idFuncionario, string cpf, string estado = null)
