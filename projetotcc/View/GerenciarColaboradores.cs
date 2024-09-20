@@ -28,7 +28,6 @@ namespace projetotcc.View
             AtualizarDados(); // Atualiza os dados do DataGridView ao inicializar o formulário
             dataGridView1.CellContentClick += dataGridView1_CellContentClick; // Adiciona um evento para o clique nas células do DataGridView
             ModelFuncionario mFun = new ModelFuncionario(); // Instancia um novo objeto ModelFuncionario (não utilizado no construtor)
-
         }
 
         private void Redimensionar()
@@ -57,16 +56,15 @@ namespace projetotcc.View
         // Voltar ao formulário gerenciamento
         private void pbVoltarGen_form(object sender, EventArgs e)
         {
-            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            // Utilizando o método(de forma estática, não precisa instanciar) para fechar o form atual e abrir o próximo
             Gerenciamento gerenciamento = new Gerenciamento();
             UtilsClasse.FecharEAbrirProximoForm(this, gerenciamento);
-
         }
 
         // Cadastrar novo colaborador
         private void cadastrarCol_form(object sender, EventArgs e)
         {
-            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
+            // Utilizando o método(de forma estática, não precisa instanciar) para fechar o form atual e abrir o próximo
             CadastrarColaborador cadastrarColaborador = new CadastrarColaborador();
             cadastrarColaborador.Show();
         }
@@ -83,21 +81,26 @@ namespace projetotcc.View
             }
         }
 
+        // Atualiza os dados com os campos nome, código e CPF
         public async void AtualizarDados()
         {
             try
             {
                 string nome = txtNome.Text; // Obtém o texto do campo txtNome
                 string codigo = txtCodigo.Text; // Obtém o texto do campo txtCodigo
+                string cpf = txtCpf.Text; // Obtém o texto do campo txtCpf
                 DataTable dataTable = new DataTable();
+
+                // Verifica se a pesquisa total está ativada
                 if (checkPesquisaTotal.Checked)
                 {
-                   dataTable  = await ControllerColaborador.buscasFuncionarios(nome, codigo); // Busca os funcionários com base nos filtros
+                    dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo, cpf); // Busca os funcionários com base nos filtros
                 }
                 else
                 {
-                    dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo, "ativo");
+                    dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo, cpf, "ativo"); // Filtro para funcionários ativos
                 }
+
                 PreencherDataGrindView(dataTable); // Preenche o DataGridView com os dados retornados
             }
             catch
@@ -119,6 +122,7 @@ namespace projetotcc.View
 
                 int idFuncionario = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value);
                 string nomeFuncionario = dataGridView1.Rows[e.RowIndex].Cells["nome"].Value.ToString();
+                string cpfFuncionario = dataGridView1.Rows[e.RowIndex].Cells["cpf"].Value.ToString();
 
                 if (headerText == "ALTERAR ESTADO")
                 {
@@ -126,7 +130,7 @@ namespace projetotcc.View
                 }
                 else if (headerText == "EDITAR")
                 {
-                    EditarFuncionario(idFuncionario, nomeFuncionario); // Chama método para editar funcionário
+                    EditarFuncionario(idFuncionario, nomeFuncionario, cpfFuncionario); // Chama método para editar funcionário
                 }
             }
         }
@@ -145,12 +149,11 @@ namespace projetotcc.View
         }
 
         // Método para abrir o formulário de edição do funcionário
-        private void EditarFuncionario(int idFuncionario, string nomeFuncionario)
+        private void EditarFuncionario(int idFuncionario, string nomeFuncionario, string cpfFuncionario)
         {
-            AlterarColaborador formEditar = new AlterarColaborador(idFuncionario, nomeFuncionario); // Cria o form de edição
+            AlterarColaborador formEditar = new AlterarColaborador(idFuncionario, nomeFuncionario, cpfFuncionario);
             formEditar.Show(); // Abre o novo form
         }
-
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -172,6 +175,11 @@ namespace projetotcc.View
         private void GerenciarColaboradores_SizeChanged(object sender, EventArgs e)
         {
             Redimensionar();
+        }
+
+        private void txtCpf_TextChanged(object sender, EventArgs e)
+        {
+            AtualizarDados();
         }
     }
 }
