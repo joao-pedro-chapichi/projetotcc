@@ -84,6 +84,7 @@ namespace projetotcc.View
                 //Atribui os valores da classe
                 mFun.Nome = textNome.Text;
                 mFun.Id_funcionario = Convert.ToInt32(textCodigo.Text);
+                mFun.Cpf = textCPF.Text;
                 //Chama o metodo static assincrono de alterar os dados, usando a classe e o id do funcionario
                 string res = await ControllerColaborador.AlterarDados(mFun, id);
 

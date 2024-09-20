@@ -22,7 +22,7 @@ namespace projetotcc.Controller
             }
 
             // SQL para inserir um novo funcionário.
-            string sql = "INSERT INTO funcionario(id_funcionario, nome, status) VALUES(@id_funcionario, @nome, @status)";
+            string sql = "INSERT INTO funcionario(id_funcionario, nome, status, cpf) VALUES(@id_funcionario, @nome, @status, @cpf)";
 
             try
             {
@@ -35,6 +35,7 @@ namespace projetotcc.Controller
                     cmd.Parameters.AddWithValue("nome", modelFunc.Nome);
                     cmd.Parameters.AddWithValue("id_funcionario", modelFunc.Id_funcionario);
                     cmd.Parameters.AddWithValue("status", "ativo");
+                    cmd.Parameters.AddWithValue("cpf", modelFunc.Cpf);
 
                     // Executa o comando de forma assíncrona.
                     await cmd.ExecuteNonQueryAsync();
@@ -51,18 +52,20 @@ namespace projetotcc.Controller
         }
 
         // Método assíncrono para buscar funcionários por nome e/ou ID.
-        public static async ValueTask<DataTable> buscasFuncionarios(string nome, string idFuncionario, string estado = null)
+        public static async ValueTask<DataTable> buscasFuncionarios(string nome, string idFuncionario, string cpf, string estado = null)
         {
             var dataTable = new DataTable(); // Cria um DataTable para armazenar os resultados da consulta.
 
             // SQL básico para selecionar os funcionários.
-            string sqlDeBuscar = "SELECT id_funcionario, nome, status FROM funcionario WHERE 1=1";
+            string sqlDeBuscar = "SELECT id_funcionario, nome, cpf, status FROM funcionario WHERE 1=1";
 
             // Adiciona filtros à consulta com base nos parâmetros fornecidos.
             if (!string.IsNullOrEmpty(nome))
                 sqlDeBuscar += " AND nome LIKE @nome";
             if (!string.IsNullOrEmpty(idFuncionario))
                 sqlDeBuscar += " AND CAST(id_funcionario AS TEXT) LIKE @id_funcionario";
+            if (!string.IsNullOrEmpty(cpf))
+                sqlDeBuscar += " AND cpf LIKE @cpf";
             if (!string.IsNullOrEmpty(estado))
                 sqlDeBuscar += " AND status = @status";
 
@@ -77,9 +80,11 @@ namespace projetotcc.Controller
                 {
                     // Adiciona os parâmetros ao comando.
                     if (!string.IsNullOrEmpty(nome))
-                        comm.Parameters.AddWithValue("@nome", "%" + nome + "%");
+                        comm.Parameters.AddWithValue("@nome", nome + "%");
                     if (!string.IsNullOrEmpty(idFuncionario))
-                        comm.Parameters.AddWithValue("@id_funcionario", "%" + idFuncionario + "%");
+                        comm.Parameters.AddWithValue("@id_funcionario", idFuncionario + "%");
+                    if (!string.IsNullOrEmpty(cpf))
+                        comm.Parameters.AddWithValue("@cpf", cpf + "%");
                     if (!string.IsNullOrEmpty(estado))
                         comm.Parameters.AddWithValue("@status", estado);
 
@@ -163,7 +168,7 @@ namespace projetotcc.Controller
         public static async ValueTask<string> AlterarDados(ModelFuncionario modelFunc, int id)
         {
             // SQL para atualizar os dados do funcionário.
-            string sqlUpdate = "UPDATE funcionario SET id_funcionario = @id_funcionario, nome = @nome WHERE id = @id";
+            string sqlUpdate = "UPDATE funcionario SET id_funcionario = @id_funcionario, nome = @nome, cpf = @cpf WHERE id = @id";
 
             try
             {
@@ -175,6 +180,7 @@ namespace projetotcc.Controller
                     // Adiciona os parâmetros ao comando.
                     commUpdate.Parameters.AddWithValue("@id_funcionario", modelFunc.Id_funcionario);
                     commUpdate.Parameters.AddWithValue("@nome", modelFunc.Nome);
+                    commUpdate.Parameters.AddWithValue("@cpf", modelFunc.Cpf);
                     commUpdate.Parameters.AddWithValue("@id", id);
 
                     // Executa o comando de forma assíncrona e obtém o número de linhas afetadas.

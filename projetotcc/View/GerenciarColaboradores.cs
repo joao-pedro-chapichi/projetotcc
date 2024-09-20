@@ -89,14 +89,15 @@ namespace projetotcc.View
             {
                 string nome = txtNome.Text; // Obtém o texto do campo txtNome
                 string codigo = txtCodigo.Text; // Obtém o texto do campo txtCodigo
+                string cpf = txtCPF.Text;
                 DataTable dataTable = new DataTable();
                 if (checkPesquisaTotal.Checked)
                 {
-                   dataTable  = await ControllerColaborador.buscasFuncionarios(nome, codigo); // Busca os funcionários com base nos filtros
+                   dataTable  = await ControllerColaborador.buscasFuncionarios(nome, codigo, cpf); // Busca os funcionários com base nos filtros
                 }
                 else
                 {
-                    dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo, "ativo");
+                    dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo, cpf, "ativo");
                 }
                 PreencherDataGrindView(dataTable); // Preenche o DataGridView com os dados retornados
             }
@@ -172,6 +173,11 @@ namespace projetotcc.View
         private void GerenciarColaboradores_SizeChanged(object sender, EventArgs e)
         {
             Redimensionar();
+        }
+
+        private void txtCPF_TextChanged(object sender, EventArgs e)
+        {
+            AtualizarDados();
         }
     }
 }
