@@ -48,6 +48,8 @@
             this.labelCodigo = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCPF = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -73,7 +75,7 @@
             this.checkPesquisaTotal.AutoSize = true;
             this.checkPesquisaTotal.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkPesquisaTotal.ForeColor = System.Drawing.Color.Black;
-            this.checkPesquisaTotal.Location = new System.Drawing.Point(2, 231);
+            this.checkPesquisaTotal.Location = new System.Drawing.Point(2, 309);
             this.checkPesquisaTotal.Margin = new System.Windows.Forms.Padding(2);
             this.checkPesquisaTotal.Name = "checkPesquisaTotal";
             this.checkPesquisaTotal.Size = new System.Drawing.Size(349, 35);
@@ -120,7 +122,7 @@
             this.AlterarEstado});
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 268);
+            this.dataGridView1.Location = new System.Drawing.Point(15, 346);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -135,7 +137,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView1.Size = new System.Drawing.Size(1169, 493);
+            this.dataGridView1.Size = new System.Drawing.Size(1169, 415);
             this.dataGridView1.TabIndex = 15;
             // 
             // EDITAR
@@ -210,13 +212,15 @@
             this.flowLayoutPanel1.Controls.Add(this.txtNome);
             this.flowLayoutPanel1.Controls.Add(this.labelCodigo);
             this.flowLayoutPanel1.Controls.Add(this.txtCodigo);
+            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.txtCPF);
             this.flowLayoutPanel1.Controls.Add(this.checkPesquisaTotal);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1169, 268);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1169, 346);
             this.flowLayoutPanel1.TabIndex = 23;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -267,6 +271,34 @@
             this.panel3.Size = new System.Drawing.Size(15, 761);
             this.panel3.TabIndex = 25;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(0, 229);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(636, 40);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "CPF:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtCPF
+            // 
+            this.txtCPF.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCPF.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCPF.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCPF.Location = new System.Drawing.Point(3, 272);
+            this.txtCPF.Multiline = true;
+            this.txtCPF.Name = "txtCPF";
+            this.txtCPF.Size = new System.Drawing.Size(630, 32);
+            this.txtCPF.TabIndex = 23;
+            this.txtCPF.TextChanged += new System.EventHandler(this.txtCPF_TextChanged);
+            // 
             // GerenciarColaboradores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,5 +339,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridViewButtonColumn EDITAR;
         private System.Windows.Forms.DataGridViewButtonColumn AlterarEstado;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCPF;
     }
 }
