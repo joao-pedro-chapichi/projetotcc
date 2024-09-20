@@ -24,10 +24,13 @@ namespace projetotcc.Model
             get { return _nome; }
             set { _nome = value; }
         }
+
         public string Cpf
         {
             get { return _cpf; }
             set { _cpf = value; }
         }
+
+
     }
 }

@@ -80,11 +80,11 @@ namespace projetotcc.Controller
                 {
                     // Adiciona os parâmetros ao comando.
                     if (!string.IsNullOrEmpty(nome))
-                        comm.Parameters.AddWithValue("@nome", "%" + nome + "%");
+                        comm.Parameters.AddWithValue("@nome", nome + "%");
                     if (!string.IsNullOrEmpty(idFuncionario))
-                        comm.Parameters.AddWithValue("@id_funcionario", "%" + idFuncionario + "%");
+                        comm.Parameters.AddWithValue("@id_funcionario", idFuncionario + "%");
                     if (!string.IsNullOrEmpty(cpf))
-                        comm.Parameters.AddWithValue("@cpf", "%" + cpf + "%");
+                        comm.Parameters.AddWithValue("@cpf", cpf + "%");
                     if (!string.IsNullOrEmpty(estado))
                         comm.Parameters.AddWithValue("@status", estado);
 
@@ -100,7 +100,6 @@ namespace projetotcc.Controller
 
             return dataTable; // Retorna o DataTable com os resultados.
         }
-
 
         // Método assíncrono para excluir um funcionário pelo ID.
         public static async ValueTask<string> InativarFuncionario(int codigo)
@@ -168,7 +167,7 @@ namespace projetotcc.Controller
         // Método assíncrono para alterar os dados de um funcionário.
         public static async ValueTask<string> AlterarDados(ModelFuncionario modelFunc, int id)
         {
-            // SQL para atualizar os dados do funcionário, agora incluindo o campo CPF.
+            // SQL para atualizar os dados do funcionário.
             string sqlUpdate = "UPDATE funcionario SET id_funcionario = @id_funcionario, nome = @nome, cpf = @cpf WHERE id = @id";
 
             try
@@ -197,7 +196,6 @@ namespace projetotcc.Controller
                 return "Erro ao alterar dados do Funcionário: " + ex.Message;
             }
         }
-
 
         // Método assíncrono para pesquisar o código de um funcionário pelo nome.
         public static async ValueTask<int> PesquisarCodigoPorNome(string nome)

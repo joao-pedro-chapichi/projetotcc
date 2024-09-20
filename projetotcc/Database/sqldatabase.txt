@@ -1,9 +1,10 @@
-﻿CREATE TABLE funcionario (
+﻿
+CREATE TABLE funcionario (
     id Serial NOT NULL,        
     id_funcionario BIGINT NOT NULL,
     nome VARCHAR(255),      
     status VARCHAR(30),
-	cpf VARCHAR(11),
+    cpf VARCHAR(11),
     CONSTRAINT pk_func PRIMARY KEY (id) 
 );
 

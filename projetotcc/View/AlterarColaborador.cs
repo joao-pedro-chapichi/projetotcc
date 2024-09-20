@@ -21,17 +21,18 @@ namespace projetotcc.View
         int id;             // ID obtido através de uma busca assíncrona
 
         // Construtor da classe AlterarColaborador
-        public AlterarColaborador(int id_funcionario, string nome, string cpf)
+        public AlterarColaborador(int id_funcionario, string nome)
         {
             InitializeComponent();  // Inicializa os componentes da interface gráfica
 
             // Atribui os parâmetros recebidos às variáveis globais
             this.nome = nome;
 
-            // Define o texto dos campos com os valores recebidos
+            // Define o texto do campo txtNome com o nome do funcionário
             textNome.Text = nome;
+
+            // Define o texto do campo txtCodigo com o ID do funcionário, convertendo-o para string
             textCodigo.Text = id_funcionario.ToString();
-            textCPF.Text = cpf;
         }
 
         // Método que será chamado quando o formulário for carregado de forma assíncrona
@@ -58,51 +59,41 @@ namespace projetotcc.View
         // Voltar ao gerenciar colaboradores
         private void pbVoltarCol_form(object sender, EventArgs e)
         {
-            // Utilizando o método para fechar o form atual e abrir o próximo
+            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
             GerenciarColaboradores gerenciarColaboradores = new GerenciarColaboradores();
             UtilsClasse.FecharEAbrirProximoForm(this, gerenciarColaboradores);
         }
 
-        // Finalizar alteração de colaboradores
+        // FInalizar alteração de colaboradores
         private async void finalizarAlt_formAsync(object sender, EventArgs e)
         {
-            // Verifica se os campos não estão vazios
+           //Verifica se o campo não está vazio
             if (string.IsNullOrEmpty(textNome.Text) || string.IsNullOrWhiteSpace(textNome.Text))
             {
                 MessageBox.Show("Preencha todos os campos antes de continuar.", "AVISO!");
                 return;
-            }
+            }//Verifica se o campo não está vazio
             if (string.IsNullOrEmpty(textCodigo.Text) || string.IsNullOrWhiteSpace(textCodigo.Text))
             {
                 MessageBox.Show("Preencha todos os campos antes de continuar.", "AVISO!");
                 return;
-            }
-            if (string.IsNullOrEmpty(textCPF.Text) || string.IsNullOrWhiteSpace(textCPF.Text))
-            {
-                MessageBox.Show("Preencha o campo CPF antes de continuar.", "AVISO!");
-                return;
-            }
-
+            }//Tenta iniciar a alteração
             try
-            {
-                // Instancia a Classe ModelFuncionario
-                ModelFuncionario mFun = new ModelFuncionario
-                {
-                    Nome = textNome.Text,
-                    Id_funcionario = Convert.ToInt32(textCodigo.Text),
-                    Cpf = textCPF.Text
-                };
-
-                // Chama o método estático assíncrono de alterar os dados, usando a classe e o ID do funcionário
+            {   //Instancia a Classe
+                ModelFuncionario mFun = new ModelFuncionario();
+                //Atribui os valores da classe
+                mFun.Nome = textNome.Text;
+                mFun.Id_funcionario = Convert.ToInt32(textCodigo.Text);
+                mFun.Cpf = textCPF.Text;
+                //Chama o metodo static assincrono de alterar os dados, usando a classe e o id do funcionario
                 string res = await ControllerColaborador.AlterarDados(mFun, id);
 
                 MessageBox.Show(res);
-            }
-            catch (Exception ex)
-            {
-                // Mostra o erro caso a alteração não dê certo
+            }catch (Exception ex)
+            {//Mostra o Erro caso a alteração não de certo
                 MessageBox.Show(ex.Message);
             }
+            
         }
 
         #endregion
@@ -121,15 +112,6 @@ namespace projetotcc.View
         }
 
         private void txbCodigo_ValidacaoTecla(object sender, KeyPressEventArgs e)
-        {
-            // Verifica se a tecla pressionada é um dígito ou a tecla de controle (como backspace)
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                e.Handled = true; // Impede a entrada de qualquer caractere que não seja número
-            }
-        }
-
-        private void txbCPF_ValidacaoTecla(object sender, KeyPressEventArgs e)
         {
             // Verifica se a tecla pressionada é um dígito ou a tecla de controle (como backspace)
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
