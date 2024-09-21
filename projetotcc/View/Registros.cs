@@ -142,6 +142,18 @@ namespace projetotcc.View
             UtilsClasse.FecharEAbrirProximoForm(this, criarRelatorio);
         }
 
+        private void txbNome_ValidacaoTecla(object sender, KeyPressEventArgs e)
+        {
+            // Lista de caracteres acentuados permitidos
+            char[] allowedChars = { 'é', 'è', 'ê', 'ë', 'à', 'â', 'ä', 'á', 'ò', 'ô', 'ö', 'ó', 'ù', 'û', 'ü', 'ú', ' ' };
+
+            // Verifica se a tecla pressionada é uma letra, uma letra acentuada específica ou tecla de controle
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !Array.Exists(allowedChars, c => c == e.KeyChar))
+            {
+                e.Handled = true; // Impede a entrada de qualquer caractere que não seja letra, letra acentuada específica ou tecla de controle
+            }
+        }
+
         // Outros eventos como CarregarForm_form, pbFechar_form, pbMinimizar_form, etc., podem continuar conforme você já os implementou
     }
 }

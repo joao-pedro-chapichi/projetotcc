@@ -104,10 +104,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txbcodigo_inicial.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txbcodigo_inicial.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbcodigo_inicial.Location = new System.Drawing.Point(3, 79);
+            this.txbcodigo_inicial.Location = new System.Drawing.Point(3, 68);
             this.txbcodigo_inicial.Multiline = true;
             this.txbcodigo_inicial.Name = "txbcodigo_inicial";
-            this.txbcodigo_inicial.Size = new System.Drawing.Size(900, 33);
+            this.txbcodigo_inicial.Size = new System.Drawing.Size(900, 44);
             this.txbcodigo_inicial.TabIndex = 3;
             this.txbcodigo_inicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbcodigo_inicial_KeyPress);
             this.txbcodigo_inicial.KeyUp += new System.Windows.Forms.KeyEventHandler(this.pontoEletronico);
@@ -175,15 +175,15 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.txbcodigo_inicial, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txbcodigo_inicial, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(117, 185);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.34783F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.6087F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(906, 115);
             this.tableLayoutPanel2.TabIndex = 0;
             // 

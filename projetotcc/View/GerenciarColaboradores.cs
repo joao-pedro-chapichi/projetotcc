@@ -120,6 +120,7 @@ namespace projetotcc.View
 
                 int idFuncionario = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value);
                 string nomeFuncionario = dataGridView1.Rows[e.RowIndex].Cells["nome"].Value.ToString();
+                string cpfFuncionario = dataGridView1.Rows[e.RowIndex].Cells["cpf"].Value.ToString();
 
                 if (headerText == "ALTERAR ESTADO")
                 {
@@ -127,7 +128,7 @@ namespace projetotcc.View
                 }
                 else if (headerText == "EDITAR")
                 {
-                    EditarFuncionario(idFuncionario, nomeFuncionario); // Chama método para editar funcionário
+                    EditarFuncionario(idFuncionario, nomeFuncionario, cpfFuncionario); // Chama método para editar funcionário
                 }
             }
         }
@@ -146,9 +147,9 @@ namespace projetotcc.View
         }
 
         // Método para abrir o formulário de edição do funcionário
-        private void EditarFuncionario(int idFuncionario, string nomeFuncionario)
+        private void EditarFuncionario(int idFuncionario, string nomeFuncionario, string cpf)
         {
-            AlterarColaborador formEditar = new AlterarColaborador(idFuncionario, nomeFuncionario); // Cria o form de edição
+            AlterarColaborador formEditar = new AlterarColaborador(idFuncionario, nomeFuncionario, cpf); // Cria o form de edição
             formEditar.Show(); // Abre o novo form
         }
 

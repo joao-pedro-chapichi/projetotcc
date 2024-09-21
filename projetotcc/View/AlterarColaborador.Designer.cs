@@ -34,10 +34,10 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.labelNome = new System.Windows.Forms.Label();
             this.textCPF = new System.Windows.Forms.TextBox();
             this.labelCfp = new System.Windows.Forms.Label();
             this.textCodigo = new System.Windows.Forms.TextBox();
+            this.labelNome = new System.Windows.Forms.Label();
             this.labelCodigo = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -60,8 +60,9 @@
             this.textNome.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textNome.Location = new System.Drawing.Point(3, 79);
             this.textNome.MaxLength = 80;
+            this.textNome.Multiline = true;
             this.textNome.Name = "textNome";
-            this.textNome.Size = new System.Drawing.Size(778, 39);
+            this.textNome.Size = new System.Drawing.Size(778, 32);
             this.textNome.TabIndex = 15;
             this.textNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbNome_ValidacaoTecla);
             // 
@@ -116,12 +117,12 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.labelNome, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.textCPF, 0, 6);
             this.tableLayoutPanel4.Controls.Add(this.labelCfp, 0, 5);
             this.tableLayoutPanel4.Controls.Add(this.textCodigo, 0, 4);
-            this.tableLayoutPanel4.Controls.Add(this.textNome, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.labelNome, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.labelCodigo, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.textNome, 0, 2);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 108);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -137,17 +138,6 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(784, 307);
             this.tableLayoutPanel4.TabIndex = 40;
             // 
-            // labelNome
-            // 
-            this.labelNome.AutoSize = true;
-            this.labelNome.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNome.ForeColor = System.Drawing.Color.Black;
-            this.labelNome.Location = new System.Drawing.Point(3, 38);
-            this.labelNome.Name = "labelNome";
-            this.labelNome.Size = new System.Drawing.Size(140, 38);
-            this.labelNome.TabIndex = 32;
-            this.labelNome.Text = "NOME:";
-            // 
             // textCPF
             // 
             this.textCPF.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -159,6 +149,7 @@
             this.textCPF.Name = "textCPF";
             this.textCPF.Size = new System.Drawing.Size(778, 32);
             this.textCPF.TabIndex = 38;
+            this.textCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCPF_ValidacaoTecla);
             // 
             // labelCfp
             // 
@@ -182,6 +173,18 @@
             this.textCodigo.Name = "textCodigo";
             this.textCodigo.Size = new System.Drawing.Size(778, 32);
             this.textCodigo.TabIndex = 35;
+            this.textCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCodigo_ValidacaoTecla);
+            // 
+            // labelNome
+            // 
+            this.labelNome.AutoSize = true;
+            this.labelNome.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNome.ForeColor = System.Drawing.Color.Black;
+            this.labelNome.Location = new System.Drawing.Point(3, 38);
+            this.labelNome.Name = "labelNome";
+            this.labelNome.Size = new System.Drawing.Size(140, 38);
+            this.labelNome.TabIndex = 32;
+            this.labelNome.Text = "NOME:";
             // 
             // labelCodigo
             // 

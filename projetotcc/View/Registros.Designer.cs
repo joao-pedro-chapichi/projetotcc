@@ -265,12 +265,14 @@
             // 
             this.labelNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.labelNome.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNome.Location = new System.Drawing.Point(99, 8);
             this.labelNome.Multiline = true;
             this.labelNome.Name = "labelNome";
             this.labelNome.Size = new System.Drawing.Size(485, 32);
             this.labelNome.TabIndex = 12;
+            this.labelNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbNome_ValidacaoTecla);
             // 
             // label1
             // 
@@ -291,9 +293,9 @@
             this.checkUsuariosInativos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkUsuariosInativos.Location = new System.Drawing.Point(3, 53);
             this.checkUsuariosInativos.Name = "checkUsuariosInativos";
-            this.checkUsuariosInativos.Size = new System.Drawing.Size(405, 44);
+            this.checkUsuariosInativos.Size = new System.Drawing.Size(281, 44);
             this.checkUsuariosInativos.TabIndex = 27;
-            this.checkUsuariosInativos.Text = "Mostrar Registros de  usuarios Inativos";
+            this.checkUsuariosInativos.Text = "Mostrar todos os registros";
             this.checkUsuariosInativos.UseVisualStyleBackColor = true;
             this.checkUsuariosInativos.CheckedChanged += new System.EventHandler(this.checkUsuariosInativos_CheckedChanged);
             // 
