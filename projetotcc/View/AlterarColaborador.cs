@@ -21,7 +21,7 @@ namespace projetotcc.View
         int id;             // ID obtido através de uma busca assíncrona
 
         // Construtor da classe AlterarColaborador
-        public AlterarColaborador(int id_funcionario, string nome)
+        public AlterarColaborador(int id_funcionario, string nome, string cpf)
         {
             InitializeComponent();  // Inicializa os componentes da interface gráfica
 
@@ -30,6 +30,8 @@ namespace projetotcc.View
 
             // Define o texto do campo txtNome com o nome do funcionário
             textNome.Text = nome;
+
+            textCPF.Text = cpf;
 
             // Define o texto do campo txtCodigo com o ID do funcionário, convertendo-o para string
             textCodigo.Text = id_funcionario.ToString();
@@ -59,9 +61,7 @@ namespace projetotcc.View
         // Voltar ao gerenciar colaboradores
         private void pbVoltarCol_form(object sender, EventArgs e)
         {
-            //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
-            GerenciarColaboradores gerenciarColaboradores = new GerenciarColaboradores();
-            UtilsClasse.FecharEAbrirProximoForm(this, gerenciarColaboradores);
+            this.Close();
         }
 
         // FInalizar alteração de colaboradores
@@ -129,7 +129,7 @@ namespace projetotcc.View
         private void txbNome_ValidacaoTecla(object sender, KeyPressEventArgs e)
         {
             // Lista de caracteres acentuados permitidos
-            char[] allowedChars = { 'é', 'è', 'ê', 'ë', 'à', 'â', 'ä', 'á', 'ò', 'ô', 'ö', 'ó', 'ù', 'û', 'ü', 'ú' };
+            char[] allowedChars = { 'é', 'è', 'ê', 'ë', 'à', 'â', 'ä', 'á', 'ò', 'ô', 'ö', 'ó', 'ù', 'û', 'ü', 'ú', ' ' };
 
             // Verifica se a tecla pressionada é uma letra, uma letra acentuada específica ou tecla de controle
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !Array.Exists(allowedChars, c => c == e.KeyChar))
@@ -147,5 +147,14 @@ namespace projetotcc.View
             }
         }
         #endregion
+
+        private void txbCPF_ValidacaoTecla(object sender, KeyPressEventArgs e)
+        {
+            // Verifica se a tecla pressionada é um dígito ou a tecla de controle (como backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Impede a entrada de qualquer caractere que não seja número
+            }
+        }
     }
 }

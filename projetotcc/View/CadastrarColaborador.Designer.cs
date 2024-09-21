@@ -163,12 +163,14 @@
             this.textNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textNome.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textNome.Location = new System.Drawing.Point(3, 79);
             this.textNome.Multiline = true;
             this.textNome.Name = "textNome";
             this.textNome.Size = new System.Drawing.Size(778, 32);
             this.textNome.TabIndex = 33;
+            this.textNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbNome_ValidacaoTecla);
             // 
             // labelCodigo
             // 
@@ -192,6 +194,7 @@
             this.textCodigo.Name = "textCodigo";
             this.textCodigo.Size = new System.Drawing.Size(778, 32);
             this.textCodigo.TabIndex = 35;
+            this.textCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCodigo_ValidacaoTecla);
             // 
             // labelCfp
             // 
@@ -215,6 +218,7 @@
             this.textCPF.Name = "textCPF";
             this.textCPF.Size = new System.Drawing.Size(778, 32);
             this.textCPF.TabIndex = 38;
+            this.textCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCPF_ValidacaoTecla);
             // 
             // tableLayoutPanel4
             // 
@@ -227,12 +231,12 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.labelNome, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.textNome, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.textCPF, 0, 6);
             this.tableLayoutPanel4.Controls.Add(this.labelCfp, 0, 5);
             this.tableLayoutPanel4.Controls.Add(this.textCodigo, 0, 4);
             this.tableLayoutPanel4.Controls.Add(this.labelCodigo, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.labelNome, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.textNome, 0, 2);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 108);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
