@@ -67,8 +67,15 @@ namespace projetotcc
         // Evento para abrir o formulário de gerenciamento
         private void pbAbrir_gerenciamento(object sender, EventArgs e)
         {
-            Gerenciamento gerenciamento = new Gerenciamento();
-            UtilsClasse.FecharEAbrirProximoForm(this, gerenciamento);
+            using (SenhaGerenciamento formSenha = new SenhaGerenciamento())
+            {
+                // Abre o form de senha e verifica se a senha foi correta
+                if (formSenha.ShowDialog() == DialogResult.OK)
+                {
+                    Gerenciamento gerenciamento = new Gerenciamento();
+                    UtilsClasse.FecharEAbrirProximoForm(this, gerenciamento);
+                }
+            }
         }
 
         // Evento para focar no campo de código ao carregar o formulário

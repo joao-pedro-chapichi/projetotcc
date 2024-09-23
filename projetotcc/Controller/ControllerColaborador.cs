@@ -55,7 +55,7 @@ namespace projetotcc.Controller
                 {
                     cmd.Parameters.AddWithValue("nome", modelFunc.Nome);
                     cmd.Parameters.AddWithValue("id_funcionario", modelFunc.Id_funcionario);
-                    cmd.Parameters.AddWithValue("status", "ativo");
+                    cmd.Parameters.AddWithValue("status", "ATIVO");
                     cmd.Parameters.AddWithValue("cpf", modelFunc.Cpf);
 
                     await cmd.ExecuteNonQueryAsync();
@@ -120,6 +120,14 @@ namespace projetotcc.Controller
                 MessageBox.Show("Erro ao pesquisar funcionários: " + ex.Message);
             }
 
+            if (dataTable.Rows.Count > 0)
+            {
+                dataTable.Columns["id_funcionario"].ColumnName = "CODIGO";
+                dataTable.Columns["nome"].ColumnName = "NOME";
+                dataTable.Columns["cpf"].ColumnName = "CPF";
+                dataTable.Columns["status"].ColumnName = "STATUS";
+            }
+
             return dataTable; // Retorna o DataTable com os resultados.
         }
 
@@ -150,13 +158,13 @@ namespace projetotcc.Controller
                     if (status != null)
                     {
                         // Define o novo status com base no valor atual.
-                        if (status.ToString().ToLower() == "ativo")
+                        if (status.ToString().ToUpper() == "ATIVO")
                         {
-                            novoStatus = "inativo";
+                            novoStatus = "INATIVO";
                         }
                         else
                         {
-                            novoStatus = "ativo";
+                            novoStatus = "ATIVO";
                         }
 
                         // Atualiza o status do funcionário

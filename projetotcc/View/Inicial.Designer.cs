@@ -132,13 +132,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Location = new System.Drawing.Point(3, 88);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(900, 88);
             this.label1.TabIndex = 5;
-            this.label1.Text = "PONTO DE FUNCIONÁRIO";
+            this.label1.Text = "PONTO ELETRÔNICO";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -148,9 +148,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(3, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(199, 25);
+            this.label2.Size = new System.Drawing.Size(306, 25);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Codigo Do Usuário:";
+            this.label2.Text = "CÓDIGO DO COLABORADOR:";
             // 
             // tableLayoutPanel1
             // 

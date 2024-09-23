@@ -188,7 +188,7 @@ namespace projetotcc.Controller
                         if (acao == "saida" && horaUltimaAcao.HasValue)
                         {
                             tempoTrabalhado = horaMinutos - horaUltimaAcao.Value; // Subtrai considerando só horas e minutos
-                            MessageBox.Show($"Tempo Trabalhado: {tempoTrabalhado.Value.ToString(@"hh\:mm")}");
+                            //MessageBox.Show($"Tempo Trabalhado: {tempoTrabalhado.Value.ToString(@"hh\:mm")}");
                         }
 
                         commInsert.Parameters.AddWithValue("@hora", horaMinutos);
@@ -280,6 +280,18 @@ namespace projetotcc.Controller
                 MessageBox.Show($"Erro na consulta ao banco de dados: {ex.Message}");
             }
 
+            if (dataTable.Rows.Count > 0)
+            {
+                if (dataTable.Columns.Contains("data"))
+                    dataTable.Columns["data"].ColumnName = "DATA";
+                if (dataTable.Columns.Contains("hora")) 
+                    dataTable.Columns["hora"].ColumnName = "HORA";
+                if (dataTable.Columns.Contains("acao")) 
+                    dataTable.Columns["acao"].ColumnName = "AÇÃO";
+                if (dataTable.Columns.Contains("id_funcionario")) 
+                    dataTable.Columns["id_funcionario"].ColumnName = "CÓDIGO";
+            }
+
             return dataTable;
         }
         public static async ValueTask<DataTable> PesquisaRegistroHoje()
@@ -318,6 +330,8 @@ namespace projetotcc.Controller
                     }
                 }
             }
+
+            
 
             return dataTable;
         }

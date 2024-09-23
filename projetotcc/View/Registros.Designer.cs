@@ -229,7 +229,7 @@
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(157, 6);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(262, 32);
             this.dateTimePicker1.TabIndex = 25;
@@ -256,7 +256,7 @@
             this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker2.Location = new System.Drawing.Point(157, 3);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(262, 32);
             this.dateTimePicker2.TabIndex = 26;
@@ -291,9 +291,9 @@
             this.checkUsuariosInativos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkUsuariosInativos.Location = new System.Drawing.Point(3, 53);
             this.checkUsuariosInativos.Name = "checkUsuariosInativos";
-            this.checkUsuariosInativos.Size = new System.Drawing.Size(405, 44);
+            this.checkUsuariosInativos.Size = new System.Drawing.Size(281, 44);
             this.checkUsuariosInativos.TabIndex = 27;
-            this.checkUsuariosInativos.Text = "Mostrar Registros de  usuarios Inativos";
+            this.checkUsuariosInativos.Text = "Mostrar todos os registros";
             this.checkUsuariosInativos.UseVisualStyleBackColor = true;
             this.checkUsuariosInativos.CheckedChanged += new System.EventHandler(this.checkUsuariosInativos_CheckedChanged);
             // 

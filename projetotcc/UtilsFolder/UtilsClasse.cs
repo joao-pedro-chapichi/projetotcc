@@ -98,6 +98,11 @@ namespace projetotcc.Utils
             return cpf.EndsWith(digito);
         }
 
+        public static void SimularBackspace()
+        {
+            SendKeys.Send("{BACKSPACE}");
+        }
+
         #endregion
     }
 }
