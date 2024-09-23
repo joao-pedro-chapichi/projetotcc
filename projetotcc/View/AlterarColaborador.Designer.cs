@@ -159,6 +159,7 @@
             this.textCPF.Name = "textCPF";
             this.textCPF.Size = new System.Drawing.Size(776, 32);
             this.textCPF.TabIndex = 38;
+            this.textCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCPF_ValidacaoTecla);
             // 
             // labelCfp
             // 
@@ -182,6 +183,7 @@
             this.textCodigo.Name = "textCodigo";
             this.textCodigo.Size = new System.Drawing.Size(776, 32);
             this.textCodigo.TabIndex = 35;
+            this.textCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCodigo_ValidacaoTecla);
             // 
             // labelCodigo
             // 
