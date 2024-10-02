@@ -108,7 +108,8 @@
             // 
             this.labelHome1.AutoSize = true;
             this.labelHome1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelHome1.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHome1.Font = new System.Drawing.Font("Arial Narrow", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHome1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelHome1.Location = new System.Drawing.Point(3, 0);
             this.labelHome1.Name = "labelHome1";
             this.labelHome1.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -121,7 +122,8 @@
             // 
             this.labelHome2.AutoSize = true;
             this.labelHome2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelHome2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHome2.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHome2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelHome2.Location = new System.Drawing.Point(3, 355);
             this.labelHome2.Name = "labelHome2";
             this.labelHome2.Size = new System.Drawing.Size(924, 356);

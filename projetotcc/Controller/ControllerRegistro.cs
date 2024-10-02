@@ -44,10 +44,10 @@ namespace projetotcc.Controller
 
             return idUsuario;
         }
-        public static async ValueTask<bool> VerificarExistencia(long codigofuncionario)
+        public static async ValueTask<bool> VerificarExistencia(long codigofuncionario, string status)
         {
             bool retorno = false;
-            string sql = "SELECT COUNT(*) FROM funcionario WHERE id = @id";
+            string sql = $"SELECT COUNT(*) FROM funcionario WHERE id = @id AND status = @{status}";
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
@@ -57,6 +57,8 @@ namespace projetotcc.Controller
                     try
                     {
                         commCheckCodigo.Parameters.AddWithValue("@id", codigofuncionario);
+                        commCheckCodigo.Parameters.AddWithValue("@status", status);
+
                         int countCodigo = Convert.ToInt32(await commCheckCodigo.ExecuteScalarAsync());
                         retorno = countCodigo > 0;
                     }
@@ -175,7 +177,7 @@ namespace projetotcc.Controller
                             return "Erro: Código do funcionário inválido.";
                         }
 
-                        if (!await VerificarExistencia(codigo))
+                        if (!await VerificarExistencia(codigo, "ATIVO"))
                         {
                             return "Usuário não existe!";
                         }
@@ -214,9 +216,6 @@ namespace projetotcc.Controller
                 }
             }
         }
-
-
-
         public static async ValueTask<DataTable> PesquisaRegistro(ModelRegistro mRegistro, string estado = null)
         {
             DataTable dataTable = new DataTable();
@@ -264,7 +263,7 @@ namespace projetotcc.Controller
                         }
                         if (!string.IsNullOrEmpty(estado))
                         {
-                            commSearch.Parameters.AddWithValue("@estado", estado);
+                            commSearch.Parameters.AddWithValue("@estado", estado.ToUpper());
                         }
 
                         // Preenchendo o DataTable com os dados retornados pela consulta

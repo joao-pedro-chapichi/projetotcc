@@ -17,9 +17,15 @@ namespace projetotcc.Controller
         public static async Task cadastrarFuncionario(ModelFuncionario modelFunc)
         {
             // Verifica se já existe um funcionário com o mesmo ID.
-            if (await VerificarExistenciaId(modelFunc.Id_funcionario))
+            if (await VerificarExistenciaId(modelFunc.Id_funcionario, "id_funcionario"))
             {
                 MessageBox.Show("Código já cadastrado!");
+                return;
+            }
+
+            if (await VerificarExistenciaId(modelFunc.Cpf, "cpf"))
+            {
+                MessageBox.Show("CPF já cadastrado!");
                 return;
             }
 
@@ -69,10 +75,6 @@ namespace projetotcc.Controller
             }
         }
 
-        // Método para validar o CPF
-        
-
-
         // Método assíncrono para buscar funcionários por nome e/ou ID.
         public static async ValueTask<DataTable> buscasFuncionarios(string nome, string idFuncionario, string cpf, string estado = null)
         {
@@ -108,7 +110,7 @@ namespace projetotcc.Controller
                     if (!string.IsNullOrEmpty(cpf))
                         comm.Parameters.AddWithValue("@cpf", cpf + "%");
                     if (!string.IsNullOrEmpty(estado))
-                        comm.Parameters.AddWithValue("@status", estado);
+                        comm.Parameters.AddWithValue("@status", estado.ToUpper());
 
                     // Preenche o DataTable com os resultados da consulta de forma assíncrona.
                     await Task.Run(() => adapter.Fill(dataTable));
@@ -320,10 +322,10 @@ namespace projetotcc.Controller
         }
 
         // Método assíncrono para verificar se um ID de funcionário já existe no banco de dados.
-        public static async ValueTask<bool> VerificarExistenciaId(long codigofuncionario)
+        public static async ValueTask<bool> VerificarExistenciaId(object campo, string tipo_busca)
         {
             // SQL para contar
-            string sql = "SELECT COUNT(*) FROM funcionario WHERE id_funcionario = @id_funcionario";
+            string sql = $"SELECT COUNT(*) FROM funcionario WHERE {tipo_busca} = @{tipo_busca}";
             try
             {
                 // Cria uma conexão com o banco de dados.
@@ -332,7 +334,7 @@ namespace projetotcc.Controller
                 using (var commCheckCodigo = new NpgsqlCommand(sql, connection))
                 {
                     // Adiciona o parâmetro ao comando.
-                    commCheckCodigo.Parameters.AddWithValue("@id_funcionario", codigofuncionario);
+                    commCheckCodigo.Parameters.AddWithValue($"@{tipo_busca}", campo);
 
                     // Executa o comando de forma assíncrona e obtém o número de funcionários com o ID fornecido.
                     int countCodigo = Convert.ToInt32(await commCheckCodigo.ExecuteScalarAsync());

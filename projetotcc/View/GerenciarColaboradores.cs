@@ -31,11 +31,17 @@ namespace projetotcc.View
 
         }
 
+        private void GerenciarColaboradores_Load(object sender, EventArgs e)
+        {
+            AtualizarDados();
+        }
+
         private void Redimensionar()
         {
             UtilsClasse.RedimensionarLabel(this, labelTopo, 0.04f);
-            UtilsClasse.RedimensionarLabel(this, labelNome, 0.015f);
-            UtilsClasse.RedimensionarLabel(this, labelCodigo, 0.015f);
+            UtilsClasse.RedimensionarLabel(this, labelNome, 0.01f);
+            UtilsClasse.RedimensionarLabel(this, labelCodigo, 0.01f);
+            UtilsClasse.RedimensionarLabel(this, labelCpf, 0.01f);
             float newSize = this.Width * 0.01f; // Ajusta o tamanho da fonte com base na largura do formulário
             dataGridView1.DefaultCellStyle.Font = new Font("Arial", newSize);
             UtilsClasse.AjustarFonteDataGridView(dataGridView1, 0.015f);

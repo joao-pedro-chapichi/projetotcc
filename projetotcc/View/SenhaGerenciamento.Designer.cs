@@ -41,7 +41,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::projetotcc.Properties.Resources.iconePontoFacilBranco;
-            this.pictureBox1.Location = new System.Drawing.Point(277, 134);
+            this.pictureBox1.Location = new System.Drawing.Point(298, 154);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(126, 106);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -108,7 +108,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(415, 252);
+            this.ClientSize = new System.Drawing.Size(436, 272);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);

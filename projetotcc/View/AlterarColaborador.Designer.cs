@@ -97,11 +97,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Font = new System.Drawing.Font("Arial Black", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(494, 108);
+            this.label3.Size = new System.Drawing.Size(554, 136);
             this.label3.TabIndex = 25;
             this.label3.Text = "ALTERAR";
             // 
@@ -123,7 +123,7 @@
             this.tableLayoutPanel4.Controls.Add(this.textNome, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.labelCodigo, 0, 3);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 108);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 136);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 8;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
@@ -140,11 +140,11 @@
             // labelNome
             // 
             this.labelNome.AutoSize = true;
-            this.labelNome.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNome.ForeColor = System.Drawing.Color.Black;
+            this.labelNome.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNome.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelNome.Location = new System.Drawing.Point(3, 38);
             this.labelNome.Name = "labelNome";
-            this.labelNome.Size = new System.Drawing.Size(140, 38);
+            this.labelNome.Size = new System.Drawing.Size(109, 33);
             this.labelNome.TabIndex = 32;
             this.labelNome.Text = "NOME:";
             // 
@@ -164,11 +164,11 @@
             // labelCfp
             // 
             this.labelCfp.AutoSize = true;
-            this.labelCfp.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCfp.ForeColor = System.Drawing.Color.Black;
+            this.labelCfp.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCfp.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelCfp.Location = new System.Drawing.Point(3, 190);
             this.labelCfp.Name = "labelCfp";
-            this.labelCfp.Size = new System.Drawing.Size(103, 38);
+            this.labelCfp.Size = new System.Drawing.Size(81, 33);
             this.labelCfp.TabIndex = 37;
             this.labelCfp.Text = "CPF:";
             // 
@@ -179,6 +179,7 @@
             this.textCodigo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textCodigo.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textCodigo.Location = new System.Drawing.Point(3, 155);
+            this.textCodigo.MaxLength = 8;
             this.textCodigo.Multiline = true;
             this.textCodigo.Name = "textCodigo";
             this.textCodigo.Size = new System.Drawing.Size(776, 32);
@@ -188,11 +189,11 @@
             // labelCodigo
             // 
             this.labelCodigo.AutoSize = true;
-            this.labelCodigo.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCodigo.ForeColor = System.Drawing.Color.Black;
+            this.labelCodigo.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCodigo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelCodigo.Location = new System.Drawing.Point(3, 114);
             this.labelCodigo.Name = "labelCodigo";
-            this.labelCodigo.Size = new System.Drawing.Size(178, 38);
+            this.labelCodigo.Size = new System.Drawing.Size(141, 33);
             this.labelCodigo.TabIndex = 34;
             this.labelCodigo.Text = "CÓDIGO:";
             // 

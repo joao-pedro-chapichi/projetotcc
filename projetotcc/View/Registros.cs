@@ -28,6 +28,8 @@ namespace projetotcc.View
             this.Controls.Add(menuLateral);
             menuLateral.Dock = DockStyle.Left;
             Redimensionar();
+            comboBox1.SelectedIndex = 2;
+            comboAtividade.SelectedIndex = 2;
         }
 
         #region NAVEGAÇÃO
@@ -95,24 +97,25 @@ namespace projetotcc.View
                 }
 
                 // Verifica se a combobox não está vazia ou nula
-                if (!string.IsNullOrEmpty(comboBox1.SelectedItem?.ToString()))
+                if (!string.IsNullOrEmpty(comboBox1.SelectedItem?.ToString()) && comboBox1.SelectedItem.ToString() != "TODOS")
                 {
                     modelRegistro.Acao = comboBox1.SelectedItem?.ToString().ToLower();
+                    MessageBox.Show("a");
                 }
 
                 try
                 {
-
+                    string atividade = comboAtividade.SelectedItem.ToString();
                     DataTable dataTable = new DataTable();
-
-                    if (checkUsuariosInativos.Checked)
+                    if(comboAtividade.SelectedItem.ToString() == "TODOS")
                     {
-                       dataTable  = await ControllerRegistro.PesquisaRegistro(modelRegistro);
+                        dataTable = await ControllerRegistro.PesquisaRegistro(modelRegistro);
                     }
                     else
                     {
-                       dataTable = await ControllerRegistro.PesquisaRegistro(modelRegistro, "ativo");
+                        dataTable = await ControllerRegistro.PesquisaRegistro(modelRegistro, atividade.ToUpper());
                     }
+                    
 
                     if (dataTable != null && dataTable.Rows.Count > 0)
                     {
@@ -133,7 +136,14 @@ namespace projetotcc.View
 
         private async void checkUsuariosInativos_CheckedChanged(object sender, EventArgs e)
         {
-            await AtualizarRegistros();
+            if (checkUsuariosInativos.Checked)
+            {
+                await AtualizarRegistros();
+            }
+            else
+            {
+                dataGridView1.DataSource = null;
+            }
         }
 
         private void btnCriarRelatorio_Click(object sender, EventArgs e)

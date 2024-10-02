@@ -1,4 +1,5 @@
 ﻿using GenCode128;
+using projetotcc.Controles_De_Usuario;
 using projetotcc.Utils;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,15 @@ namespace projetotcc.View
     {
         public int altura = 4;
 
+        public MenuLateral menuLateral;
+
+
         public CodigoBarras()
         {
             InitializeComponent();
+            menuLateral = new MenuLateral(this);
+            this.Controls.Add(menuLateral);
+            menuLateral.Dock = DockStyle.Left;
         }
 
         #region NAVEGAÇÃO

@@ -56,6 +56,8 @@
             this.labelCodigoBarras.Text = "CÓDIGOS DE\r\nBARRAS";
             this.labelCodigoBarras.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelCodigoBarras.Click += new System.EventHandler(this.irParaCodigoDeBarras);
+            this.labelCodigoBarras.MouseEnter += new System.EventHandler(this.labelCodigoBarras_MouseEnter);
+            this.labelCodigoBarras.MouseLeave += new System.EventHandler(this.labelCodigoBarras_MouseLeave);
             // 
             // labelFuncionarios
             // 
@@ -71,6 +73,8 @@
             this.labelFuncionarios.Text = "FUNCIONÁRIOS";
             this.labelFuncionarios.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelFuncionarios.Click += new System.EventHandler(this.irParaFuncionarios);
+            this.labelFuncionarios.MouseEnter += new System.EventHandler(this.labelFuncionarios_MouseEnter);
+            this.labelFuncionarios.MouseLeave += new System.EventHandler(this.labelFuncionarios_MouseLeave);
             // 
             // labelRegistros
             // 
@@ -86,6 +90,8 @@
             this.labelRegistros.Text = "REGISTROS";
             this.labelRegistros.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelRegistros.Click += new System.EventHandler(this.irParaRegistros);
+            this.labelRegistros.MouseEnter += new System.EventHandler(this.labelRegistros_MouseEnter);
+            this.labelRegistros.MouseLeave += new System.EventHandler(this.labelRegistros_MouseLeave);
             // 
             // tableLayoutPanel1
             // 
@@ -124,6 +130,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // tableLayoutPanel2
             // 

@@ -250,6 +250,8 @@
     <Content Include="Resources\codigobarras_imagem.png" />
     <Content Include="Resources\confirmarcod_imagem.png" />
     <Content Include="Resources\finalizar_imagem.png" />
+    <Content Include="Resources\GerarRelatorio\buttonCriarRelatorioColorido.png" />
+    <Content Include="Resources\GerarRelatorio\buttonGerarPDF.png" />
     <Content Include="Resources\gerenciamento_imagem.png" />
     <Content Include="Resources\gerencolaborador_imagem.png" />
     <Content Include="Resources\iconePontoFacil.jpeg" />
@@ -257,6 +259,7 @@
     <Content Include="Resources\Icones\iconeAjuda.png" />
     <Content Include="Resources\Icones\iconeHome.png" />
     <Content Include="Resources\imprimir_imagem.png" />
+    <Content Include="Resources\Inicio\butthonConfig.png" />
     <Content Include="Resources\logotcc.ico" />
     <Content Include="Resources\MenuLateral\CodigosButton.png" />
     <Content Include="Resources\MenuLateral\funcionariosButton.png" />
