@@ -113,7 +113,7 @@ namespace projetotcc
                 aguardandoConfirmacao = true; // Sinaliza que está aguardando confirmação
 
                 long id = await ControllerRegistro.BuscarCodigoPorCodigoDeBarras(codigo);
-                bool existencia = await ControllerRegistro.VerificarExistencia(id);
+                bool existencia = await ControllerRegistro.VerificarExistencia(id, "ATIVO");
 
                 if (existencia)
                 {

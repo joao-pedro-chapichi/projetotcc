@@ -47,7 +47,7 @@ namespace projetotcc.Controller
         public static async ValueTask<bool> VerificarExistencia(long codigofuncionario, string status)
         {
             bool retorno = false;
-            string sql = $"SELECT COUNT(*) FROM funcionario WHERE id = @id AND status = @{status}";
+            string sql = $"SELECT COUNT(*) FROM funcionario WHERE id = @id AND status = @status";
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
@@ -60,7 +60,11 @@ namespace projetotcc.Controller
                         commCheckCodigo.Parameters.AddWithValue("@status", status);
 
                         int countCodigo = Convert.ToInt32(await commCheckCodigo.ExecuteScalarAsync());
-                        retorno = countCodigo > 0;
+                        
+                        if(countCodigo > 0)
+                        {
+                            retorno = true;
+                        }
                     }
                     catch (Exception ex)
                     {
