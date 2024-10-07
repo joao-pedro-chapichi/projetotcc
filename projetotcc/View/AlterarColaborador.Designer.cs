@@ -162,9 +162,8 @@
             this.textCPF.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textCPF.Location = new System.Drawing.Point(4, 286);
             this.textCPF.Margin = new System.Windows.Forms.Padding(4);
-            this.textCPF.Multiline = true;
             this.textCPF.Name = "textCPF";
-            this.textCPF.Size = new System.Drawing.Size(1035, 39);
+            this.textCPF.Size = new System.Drawing.Size(1035, 46);
             this.textCPF.TabIndex = 38;
             this.textCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCPF_ValidacaoTecla);
             // 
@@ -189,9 +188,8 @@
             this.textCodigo.Location = new System.Drawing.Point(4, 192);
             this.textCodigo.Margin = new System.Windows.Forms.Padding(4);
             this.textCodigo.MaxLength = 8;
-            this.textCodigo.Multiline = true;
             this.textCodigo.Name = "textCodigo";
-            this.textCodigo.Size = new System.Drawing.Size(1035, 39);
+            this.textCodigo.Size = new System.Drawing.Size(1035, 46);
             this.textCodigo.TabIndex = 35;
             this.textCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCodigo_ValidacaoTecla);
             // 
