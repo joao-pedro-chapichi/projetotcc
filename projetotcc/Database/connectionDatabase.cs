@@ -14,7 +14,7 @@ namespace projetotcc.Database
 #else
         string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=123456;Database=pontofacil_db";
 #endif
-
+          
         private NpgsqlConnection connection = null;
 
         // Metodo de conexao
