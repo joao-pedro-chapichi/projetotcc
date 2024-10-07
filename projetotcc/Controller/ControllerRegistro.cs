@@ -223,7 +223,7 @@ namespace projetotcc.Controller
         public static async ValueTask<DataTable> PesquisaRegistro(ModelRegistro mRegistro, string estado = null)
         {
             DataTable dataTable = new DataTable();
-            string sql = @"SELECT r.hora, r.data, f.id_funcionario, r.acao
+            string sql = @"SELECT r.hora, r.data, f.nome, f.id_funcionario, r.acao 
                             FROM registro r
                             LEFT JOIN funcionario f ON r.id = f.id
                             WHERE r.data >= @dataInicio AND r.data <= @dataFim
@@ -293,6 +293,8 @@ namespace projetotcc.Controller
                     dataTable.Columns["acao"].ColumnName = "AÇÃO";
                 if (dataTable.Columns.Contains("id_funcionario")) 
                     dataTable.Columns["id_funcionario"].ColumnName = "CÓDIGO";
+                if (dataTable.Columns.Contains("nome"))
+                    dataTable.Columns["nome"].ColumnName = "NOME";
             }
 
             return dataTable;

@@ -233,7 +233,7 @@ namespace projetotcc.Controller
         public static async ValueTask<int> PesquisarCodigoPorNome(string nome)
         {
             // SQL para selecionar o código do funcionário pelo nome.
-            string sqlSelect = "SELECT id FROM funcionario WHERE nome = @nome";
+            string sqlSelect = "SELECT id FROM funcionario WHERE nome LIKE @nome";
 
             try
             {
@@ -243,7 +243,7 @@ namespace projetotcc.Controller
                 using (var commSelect = new NpgsqlCommand(sqlSelect, connection))
                 {
                     // Adiciona o parâmetro ao comando.
-                    commSelect.Parameters.AddWithValue("@nome", nome);
+                    commSelect.Parameters.AddWithValue("@nome", "%" + nome + "%");
 
                     // Executa o comando de forma assíncrona e obtém o resultado.
                     object result = await commSelect.ExecuteScalarAsync();

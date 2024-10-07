@@ -55,6 +55,14 @@ namespace projetotcc.Controller
                     }
                 }
 
+                if (dataTable.Rows.Count > 0)
+                {
+                    dataTable.Columns["nome"].ColumnName = "NOME";
+                    dataTable.Columns["horas_trabalhadas"].ColumnName = "HORAS TRABALHADAS";
+                    dataTable.Columns["dias_presentes"].ColumnName = "DIAS PRESENTES";
+
+                }
+
                 // Retornar o DataTable preenchido
                 return dataTable;
             }
