@@ -44,10 +44,10 @@ namespace projetotcc.Controller
 
             return idUsuario;
         }
-        public static async ValueTask<bool> VerificarExistencia(long codigofuncionario)
+        public static async ValueTask<bool> VerificarExistencia(long codigofuncionario, string status)
         {
             bool retorno = false;
-            string sql = "SELECT COUNT(*) FROM funcionario WHERE id = @id";
+            string sql = $"SELECT COUNT(*) FROM funcionario WHERE id = @id AND status = @status";
             ConnectionDatabase con = new ConnectionDatabase();
 
             using (NpgsqlConnection conn = con.connectionDB())
@@ -57,8 +57,14 @@ namespace projetotcc.Controller
                     try
                     {
                         commCheckCodigo.Parameters.AddWithValue("@id", codigofuncionario);
+                        commCheckCodigo.Parameters.AddWithValue("@status", status);
+
                         int countCodigo = Convert.ToInt32(await commCheckCodigo.ExecuteScalarAsync());
-                        retorno = countCodigo > 0;
+                        
+                        if(countCodigo > 0)
+                        {
+                            retorno = true;
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -175,7 +181,7 @@ namespace projetotcc.Controller
                             return "Erro: Código do funcionário inválido.";
                         }
 
-                        if (!await VerificarExistencia(codigo))
+                        if (!await VerificarExistencia(codigo, "ATIVO"))
                         {
                             return "Usuário não existe!";
                         }
@@ -188,7 +194,7 @@ namespace projetotcc.Controller
                         if (acao == "saida" && horaUltimaAcao.HasValue)
                         {
                             tempoTrabalhado = horaMinutos - horaUltimaAcao.Value; // Subtrai considerando só horas e minutos
-                            MessageBox.Show($"Tempo Trabalhado: {tempoTrabalhado.Value.ToString(@"hh\:mm")}");
+                            //MessageBox.Show($"Tempo Trabalhado: {tempoTrabalhado.Value.ToString(@"hh\:mm")}");
                         }
 
                         commInsert.Parameters.AddWithValue("@hora", horaMinutos);
@@ -214,9 +220,6 @@ namespace projetotcc.Controller
                 }
             }
         }
-
-
-
         public static async ValueTask<DataTable> PesquisaRegistro(ModelRegistro mRegistro, string estado = null)
         {
             DataTable dataTable = new DataTable();
@@ -264,7 +267,7 @@ namespace projetotcc.Controller
                         }
                         if (!string.IsNullOrEmpty(estado))
                         {
-                            commSearch.Parameters.AddWithValue("@estado", estado);
+                            commSearch.Parameters.AddWithValue("@estado", estado.ToUpper());
                         }
 
                         // Preenchendo o DataTable com os dados retornados pela consulta
@@ -278,6 +281,18 @@ namespace projetotcc.Controller
             catch (NpgsqlException ex)
             {
                 MessageBox.Show($"Erro na consulta ao banco de dados: {ex.Message}");
+            }
+
+            if (dataTable.Rows.Count > 0)
+            {
+                if (dataTable.Columns.Contains("data"))
+                    dataTable.Columns["data"].ColumnName = "DATA";
+                if (dataTable.Columns.Contains("hora")) 
+                    dataTable.Columns["hora"].ColumnName = "HORA";
+                if (dataTable.Columns.Contains("acao")) 
+                    dataTable.Columns["acao"].ColumnName = "AÇÃO";
+                if (dataTable.Columns.Contains("id_funcionario")) 
+                    dataTable.Columns["id_funcionario"].ColumnName = "CÓDIGO";
             }
 
             return dataTable;
@@ -318,6 +333,8 @@ namespace projetotcc.Controller
                     }
                 }
             }
+
+            
 
             return dataTable;
         }

@@ -59,7 +59,7 @@
             this.textNome.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textNome.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textNome.Location = new System.Drawing.Point(4, 98);
-            this.textNome.Margin = new System.Windows.Forms.Padding(4);
+            this.textNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textNome.MaxLength = 80;
             this.textNome.Name = "textNome";
             this.textNome.Size = new System.Drawing.Size(1035, 46);
@@ -73,7 +73,7 @@
             this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox6.Image = global::projetotcc.Properties.Resources.voltar_imagem;
             this.pictureBox6.Location = new System.Drawing.Point(55, 21);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(197, 72);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -88,7 +88,7 @@
             this.pictureBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox7.Image = global::projetotcc.Properties.Resources.finalizar_imagem;
             this.pictureBox7.Location = new System.Drawing.Point(132, 9);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(274, 95);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -100,12 +100,12 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Font = new System.Drawing.Font("Arial Black", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(618, 135);
+            this.label3.Size = new System.Drawing.Size(692, 169);
             this.label3.TabIndex = 25;
             this.label3.Text = "ALTERAR";
             // 
@@ -127,8 +127,8 @@
             this.tableLayoutPanel4.Controls.Add(this.textNome, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.labelCodigo, 0, 3);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 135);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 169);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 8;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
@@ -145,12 +145,12 @@
             // labelNome
             // 
             this.labelNome.AutoSize = true;
-            this.labelNome.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNome.ForeColor = System.Drawing.Color.Black;
+            this.labelNome.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNome.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelNome.Location = new System.Drawing.Point(4, 47);
             this.labelNome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNome.Name = "labelNome";
-            this.labelNome.Size = new System.Drawing.Size(177, 47);
+            this.labelNome.Size = new System.Drawing.Size(140, 42);
             this.labelNome.TabIndex = 32;
             this.labelNome.Text = "NOME:";
             // 
@@ -161,21 +161,22 @@
             this.textCPF.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textCPF.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textCPF.Location = new System.Drawing.Point(4, 286);
-            this.textCPF.Margin = new System.Windows.Forms.Padding(4);
+            this.textCPF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textCPF.Multiline = true;
             this.textCPF.Name = "textCPF";
             this.textCPF.Size = new System.Drawing.Size(1035, 39);
             this.textCPF.TabIndex = 38;
+            this.textCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCPF_ValidacaoTecla);
             // 
             // labelCfp
             // 
             this.labelCfp.AutoSize = true;
-            this.labelCfp.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCfp.ForeColor = System.Drawing.Color.Black;
+            this.labelCfp.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCfp.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelCfp.Location = new System.Drawing.Point(4, 235);
             this.labelCfp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCfp.Name = "labelCfp";
-            this.labelCfp.Size = new System.Drawing.Size(130, 47);
+            this.labelCfp.Size = new System.Drawing.Size(103, 42);
             this.labelCfp.TabIndex = 37;
             this.labelCfp.Text = "CPF:";
             // 
@@ -186,21 +187,23 @@
             this.textCodigo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textCodigo.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textCodigo.Location = new System.Drawing.Point(4, 192);
-            this.textCodigo.Margin = new System.Windows.Forms.Padding(4);
+            this.textCodigo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCodigo.MaxLength = 8;
             this.textCodigo.Multiline = true;
             this.textCodigo.Name = "textCodigo";
             this.textCodigo.Size = new System.Drawing.Size(1035, 39);
             this.textCodigo.TabIndex = 35;
+            this.textCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCodigo_ValidacaoTecla);
             // 
             // labelCodigo
             // 
             this.labelCodigo.AutoSize = true;
-            this.labelCodigo.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCodigo.ForeColor = System.Drawing.Color.Black;
+            this.labelCodigo.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCodigo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelCodigo.Location = new System.Drawing.Point(4, 141);
             this.labelCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCodigo.Name = "labelCodigo";
-            this.labelCodigo.Size = new System.Drawing.Size(227, 47);
+            this.labelCodigo.Size = new System.Drawing.Size(178, 42);
             this.labelCodigo.TabIndex = 34;
             this.labelCodigo.Text = "CÓDIGO:";
             // 
@@ -212,8 +215,8 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 558);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 556);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -229,7 +232,7 @@
             this.tableLayoutPanel3.Controls.Add(this.pictureBox7, 1, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(525, 4);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
@@ -247,7 +250,7 @@
             this.tableLayoutPanel2.Controls.Add(this.pictureBox6, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
@@ -261,16 +264,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1043, 681);
+            this.ClientSize = new System.Drawing.Size(1043, 679);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1061, 728);
-            this.MinimumSize = new System.Drawing.Size(794, 605);
+            this.MaximumSize = new System.Drawing.Size(1061, 726);
+            this.MinimumSize = new System.Drawing.Size(794, 603);
             this.Name = "AlterarColaborador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AlterarColaborador";

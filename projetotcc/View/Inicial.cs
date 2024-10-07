@@ -67,8 +67,15 @@ namespace projetotcc
         // Evento para abrir o formulário de gerenciamento
         private void pbAbrir_gerenciamento(object sender, EventArgs e)
         {
-            Gerenciamento gerenciamento = new Gerenciamento();
-            UtilsClasse.FecharEAbrirProximoForm(this, gerenciamento);
+            using (SenhaGerenciamento formSenha = new SenhaGerenciamento())
+            {
+                // Abre o form de senha e verifica se a senha foi correta
+                if (formSenha.ShowDialog() == DialogResult.OK)
+                {
+                    Gerenciamento gerenciamento = new Gerenciamento();
+                    UtilsClasse.FecharEAbrirProximoForm(this, gerenciamento);
+                }
+            }
         }
 
         // Evento para focar no campo de código ao carregar o formulário
@@ -87,13 +94,17 @@ namespace projetotcc
                 // Verifica se o campo está vazio ou contém um valor inválido
                 if (string.IsNullOrWhiteSpace(txbcodigo_inicial.Text))
                 {
-                    Console.Beep(2000, 500); // Emite um som de erro
+                    Console.Beep(1000, 500);
+                    Console.Beep(1000, 500);
+                    Console.Beep(1000, 500);
                     return;
                 }
 
                 if (!long.TryParse(txbcodigo_inicial.Text, out long codigo))
                 {
-                    Console.Beep(2000, 500); // Emite um som de erro
+                    Console.Beep(1000, 500);
+                    Console.Beep(1000, 500);
+                    Console.Beep(1000, 500);
                     txbcodigo_inicial.Text = "";
                     txbcodigo_inicial.Focus();
                     return;
@@ -102,7 +113,7 @@ namespace projetotcc
                 aguardandoConfirmacao = true; // Sinaliza que está aguardando confirmação
 
                 long id = await ControllerRegistro.BuscarCodigoPorCodigoDeBarras(codigo);
-                bool existencia = await ControllerRegistro.VerificarExistencia(id);
+                bool existencia = await ControllerRegistro.VerificarExistencia(id, "ATIVO");
 
                 if (existencia)
                 {
@@ -125,15 +136,15 @@ namespace projetotcc
                     }
 
                     // Emite um som de confirmação
-                    Console.Beep(1000, 500);
-                    Console.Beep(1000, 500);
-                    Console.Beep(1000, 500);
+                    Console.Beep(2000, 500); 
 
                     timer.Start(); // Inicia o timer para reativar os controles
                 }
                 else
                 {
-                    Console.Beep(2000, 500); // Emite um som de erro
+                    Console.Beep(1000, 500);
+                    Console.Beep(1000, 500);
+                    Console.Beep(1000, 500);
                     txbcodigo_inicial.Text = "";
                     timer.Start();
                     txbcodigo_inicial.Focus();
@@ -169,9 +180,9 @@ namespace projetotcc
                     dataGridView1.DataSource = dataTable;
                     dataGridView1.Columns[0].HeaderText = "Horário";
                     dataGridView1.Columns[1].HeaderText = "Data";
-                    dataGridView1.Columns[2].HeaderText = "Funcionário";
+                    dataGridView1.Columns[2].HeaderText = "Colaborador";
                     dataGridView1.Columns[3].HeaderText = "Código";
-                    dataGridView1.Columns[4].HeaderText = "Ação";
+                    dataGridView1.Columns[4].HeaderText = "Status";
                 }
             }
             catch (Exception ex)

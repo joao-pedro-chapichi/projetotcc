@@ -183,6 +183,26 @@ namespace projetotcc.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconePontoFacil {
+            get {
+                object obj = ResourceManager.GetObject("iconePontoFacil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconePontoFacilBranco {
+            get {
+                object obj = ResourceManager.GetObject("iconePontoFacilBranco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imprimir_imagem {
             get {
                 object obj = ResourceManager.GetObject("imprimir_imagem", resourceCulture);

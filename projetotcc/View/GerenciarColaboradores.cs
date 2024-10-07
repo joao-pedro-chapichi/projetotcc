@@ -31,11 +31,17 @@ namespace projetotcc.View
 
         }
 
+        private void GerenciarColaboradores_Load(object sender, EventArgs e)
+        {
+            AtualizarDados();
+        }
+
         private void Redimensionar()
         {
             UtilsClasse.RedimensionarLabel(this, labelTopo, 0.04f);
-            UtilsClasse.RedimensionarLabel(this, labelNome, 0.015f);
-            UtilsClasse.RedimensionarLabel(this, labelCodigo, 0.015f);
+            UtilsClasse.RedimensionarLabel(this, labelNome, 0.01f);
+            UtilsClasse.RedimensionarLabel(this, labelCodigo, 0.01f);
+            UtilsClasse.RedimensionarLabel(this, labelCpf, 0.01f);
             float newSize = this.Width * 0.01f; // Ajusta o tamanho da fonte com base na largura do formulário
             dataGridView1.DefaultCellStyle.Font = new Font("Arial", newSize);
             UtilsClasse.AjustarFonteDataGridView(dataGridView1, 0.015f);
@@ -63,17 +69,19 @@ namespace projetotcc.View
 
         }
 
+
+
+        #endregion
+
+        #region CODIGOS
+
         // Cadastrar novo colaborador
         private void cadastrarCol_form(object sender, EventArgs e)
         {
             //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
             CadastrarColaborador cadastrarColaborador = new CadastrarColaborador();
-            cadastrarColaborador.Show();
+            cadastrarColaborador.ShowDialog();
         }
-
-        #endregion
-
-        #region CODIGOS
 
         private void PreencherDataGrindView(DataTable dataTable)
         {
@@ -97,7 +105,7 @@ namespace projetotcc.View
                 }
                 else
                 {
-                    dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo, cpf, "ativo");
+                    dataTable = await ControllerColaborador.buscasFuncionarios(nome, codigo, cpf, "ATIVO");
                 }
                 PreencherDataGrindView(dataTable); // Preenche o DataGridView com os dados retornados
             }
@@ -118,9 +126,9 @@ namespace projetotcc.View
             {
                 string headerText = clickedColumn.HeaderText;
 
-                int idFuncionario = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_funcionario"].Value);
-                string nomeFuncionario = dataGridView1.Rows[e.RowIndex].Cells["nome"].Value.ToString();
-                string cpfFuncionario = dataGridView1.Rows[e.RowIndex].Cells["cpf"].Value.ToString();
+                int idFuncionario = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["CODIGO"].Value);
+                string nomeFuncionario = dataGridView1.Rows[e.RowIndex].Cells["NOME"].Value.ToString();
+                string cpfFuncionario = dataGridView1.Rows[e.RowIndex].Cells["CPF"].Value.ToString();
 
                 if (headerText == "ALTERAR ESTADO")
                 {
@@ -150,7 +158,7 @@ namespace projetotcc.View
         private void EditarFuncionario(int idFuncionario, string nomeFuncionario, string cpf)
         {
             AlterarColaborador formEditar = new AlterarColaborador(idFuncionario, nomeFuncionario, cpf); // Cria o form de edição
-            formEditar.Show(); // Abre o novo form
+            formEditar.ShowDialog(); // Abre o novo form
         }
 
 
@@ -179,6 +187,11 @@ namespace projetotcc.View
         private void txtCPF_TextChanged(object sender, EventArgs e)
         {
             AtualizarDados();
+        }
+
+        private void lbLkComopesquisarcolaborador(object sender, EventArgs e)
+        {
+            MessageBox.Show("Digite nos campos acima:\nNome: <nome do colaborador igual ao cadastrado>\nCodigo: <codigo do colaborador>\nCPF: <cpf do colaborador cadastrado>\nAs pesquisas são independentes, caso esqueça uma informação, preencha o restante. Para uma pesquisa mais precisa, preencha todos os campos.", "Como pesquisar um colaborador?", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
