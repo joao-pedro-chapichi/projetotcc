@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Npgsql;
 
 namespace projetotcc.Database
@@ -11,26 +7,32 @@ namespace projetotcc.Database
     {
         // Conexão com o banco de dados
         // Declaração dos parametros para conexao
+
+#if DEBUG
+        string connectionString = "User Id = postgres.cwuebsaemzssxrzjlamw; Password=!Senha1234???;Server=aws-0-sa-east-1.pooler.supabase.com;Port=5432;Database=postgres;";
+        
+#else
         string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=123456;Database=pontofacil_db";
-        NpgsqlConnection connection = null;
+#endif
+
+        private NpgsqlConnection connection = null;
 
         // Metodo de conexao
-        //Conexão bem feita
+        // Conexão bem feita
         public NpgsqlConnection connectionDB()
         {
             try
             {
                 connection = new NpgsqlConnection(connectionString);
                 connection.Open();
+                Console.WriteLine("Conexão aberta com sucesso!");
                 return connection;
-            } 
-            catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"Erro ao conectar: {ex.Message}");
                 return null;
             }
         }
-
-
     }
 }
