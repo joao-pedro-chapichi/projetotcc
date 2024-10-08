@@ -78,7 +78,7 @@
             this.btnImprimir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
             this.btnImprimir.Location = new System.Drawing.Point(100, 15);
-            this.btnImprimir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(4);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(262, 84);
             this.btnImprimir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -98,7 +98,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 814);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -114,7 +114,7 @@
             this.tableLayoutPanel5.Controls.Add(this.btnCriarRelatorio, 1, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(1186, 4);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 3;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -130,7 +130,7 @@
             this.btnCriarRelatorio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCriarRelatorio.Image = ((System.Drawing.Image)(resources.GetObject("btnCriarRelatorio.Image")));
             this.btnCriarRelatorio.Location = new System.Drawing.Point(23, 15);
-            this.btnCriarRelatorio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCriarRelatorio.Margin = new System.Windows.Forms.Padding(4);
             this.btnCriarRelatorio.Name = "btnCriarRelatorio";
             this.btnCriarRelatorio.Size = new System.Drawing.Size(264, 84);
             this.btnCriarRelatorio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -147,7 +147,7 @@
             this.tableLayoutPanel4.Controls.Add(this.btnPesquisar, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(792, 4);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -163,7 +163,7 @@
             this.btnPesquisar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPesquisar.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisar.Image")));
             this.btnPesquisar.Location = new System.Drawing.Point(61, 15);
-            this.btnPesquisar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPesquisar.Margin = new System.Windows.Forms.Padding(4);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(262, 84);
             this.btnPesquisar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -180,7 +180,7 @@
             this.tableLayoutPanel3.Controls.Add(this.btnImprimir, 1, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(398, 4);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -202,7 +202,7 @@
             "SAIDA",
             "TODOS"});
             this.comboBox1.Location = new System.Drawing.Point(116, 7);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(344, 36);
             this.comboBox1.TabIndex = 18;
@@ -284,7 +284,7 @@
             this.labelNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.labelNome.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNome.Location = new System.Drawing.Point(132, 10);
-            this.labelNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelNome.Margin = new System.Windows.Forms.Padding(4);
             this.labelNome.Name = "labelNome";
             this.labelNome.Size = new System.Drawing.Size(484, 38);
             this.labelNome.TabIndex = 12;
@@ -310,7 +310,7 @@
             this.checkUsuariosInativos.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkUsuariosInativos.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.checkUsuariosInativos.Location = new System.Drawing.Point(4, 65);
-            this.checkUsuariosInativos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkUsuariosInativos.Margin = new System.Windows.Forms.Padding(4);
             this.checkUsuariosInativos.Name = "checkUsuariosInativos";
             this.checkUsuariosInativos.Size = new System.Drawing.Size(370, 54);
             this.checkUsuariosInativos.TabIndex = 27;
@@ -345,7 +345,7 @@
             this.tableLayoutPanel2.Controls.Add(this.checkUsuariosInativos, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 169);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -359,7 +359,7 @@
             this.panel5.Controls.Add(this.label2);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(635, 65);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(465, 54);
             this.panel5.TabIndex = 32;
@@ -377,7 +377,7 @@
             "INATIVO",
             "TODOS"});
             this.comboAtividade.Location = new System.Drawing.Point(177, 7);
-            this.comboAtividade.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboAtividade.Margin = new System.Windows.Forms.Padding(4);
             this.comboAtividade.Name = "comboAtividade";
             this.comboAtividade.Size = new System.Drawing.Size(283, 36);
             this.comboAtividade.TabIndex = 18;
@@ -402,7 +402,7 @@
             this.panel1.Controls.Add(this.labelAcao);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(635, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(465, 53);
             this.panel1.TabIndex = 28;
@@ -413,7 +413,7 @@
             this.panel2.Controls.Add(this.labelNome);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(4, 4);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(623, 53);
             this.panel2.TabIndex = 29;
@@ -424,7 +424,7 @@
             this.panel3.Controls.Add(this.dateTimePicker1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(1108, 4);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(467, 53);
             this.panel3.TabIndex = 30;
@@ -435,7 +435,7 @@
             this.panel4.Controls.Add(this.labelDataFim);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(1108, 65);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(467, 54);
             this.panel4.TabIndex = 31;
@@ -448,7 +448,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 292);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1579, 522);
@@ -465,7 +465,7 @@
             this.Controls.Add(this.labelTopo);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1594, 974);
             this.Name = "Registros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
