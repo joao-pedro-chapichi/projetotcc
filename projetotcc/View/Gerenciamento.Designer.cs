@@ -71,7 +71,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1176, 723);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "HOME";
+            this.tabPage1.Text = "INÍCIO";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -160,6 +160,7 @@
             this.MinimumSize = new System.Drawing.Size(1200, 800);
             this.Name = "Gerenciamento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "INÍCIO";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmCarregar_form);
             this.SizeChanged += new System.EventHandler(this.Gerenciamento_SizeChanged);

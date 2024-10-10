@@ -156,5 +156,13 @@ namespace projetotcc.View
                 e.Handled = true; // Impede a entrada de qualquer caractere que não seja número
             }
         }
+
+        private void Redimensionar()
+        {
+            UtilsClasse.RedimensionarLabel(this, labelaAlterar, 0.04f);
+            UtilsClasse.RedimensionarLabel(this, labelNome, 0.02f);
+            UtilsClasse.RedimensionarLabel(this, labelCodigo, 0.02f);
+            UtilsClasse.RedimensionarLabel(this, labelCfp, 0.02f);
+        }
     }
 }
