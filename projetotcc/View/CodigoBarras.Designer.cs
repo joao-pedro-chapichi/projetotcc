@@ -39,12 +39,17 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCodigoBarras)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -73,7 +78,7 @@
             this.pictureBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox7.Image = global::projetotcc.Properties.Resources.confirmarcod_imagem;
-            this.pictureBox7.Location = new System.Drawing.Point(398, 3);
+            this.pictureBox7.Location = new System.Drawing.Point(793, 3);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(43, 42);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -113,10 +118,10 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.picCodigoBarras, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 136);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -125,12 +130,14 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1184, 625);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.txtCodigo);
+            this.flowLayoutPanel1.Controls.Add(this.textBoxName);
             this.flowLayoutPanel1.Controls.Add(this.pictureBox7);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 65);
@@ -161,6 +168,45 @@
             this.pictureBox8.TabStop = false;
             this.pictureBox8.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
+            // textBoxName
+            // 
+            this.textBoxName.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxName.Location = new System.Drawing.Point(398, 3);
+            this.textBoxName.MaxLength = 8;
+            this.textBoxName.Multiline = true;
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(389, 41);
+            this.textBoxName.TabIndex = 12;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.label1);
+            this.flowLayoutPanel3.Controls.Add(this.panel1);
+            this.flowLayoutPanel3.Controls.Add(this.label3);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(1178, 56);
+            this.flowLayoutPanel3.TabIndex = 16;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label3.Location = new System.Drawing.Point(406, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(130, 42);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "NOME";
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(177, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(223, 53);
+            this.panel1.TabIndex = 10;
+            // 
             // CodigoBarras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,11 +225,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCodigoBarras)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,5 +247,9 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label3;
     }
 }

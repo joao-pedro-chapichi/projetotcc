@@ -248,6 +248,7 @@
     <Content Include="Resources\circulo_vermelho.png" />
     <Content Include="Resources\codbarras_imagem.png" />
     <Content Include="Resources\codigobarras_imagem.png" />
+    <Content Include="Resources\codigoDeBarras\Cartao.png" />
     <Content Include="Resources\confirmarcod_imagem.png" />
     <Content Include="Resources\finalizar_imagem.png" />
     <Content Include="Resources\GerarRelatorio\buttonCriarRelatorioColorido.png" />

@@ -17,6 +17,9 @@ namespace projetotcc.View
         public CriarRelatorio()
         {
             InitializeComponent();
+            radioButtonSimples.Checked = true;
+            campoCPF.Visible = false;
+            txtCPF.Visible = false;
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
@@ -27,11 +30,26 @@ namespace projetotcc.View
 
         private async void button2_Click(object sender, EventArgs e)
         {
+
             try
             { 
+                if(radioButtonDetalhado.Checked)
+                {
+                    if (string.IsNullOrEmpty(campoCPF.Text))
+                    {
+                        MessageBox.Show("O CPF está Nulo!!", "ERRO ERRO ERRO");
+                        return;
+                    }
 
-                DataTable res = await ControllerRelatorio.SomarHorasEDias(dateInicio.Value.Date, dateFim.Value.Date);
-                dataGridView1.DataSource = res;
+                    DataTable res = await ControllerRelatorio.GerarRelatorioDetalhado(dateInicio.Value.Date, dateFim.Value.Date, campoCPF.Text);
+                    dataGridView1.DataSource = res;
+
+                }
+                else
+                {
+                    DataTable res = await ControllerRelatorio.SomarHorasEDias(dateInicio.Value.Date, dateFim.Value.Date);
+                    dataGridView1.DataSource = res;
+                }
             }
             catch (Exception ex)
             {
@@ -59,6 +77,49 @@ namespace projetotcc.View
             {
                 MessageBox.Show("Selecione uma célula antes de gerar o relatório.");
             }
+        }
+
+        private void radioButtonSimples_CheckedChanged(object sender, EventArgs e)
+        {
+            radioButtonDetalhado.Checked = false;
+        }
+
+        private void radioButtonDetalhado_CheckedChanged(object sender, EventArgs e)
+        {
+            radioButtonSimples.Checked = false;
+
+        }
+
+        private void MostrarCPF()
+        {
+            try
+            {
+                if(radioButtonDetalhado.Checked)
+                {
+                    campoCPF.Visible = true;
+                    txtCPF.Visible = true;
+                    return;
+                }
+                else
+                {
+                    campoCPF.Visible = false;
+                    txtCPF.Visible = false;
+                    return;
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void radioButtonSimples_CheckedChanged_1(object sender, EventArgs e)
+        {
+            MostrarCPF();
+        }
+
+        private void radioButtonDetalhado_CheckedChanged_1(object sender, EventArgs e)
+        {
+            MostrarCPF();
         }
     }
 }
