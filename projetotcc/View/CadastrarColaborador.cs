@@ -16,10 +16,16 @@ namespace projetotcc.View
 {
     public partial class CadastrarColaborador : Form
     {
+
+        private Timer timer;
+
         public CadastrarColaborador()
         {
             InitializeComponent();
             Redimensionar();
+            timer = new Timer();
+            timer.Interval = 500;
+            timer.Tick += cadCol_Tick_Form;
         }
 
         #region NAVEGAÇÃO
@@ -45,14 +51,14 @@ namespace projetotcc.View
         private async void finalizarCad_form(object sender, EventArgs e)
         {
             ModelFuncionario modelFunc = new ModelFuncionario();
-            // Validação para garantir que o campo codigo e nome nao fiquem vazios no cadastro
+
+            // Validação para garantir que o campo codigo e nome não fiquem vazios no cadastro
             if (string.IsNullOrEmpty(textCodigo.Text) || string.IsNullOrWhiteSpace(textCodigo.Text))
             {
                 MessageBox.Show("Preencha todos os campos antes de continuar.", "AVISO!");
             }
             else
             {
-
                 modelFunc.Nome = textNome.Text;
                 modelFunc.Cpf = textCPF.Text;
 
@@ -64,7 +70,8 @@ namespace projetotcc.View
                 {
                     modelFunc.Id_funcionario = Convert.ToInt32(textCodigo.Text);
                     await ControllerColaborador.cadastrarFuncionario(modelFunc);
-                    textCodigo.Text = "";
+                    int proximoCodigo = await ControllerColaborador.ObterUltimoCodigoFuncionario() + 1;
+                    textCodigo.Text = proximoCodigo.ToString();
                     textNome.Text = "";
                     textCPF.Text = "";
                 }
@@ -118,6 +125,16 @@ namespace projetotcc.View
             UtilsClasse.RedimensionarLabel(this, labelCfp, 0.02f);
         }
 
-        
+        private void carregarCadColaborador_Form(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
+        private async void cadCol_Tick_Form(object sender, EventArgs e)
+        {
+            timer.Stop();
+            int proximoCodigo = await ControllerColaborador.ObterUltimoCodigoFuncionario() + 1;
+            textCodigo.Text = proximoCodigo.ToString();
+        }
     }
 }

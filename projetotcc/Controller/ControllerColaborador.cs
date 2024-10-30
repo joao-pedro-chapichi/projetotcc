@@ -430,6 +430,29 @@ namespace projetotcc.Controller
             idFuncionario = 0; 
             return false;
         }
+
+        public static async Task<int> ObterUltimoCodigoFuncionario()
+        {
+            await Task.Delay(100);
+
+            int ultimoCodigo = 0;
+
+            using (var connection = new ConnectionDatabase().connectionDB())
+            {
+                //await connection.OpenAsync();
+                using (var command = new NpgsqlCommand("SELECT MAX(id_funcionario) FROM funcionario", connection))
+                {
+                    var result = await command.ExecuteScalarAsync();
+                    if (result != DBNull.Value)
+                    {
+                        ultimoCodigo = Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            return Math.Max(ultimoCodigo, 1000);
+        }
     }
 
+    
 }

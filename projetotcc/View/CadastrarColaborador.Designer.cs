@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastrarColaborador));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -43,6 +44,7 @@
             this.labelCfp = new System.Windows.Forms.Label();
             this.textCPF = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -187,6 +189,7 @@
             this.textCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textCodigo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textCodigo.Enabled = false;
             this.textCodigo.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textCodigo.Location = new System.Drawing.Point(3, 159);
             this.textCodigo.Name = "textCodigo";
@@ -249,6 +252,10 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(784, 307);
             this.tableLayoutPanel4.TabIndex = 39;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.cadCol_Tick_Form);
+            // 
             // CadastrarColaborador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +272,7 @@
             this.Name = "CadastrarColaborador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CADASTRAR COLABORADOR";
+            this.Load += new System.EventHandler(this.carregarCadColaborador_Form);
             this.SizeChanged += new System.EventHandler(this.CadastrarColaborador_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -293,5 +301,6 @@
         private System.Windows.Forms.Label labelCfp;
         private System.Windows.Forms.TextBox textCPF;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Timer timer1;
     }
 }

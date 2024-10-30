@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
@@ -57,12 +58,6 @@ namespace projetotcc.View
             //utilizando o metodo(de forma estatica, não precisa instanciar) para fechar o form atual e abri o proximo
             Gerenciamento gerenciamento = new Gerenciamento();
             UtilsClasse.FecharEAbrirProximoForm(this, gerenciamento);
-        }
-
-        // Imprimir registros
-        private void pbImprimir_form(object sender, EventArgs e)
-        {
-            // Ainda sem ação
         }
         #endregion
 
@@ -164,6 +159,6 @@ namespace projetotcc.View
             }
         }
 
-        // Outros eventos como CarregarForm_form, pbFechar_form, pbMinimizar_form, etc., podem continuar conforme você já os implementou
+        
     }
 }
