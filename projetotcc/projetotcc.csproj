@@ -116,6 +116,7 @@
     <Compile Include="Controles_De_Usuario\MenuLateral.Designer.cs">
       <DependentUpon>MenuLateral.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controller\ControllerCarteirinha.cs" />
     <Compile Include="Controller\ControllerColaborador.cs" />
     <Compile Include="Controller\ControllerPDF.cs" />
     <Compile Include="Controller\ControllerRegistro.cs" />
@@ -257,6 +258,7 @@
     <Content Include="Resources\gerencolaborador_imagem.png" />
     <Content Include="Resources\iconePontoFacil.jpeg" />
     <Content Include="Resources\iconePontoFacilBranco.jpeg" />
+    <Content Include="Resources\Icones\avatar-carteirinha.png" />
     <Content Include="Resources\Icones\iconeAjuda.png" />
     <Content Include="Resources\Icones\iconeHome.png" />
     <Content Include="Resources\imprimir_imagem.png" />

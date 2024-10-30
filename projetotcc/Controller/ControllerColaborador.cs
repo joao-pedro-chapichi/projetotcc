@@ -350,5 +350,28 @@ namespace projetotcc.Controller
                 return false;
             }
         }
+
+        public static bool verificarExistenciaParaCarteirinha(int codigo, out string nome)
+        {
+
+            using (var connection = new ConnectionDatabase().connectionDB())
+            {
+                using (var cmd = new NpgsqlCommand("SELECT nome FROM funcionario WHERE id_funcionario = @id_funcionario", connection))
+                {
+                    cmd.Parameters.AddWithValue("id_funcionario", codigo);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            nome = reader.GetString(0);
+                            return true; 
+                        }
+                    }
+                }
+            }
+
+            nome = null;
+            return false;
+        }
     }
 }

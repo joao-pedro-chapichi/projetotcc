@@ -260,7 +260,7 @@
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "AlterarColaborador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ALTERAR COLABORADOR";
+            this.Text = "EDITAR COLABORADOR";
             this.Load += new System.EventHandler(this.AlterarColaborador_LoadAsync);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
