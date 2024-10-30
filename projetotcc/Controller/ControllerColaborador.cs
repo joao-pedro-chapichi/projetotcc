@@ -373,5 +373,63 @@ namespace projetotcc.Controller
             nome = null;
             return false;
         }
+
+        //public static bool verificarExistenciaParaRelatorioDetalhadoCPF(string cpf, out string nome, out string idFuncionario)
+        //{
+        //    using (var connection = new ConnectionDatabase().connectionDB())
+        //    {
+        //        using (var cmd = new NpgsqlCommand("SELECT id_funcionario, nome FROM funcionario WHERE cpf = @cpf", connection))
+        //        {
+        //            cmd.Parameters.AddWithValue("cpf", cpf);
+
+        //            using (var reader = cmd.ExecuteReader())
+        //            {
+        //                if (reader.Read())
+        //                {
+        //                    idFuncionario = reader.GetString(0);
+        //                    nome = reader.GetString(1);
+        //                    return true;
+
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    nome = null;
+        //    idFuncionario = null; 
+        //    return false;
+        //}
+
+        public static bool verificarExistenciaParaRelatorioDetalhadoCPF(string cpf, out string nome, out int idFuncionario)
+        {
+            using (var connection = new ConnectionDatabase().connectionDB())
+            {
+                using (var cmd = new NpgsqlCommand("SELECT id_funcionario, nome FROM funcionario WHERE cpf = @cpf", connection))
+                {
+                    cmd.Parameters.AddWithValue("cpf", cpf);
+                    MessageBox.Show($"Consultando CPF: {cpf}"); 
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            idFuncionario = reader.GetInt32(0);
+                            nome = reader.GetString(1); 
+                            MessageBox.Show($"Funcionário encontrado: ID = {idFuncionario}, Nome = {nome}"); 
+                            return true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nenhum funcionário encontrado com esse CPF."); 
+                        }
+                    }
+                }
+            }
+
+            nome = null;
+            idFuncionario = 0; 
+            return false;
+        }
     }
+
 }

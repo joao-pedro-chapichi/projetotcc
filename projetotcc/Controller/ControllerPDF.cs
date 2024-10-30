@@ -29,7 +29,7 @@ namespace projetotcc.Controller
             {
                 string caminhoArquivo = saveFileDialog.FileName;
 
-                Document doc = new Document(PageSize.A4, 20, 20, 30, 30); // Margens: esquerda, direita, superior, inferior
+                Document doc = new Document(PageSize.A4, 20, 20, 30, 30);
                 PdfWriter.GetInstance(doc, new FileStream(caminhoArquivo, FileMode.Create));
 
                 doc.Open();
@@ -47,7 +47,7 @@ namespace projetotcc.Controller
                 };
                 doc.Add(title);
 
-                // Informações básicas da folha de ponto
+                
                 PdfPTable infoTable = new PdfPTable(2);
                 infoTable.WidthPercentage = 100;
                 infoTable.SpacingAfter = 20f;
@@ -65,16 +65,16 @@ namespace projetotcc.Controller
 
                 doc.Add(infoTable);
 
-                // Tabela de pontos
-                PdfPTable table = new PdfPTable(4);
+                
+                PdfPTable table = new PdfPTable(5);
                 table.WidthPercentage = 100;
 
-                // Definindo as larguras relativas das colunas
-                float[] widths = new float[] { 1f, 3f, 3f, 3f };
+                
+                float[] widths = new float[] { 1f, 3f, 3f, 2f, 2f };
                 table.SetWidths(widths);
 
-                // Adicionando cabeçalhos
-                string[] headers = { "ID", "Data", "Hora", "Ação" };
+                
+                string[] headers = { "TOTAL HORAS", "HORARIO INICIO", "HORARIO FIM", "DATA", "NOME" };
                 foreach (string header in headers)
                 {
                     PdfPCell headerCell = new PdfPCell(new Phrase(header, headerFont))
@@ -85,17 +85,17 @@ namespace projetotcc.Controller
                     table.AddCell(headerCell);
                 }
 
-                // Adicionando dados à tabela com base no DataGridView
+                
                 foreach (DataGridViewRow row in dataGridView.Rows)
                 {
-                    if (!row.IsNewRow) // Evita adicionar a linha de novos registros (em edição)
+                    if (!row.IsNewRow)
                     {
                         foreach (DataGridViewCell cell in row.Cells)
                         {
                             PdfPCell pdfCell = new PdfPCell(new Phrase(cell.Value?.ToString() ?? string.Empty, bodyFont))
                             {
                                 HorizontalAlignment = Element.ALIGN_CENTER,
-                                FixedHeight = 15f  // Ajuste a altura da célula
+                                FixedHeight = 15f 
                             };
                             table.AddCell(pdfCell);
                         }

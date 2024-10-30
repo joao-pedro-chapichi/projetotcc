@@ -53,7 +53,7 @@ namespace projetotcc.View
             }
             catch (Exception ex)
             {
-                // Tratar exceções e informar o usuário
+                
                 MessageBox.Show($"Ocorreu um erro: {ex.Message}");
             }
         }
@@ -64,20 +64,42 @@ namespace projetotcc.View
             {
                 DataGridViewRow linhaSelecionada = dataGridView1.CurrentRow;
 
-                // Captura os valores das células
-               
+                
                 string dataInicial = dateInicio.Value.ToString("dd/MM/yyyy");
                 string dataFinal = dateFim.Value.ToString("dd/MM/yyyy");
 
-                // Chama o método para gerar o relatório com os valores capturados
-                ControllerPDF controllerPDF = new ControllerPDF();
-                controllerPDF.GerarRelatorioSimples(dataGridView1, dataInicial, dataFinal);
+                
+                if (radioButtonSimples.Checked)
+                {
+                    ControllerPDF controllerPDF = new ControllerPDF();
+                    controllerPDF.GerarRelatorioSimples(dataGridView1, dataInicial, dataFinal);
+                }
+                else 
+                {
+                    string cpfUsuario = campoCPF.Text.Replace(".", "").Replace("-", "").Trim();
+                    string nomeFuncionario;
+                    int idFuncionario;
+                    
+
+                    
+                    if (ControllerColaborador.verificarExistenciaParaRelatorioDetalhadoCPF(cpfUsuario, out nomeFuncionario, out idFuncionario))
+                    {
+                        
+                        ControllerPDF controllerPDF = new ControllerPDF();
+                        controllerPDF.GerarRelatorioDetalhado(dataGridView1, nomeFuncionario, idFuncionario.ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Funcionário não encontrado. Verifique o CPF informado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
             else
             {
                 MessageBox.Show("Selecione uma célula antes de gerar o relatório.");
             }
         }
+
 
         private void radioButtonSimples_CheckedChanged(object sender, EventArgs e)
         {
