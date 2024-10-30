@@ -407,7 +407,6 @@ namespace projetotcc.Controller
                 using (var cmd = new NpgsqlCommand("SELECT id_funcionario, nome FROM funcionario WHERE cpf = @cpf", connection))
                 {
                     cmd.Parameters.AddWithValue("cpf", cpf);
-                    MessageBox.Show($"Consultando CPF: {cpf}"); 
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -415,7 +414,6 @@ namespace projetotcc.Controller
                         {
                             idFuncionario = reader.GetInt32(0);
                             nome = reader.GetString(1); 
-                            MessageBox.Show($"Funcionário encontrado: ID = {idFuncionario}, Nome = {nome}"); 
                             return true;
                         }
                         else

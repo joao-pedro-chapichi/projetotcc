@@ -14,7 +14,6 @@ namespace projetotcc.Controller
     {
         public void LayoutCarteirinha(string nome, int codigo)
         {
-
             using (var saveFileDialog = new SaveFileDialog())
             {
                 saveFileDialog.FileName = $"Carteirinha-{nome}.pdf";
@@ -30,59 +29,61 @@ namespace projetotcc.Controller
                             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(saveFileDialog.FileName, FileMode.Create));
                             document.Open();
 
-                            
+                            PdfPTable table = new PdfPTable(1);
+                            table.WidthPercentage = 130;
+
+                            PdfPCell cell = new PdfPCell();
+                            cell.Border = Rectangle.BOX;
+                            cell.BorderColor = BaseColor.BLACK;
+                            cell.Padding = 10f;
+
                             string avatarPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Resources\Icones", "avatar-carteirinha.png");
 
-                            
                             if (File.Exists(avatarPath))
                             {
                                 Image avatar = Image.GetInstance(avatarPath);
                                 avatar.ScaleToFit(80f, 80f);
                                 avatar.Alignment = Element.ALIGN_CENTER;
-                                document.Add(avatar);
-                                document.Add(new Paragraph("\n"));
+                                cell.AddElement(avatar);
+                                cell.AddElement(new Paragraph("\n"));
                             }
                             else
                             {
-                                document.Add(new Paragraph($"Avatar não encontrado em: {avatarPath}", FontFactory.GetFont("Arial", 14, Font.ITALIC)));
+                                cell.AddElement(new Paragraph($"Avatar não encontrado em: {avatarPath}", FontFactory.GetFont("Arial", 14, Font.ITALIC)));
                             }
 
-                            
-                            document.Add(new Paragraph("Carteirinha", FontFactory.GetFont("Arial", 18, Font.BOLD))
+                            cell.AddElement(new Paragraph("Carteirinha", FontFactory.GetFont("Arial", 18, Font.BOLD))
                             {
                                 Alignment = Element.ALIGN_CENTER
                             });
 
-                            
-                            document.Add(new Paragraph($"Nome: {nome}", FontFactory.GetFont("Arial", 12))
+                            cell.AddElement(new Paragraph($"Nome: {nome}", FontFactory.GetFont("Arial", 12))
                             {
-                                Alignment = Element.ALIGN_CENTER 
+                                Alignment = Element.ALIGN_CENTER
                             });
 
-                            
                             try
                             {
                                 Barcode39 barcode = new Barcode39
                                 {
-
                                     Code = codigo.ToString(),
                                 };
 
                                 Image barcodeImage = barcode.CreateImageWithBarcode(writer.DirectContent, BaseColor.BLACK, BaseColor.BLACK);
                                 barcodeImage.ScaleToFit(180f, 60f);
                                 barcodeImage.Alignment = Element.ALIGN_CENTER;
-                                document.Add(barcodeImage);
+                                cell.AddElement(barcodeImage);
                             }
                             catch (Exception ex)
                             {
-                                document.Add(new Paragraph($"Erro ao gerar código de barras: {ex.Message}", FontFactory.GetFont("Arial", 14, Font.ITALIC)));
+                                cell.AddElement(new Paragraph($"Erro ao gerar código de barras: {ex.Message}", FontFactory.GetFont("Arial", 14, Font.ITALIC)));
                             }
 
-
+                            table.AddCell(cell);
+                            document.Add(table);
                             document.Close();
                         }
                         MessageBox.Show($"A carteirinha do {nome} foi criada com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     }
                     catch (Exception ex)
                     {
@@ -95,6 +96,7 @@ namespace projetotcc.Controller
                 }
             }
         }
+
 
         public bool GerarCarteirinha(int codigo, out string nome)
         {

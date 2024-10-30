@@ -174,15 +174,15 @@ namespace projetotcc.Controller
                     if (!linha.IsNewRow)
                     {
 
-                        tabela.AddCell(new PdfPCell(new Phrase(linha.Cells["nome"].Value?.ToString(), bodyFont))
+                        tabela.AddCell(new PdfPCell(new Phrase(linha.Cells["NOME"].Value?.ToString(), bodyFont))
                         {
                             HorizontalAlignment = Element.ALIGN_CENTER
                         });
-                        tabela.AddCell(new PdfPCell(new Phrase(linha.Cells["dias_presentes"].Value?.ToString(), bodyFont))
+                        tabela.AddCell(new PdfPCell(new Phrase(linha.Cells["DIAS PRESENTES"].Value?.ToString(), bodyFont))
                         {
                             HorizontalAlignment = Element.ALIGN_CENTER
                         });
-                        tabela.AddCell(new PdfPCell(new Phrase(linha.Cells["horas_trabalhadas"].Value?.ToString(), bodyFont))
+                        tabela.AddCell(new PdfPCell(new Phrase(linha.Cells["HORAS TRABALHADAS"].Value?.ToString(), bodyFont))
                         {
                             HorizontalAlignment = Element.ALIGN_CENTER
                         });
