@@ -70,7 +70,7 @@
             this.labelFuncionarios.Name = "labelFuncionarios";
             this.labelFuncionarios.Size = new System.Drawing.Size(368, 169);
             this.labelFuncionarios.TabIndex = 5;
-            this.labelFuncionarios.Text = "FUNCIONÁRIOS";
+            this.labelFuncionarios.Text = "COLABORADOR";
             this.labelFuncionarios.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelFuncionarios.Click += new System.EventHandler(this.irParaFuncionarios);
             this.labelFuncionarios.MouseEnter += new System.EventHandler(this.labelFuncionarios_MouseEnter);

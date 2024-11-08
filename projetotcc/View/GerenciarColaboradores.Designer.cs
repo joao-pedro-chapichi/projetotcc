@@ -31,18 +31,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GerenciarColaboradores));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GerenciarColaboradores));
             this.txtNome = new System.Windows.Forms.TextBox();
             this.checkPesquisaTotal = new System.Windows.Forms.CheckBox();
             this.labelNome = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.EDITAR = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.AlterarEstado = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnCadastrar = new System.Windows.Forms.PictureBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelTopo = new System.Windows.Forms.Label();
@@ -52,11 +49,17 @@
             this.labelCpf = new System.Windows.Forms.Label();
             this.txtCPF = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnCadastrar = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.EDITAR = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.AlterarEstado = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCadastrar)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCadastrar)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtNome
@@ -79,7 +82,7 @@
             this.checkPesquisaTotal.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkPesquisaTotal.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.checkPesquisaTotal.Location = new System.Drawing.Point(2, 341);
-            this.checkPesquisaTotal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkPesquisaTotal.Margin = new System.Windows.Forms.Padding(2);
             this.checkPesquisaTotal.Name = "checkPesquisaTotal";
             this.checkPesquisaTotal.Size = new System.Drawing.Size(361, 35);
             this.checkPesquisaTotal.TabIndex = 17;
@@ -126,7 +129,7 @@
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(15, 378);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -143,38 +146,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1169, 383);
             this.dataGridView1.TabIndex = 15;
             // 
-            // EDITAR
-            // 
-            this.EDITAR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(115)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            this.EDITAR.DefaultCellStyle = dataGridViewCellStyle2;
-            this.EDITAR.FillWeight = 5.076141F;
-            this.EDITAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EDITAR.HeaderText = "EDITAR";
-            this.EDITAR.MinimumWidth = 200;
-            this.EDITAR.Name = "EDITAR";
-            this.EDITAR.ReadOnly = true;
-            this.EDITAR.Text = "EDITAR";
-            this.EDITAR.UseColumnTextForButtonValue = true;
-            // 
-            // AlterarEstado
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(46)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            this.AlterarEstado.DefaultCellStyle = dataGridViewCellStyle3;
-            this.AlterarEstado.FillWeight = 194.9239F;
-            this.AlterarEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AlterarEstado.HeaderText = "ALTERAR ESTADO";
-            this.AlterarEstado.MinimumWidth = 200;
-            this.AlterarEstado.Name = "AlterarEstado";
-            this.AlterarEstado.ReadOnly = true;
-            this.AlterarEstado.Text = "ALTERAR";
-            this.AlterarEstado.ToolTipText = "ALTERAR";
-            this.AlterarEstado.UseColumnTextForButtonValue = true;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.panel2);
@@ -189,26 +160,14 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btnCadastrar);
+            this.panel2.Controls.Add(this.tableLayoutPanel1);
+            this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.linkLabel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(15, 667);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1169, 94);
             this.panel2.TabIndex = 24;
-            // 
-            // btnCadastrar
-            // 
-            this.btnCadastrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCadastrar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCadastrar.Image = global::projetotcc.Properties.Resources.cadastrar_imagem;
-            this.btnCadastrar.Location = new System.Drawing.Point(907, 0);
-            this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(262, 94);
-            this.btnCadastrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnCadastrar.TabIndex = 16;
-            this.btnCadastrar.TabStop = false;
-            this.btnCadastrar.Click += new System.EventHandler(this.cadastrarCol_form);
             // 
             // linkLabel1
             // 
@@ -237,7 +196,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1169, 378);
             this.flowLayoutPanel1.TabIndex = 23;
@@ -329,6 +288,76 @@
             this.panel3.Size = new System.Drawing.Size(15, 761);
             this.panel3.TabIndex = 25;
             // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(1144, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(25, 94);
+            this.panel4.TabIndex = 28;
+            // 
+            // btnCadastrar
+            // 
+            this.btnCadastrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCadastrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrar.Image")));
+            this.btnCadastrar.Location = new System.Drawing.Point(16, 12);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(233, 69);
+            this.btnCadastrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnCadastrar.TabIndex = 16;
+            this.btnCadastrar.TabStop = false;
+            this.btnCadastrar.Click += new System.EventHandler(this.cadastrarCol_form);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.Controls.Add(this.btnCadastrar, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(878, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(266, 94);
+            this.tableLayoutPanel1.TabIndex = 29;
+            // 
+            // EDITAR
+            // 
+            this.EDITAR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(115)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            this.EDITAR.DefaultCellStyle = dataGridViewCellStyle2;
+            this.EDITAR.FillWeight = 5.076141F;
+            this.EDITAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EDITAR.HeaderText = "EDITAR";
+            this.EDITAR.MinimumWidth = 200;
+            this.EDITAR.Name = "EDITAR";
+            this.EDITAR.ReadOnly = true;
+            this.EDITAR.Text = "EDITAR";
+            this.EDITAR.UseColumnTextForButtonValue = true;
+            // 
+            // AlterarEstado
+            // 
+            this.AlterarEstado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(46)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            this.AlterarEstado.DefaultCellStyle = dataGridViewCellStyle3;
+            this.AlterarEstado.FillWeight = 5F;
+            this.AlterarEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AlterarEstado.HeaderText = "ESTADO";
+            this.AlterarEstado.MinimumWidth = 200;
+            this.AlterarEstado.Name = "AlterarEstado";
+            this.AlterarEstado.ReadOnly = true;
+            this.AlterarEstado.Text = "ALTERAR";
+            this.AlterarEstado.ToolTipText = "ALTERAR";
+            this.AlterarEstado.UseColumnTextForButtonValue = true;
+            // 
             // GerenciarColaboradores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -349,9 +378,10 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCadastrar)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCadastrar)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -373,6 +403,8 @@
         private System.Windows.Forms.TextBox txtCPF;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridViewButtonColumn EDITAR;
         private System.Windows.Forms.DataGridViewButtonColumn AlterarEstado;
     }

@@ -130,7 +130,7 @@ namespace projetotcc.View
                 string nomeFuncionario = dataGridView1.Rows[e.RowIndex].Cells["NOME"].Value.ToString();
                 string cpfFuncionario = dataGridView1.Rows[e.RowIndex].Cells["CPF"].Value.ToString();
 
-                if (headerText == "ALTERAR ESTADO")
+                if (headerText == "ESTADO")
                 {
                     await AlterarEstadoFuncionario(idFuncionario); // Chama método assíncrono para alterar o estado
                 }
@@ -144,7 +144,7 @@ namespace projetotcc.View
         // Método para alterar o estado do funcionário
         private async Task AlterarEstadoFuncionario(int idFuncionario)
         {
-            DialogResult result = MessageBox.Show("Deseja continuar?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Deseja alterar o estado de atividade do Colaborador?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {

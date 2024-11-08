@@ -239,6 +239,11 @@
     <Content Include="Database\sqldatabase.txt" />
     <Content Include="logotcc.ico" />
     <Content Include="Resources\alterar_imagem.png" />
+    <Content Include="Resources\btnBuscar.png" />
+    <Content Include="Resources\BtnCadastrar.png" />
+    <Content Include="Resources\BtnCadastrarCadastro.png" />
+    <Content Include="Resources\btnCriarRelatorio.png" />
+    <Content Include="Resources\BtnSalvar.png" />
     <Content Include="Resources\buttonsRegistros\buttonCriarRelatorio.png" />
     <Content Include="Resources\buttonsRegistros\buttonImprimir.png" />
     <Content Include="Resources\buttonsRegistros\buttonPesquisar.png" />
@@ -264,6 +269,8 @@
     <Content Include="Resources\imprimir_imagem.png" />
     <Content Include="Resources\Inicio\butthonConfig.png" />
     <Content Include="Resources\logotcc.ico" />
+    <Content Include="Resources\MenuLateral\btnBuscar.png" />
+    <Content Include="Resources\MenuLateral\btnCriarRelatorio.png" />
     <Content Include="Resources\MenuLateral\CodigosButton.png" />
     <Content Include="Resources\MenuLateral\funcionariosButton.png" />
     <Content Include="Resources\MenuLateral\registrosButton.png" />
