@@ -223,5 +223,10 @@ namespace projetotcc.View
                 e.Handled = true; // Impede a entrada de qualquer caractere que não seja número
             }
         }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            AtualizarDados();
+        }
     }
 }

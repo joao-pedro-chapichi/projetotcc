@@ -264,6 +264,7 @@
     <Content Include="Resources\iconePontoFacil.jpeg" />
     <Content Include="Resources\iconePontoFacilBranco.jpeg" />
     <Content Include="Resources\Icones\avatar-carteirinha.png" />
+    <Content Include="Resources\Icones\btnAtualizar.png" />
     <Content Include="Resources\Icones\iconeAjuda.png" />
     <Content Include="Resources\Icones\iconeHome.png" />
     <Content Include="Resources\imprimir_imagem.png" />
