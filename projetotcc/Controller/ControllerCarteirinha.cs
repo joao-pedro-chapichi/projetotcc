@@ -52,12 +52,12 @@ namespace projetotcc.Controller
                                 cell.AddElement(new Paragraph($"Avatar não encontrado em: {avatarPath}", FontFactory.GetFont("Arial", 14, Font.ITALIC)));
                             }
 
-                            cell.AddElement(new Paragraph("Carteirinha", FontFactory.GetFont("Arial", 15, Font.BOLD))
+                            cell.AddElement(new Paragraph("Carteirinha", FontFactory.GetFont("Arial", 18, Font.BOLD))
                             {
                                 Alignment = Element.ALIGN_CENTER
                             });
 
-                            cell.AddElement(new Paragraph($"{nome}", FontFactory.GetFont("Arial", 10))
+                            cell.AddElement(new Paragraph($"Nome: {nome}", FontFactory.GetFont("Arial", 12))
                             {
                                 Alignment = Element.ALIGN_CENTER
                             });
@@ -67,7 +67,6 @@ namespace projetotcc.Controller
                                 Barcode39 barcode = new Barcode39
                                 {
                                     Code = codigo.ToString(),
-
                                 };
 
                                 Image barcodeImage = barcode.CreateImageWithBarcode(writer.DirectContent, BaseColor.BLACK, BaseColor.BLACK);
