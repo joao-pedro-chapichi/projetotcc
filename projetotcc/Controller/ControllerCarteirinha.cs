@@ -71,7 +71,7 @@ namespace projetotcc.Controller
                                 };
 
                                 Image barcodeImage = barcode.CreateImageWithBarcode(writer.DirectContent, BaseColor.BLACK, BaseColor.BLACK);
-                                barcodeImage.ScaleToFit(180f, 60f);
+                                barcodeImage.ScaleToFit(140f, 40f);
                                 barcodeImage.Alignment = Element.ALIGN_CENTER;
                                 cell.AddElement(barcodeImage);
                             }
@@ -84,7 +84,7 @@ namespace projetotcc.Controller
                             document.Add(table);
                             document.Close();
                         }
-                        MessageBox.Show($"A carteirinha do {nome} foi criada com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"A carteirinha do(a) {nome} foi criada com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
