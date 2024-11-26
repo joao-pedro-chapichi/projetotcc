@@ -224,7 +224,7 @@ namespace projetotcc.View
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void btnAtualizar_Click(object sender, EventArgs e)
         {
             AtualizarDados();
         }
