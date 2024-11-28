@@ -52,11 +52,11 @@ namespace projetotcc.Controller
                 infoTable.WidthPercentage = 100;
                 infoTable.SpacingAfter = 20f;
 
-                PdfPCell cell1 = new PdfPCell(new Phrase($"Funcionário: {nome}\nCargo: (Tavlez tenha)\nMês: (Provavelmente vai ter)", bodyFont));
+                PdfPCell cell1 = new PdfPCell(new Phrase($"Funcionário: {nome}", bodyFont));
                 cell1.Border = PdfPCell.NO_BORDER;
                 infoTable.AddCell(cell1);
 
-                PdfPCell cell2 = new PdfPCell(new Phrase($"ID: {id}\nDepartamento: (Improvavel que a gente coloque)\nGestor: (Talvez tenha)", bodyFont))
+                PdfPCell cell2 = new PdfPCell(new Phrase($"Código: {id}", bodyFont))
                 {
                     HorizontalAlignment = Element.ALIGN_RIGHT
                 };
